@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button } from 'antd';
+import Dashboard from './dashboard';
 import './App.less';
 
 function App() {
   return (
     <div className="app">
-      <Button type="primary">Hello,World</Button>
+      <Dashboard />
     </div>
   );
 }
