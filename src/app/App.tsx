@@ -1,11 +1,11 @@
 import React from 'react';
-import Dashboard from './dashboard';
+import Management from './Management';
 import './App.less';
 
 function App() {
   return (
     <div className="app">
-      <Dashboard />
+      <Management />
     </div>
   );
 }
