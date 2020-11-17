@@ -1,17 +1,20 @@
 import React from 'react';
+// Components
 import Layout from './components/Layout';
-import './Dashboard.less';
+import Dashboard from './components/dashboard';
+//styles
+import './Management.less';
 
-const Dashboard: React.FC = () => {
+const Management: React.FC = () => {
   return (
     <>
       <Layout>
         <div style={{ marginLeft: '1rem', marginTop: '1rem' }}>
-          <p>Hello, World</p>
+          <Dashboard />
         </div>
       </Layout>
     </>
   );
 };
 
-export default Dashboard;
+export default Management;

@@ -5,18 +5,14 @@ import {
   MenuOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
-import { Badge, Tooltip } from 'antd';
+import { Badge } from 'antd';
+import { Tooltip } from 'antd';
 import Slider from '../sider';
 import './Header.less';
 export interface HeaderType {
   name: string;
 }
-const styles = {
-  display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  padding: ' 0.4rem 1rem',
-};
+
 const Header: React.FC<HeaderType> = () => {
   const [sideBar, showSideBar] = useState(false);
   return (
@@ -43,7 +39,7 @@ const Header: React.FC<HeaderType> = () => {
             )}
           </div>
         </div>
-        <div style={styles}>
+        <div className="navigation--options">
           <div className="navigation--notification">
             <Tooltip placement="top" title="Notification">
               <Badge count={null}>
