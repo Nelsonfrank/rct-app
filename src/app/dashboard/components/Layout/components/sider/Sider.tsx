@@ -9,7 +9,7 @@ import {
   AccountBookOutlined,
   MessageOutlined,
 } from '@ant-design/icons';
-import Logo from '../../../../assets/images/rct-logo.jpeg';
+import Logo from '../../../../../../assets/images/rct-logo.jpeg';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 import './Sider.less';
@@ -33,7 +33,7 @@ const Navigation: React.FC<Props> = ({ isCollapsable, className }) => {
       collapsed={isCollapsable ? collapsed : undefined}
       onCollapse={isCollapsable ? onCollapse : undefined}
       className={className}
-      style={{ overflow: 'auto', minHeight: '200vh' }}
+      style={{ overflow: 'auto', minHeight: '100vh' }}
     >
       <div className="logo">
         <img
@@ -62,10 +62,6 @@ const Navigation: React.FC<Props> = ({ isCollapsable, className }) => {
           <Menu.Item key="5">Buyers</Menu.Item>
           <Menu.Item key="6">Leaders</Menu.Item>
         </SubMenu>
-        {/* <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-          <Menu.Item key="6">Team 1</Menu.Item>
-          <Menu.Item key="8">Team 2</Menu.Item>
-        </SubMenu> */}
         <Menu.Item key="9" icon={<MessageOutlined />}>
           Messages
         </Menu.Item>
