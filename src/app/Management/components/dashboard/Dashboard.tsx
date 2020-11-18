@@ -70,6 +70,59 @@ const Chart = (
   </LineChart>
 );
 
+const price = [
+  {
+    variety: 'Kiyela',
+    price: 2000,
+  },
+  {
+    variety: 'Mbeya',
+    price: 2500,
+  },
+  {
+    variety: 'Shinyanga',
+    price: 2300,
+  },
+];
+const PriceRate = (
+  data: { variety: string; price: number }[],
+  style?: React.CSSProperties,
+) => (
+  <Card styles={{ ...style }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div>
+        <h2>Today Price Rate(Tzs/Kg)</h2>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '20% 40% 40%' }}>
+        <div style={{ marginRight: '1rem' }}>
+          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>S/N</p>
+        </div>
+        <div style={{ marginRight: '1rem' }}>
+          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>Variety</p>
+        </div>
+        <div>
+          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>Price</p>
+        </div>
+        {data.map((_data, index) => (
+          <>
+            <div style={{ marginRight: '1rem' }}>
+              <p style={{ fontSize: '1rem' }}>{index + 1}</p>
+            </div>
+            <div style={{ marginRight: '1rem' }}>
+              <p style={{ fontSize: '1rem' }}>{_data.variety}</p>
+            </div>
+            <div>
+              <p style={{ fontSize: '1rem', justifySelf: 'flex-end' }}>
+                {_data.price}
+              </p>
+            </div>
+          </>
+        ))}
+      </div>
+    </div>
+  </Card>
+);
+
 const Dashboard: React.FC<DashboardProps> = () => {
   const callback = (key: string) => {
     console.log(key);
@@ -108,20 +161,26 @@ const Dashboard: React.FC<DashboardProps> = () => {
           actionBtn="View More"
         />
       </div>
-
-      <Card>
-        <Tabs defaultActiveKey="1" onChange={callback}>
-          <TabPane tab="Users" key="1">
-            {Chart(data)}
-          </TabPane>
-          <TabPane tab="Tenders" key="2">
-            {Chart(data)}
-          </TabPane>
-          <TabPane tab="Prices" key="3">
-            {Chart(data)}
-          </TabPane>
-        </Tabs>
-      </Card>
+      <div className="dashboard--chartsection">
+        <Card styles={{ width: '65%' }}>
+          <Tabs defaultActiveKey="1" onChange={callback}>
+            <TabPane
+              tab="Users"
+              key="1"
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              {Chart(data)}
+            </TabPane>
+            <TabPane tab="Tenders" key="2">
+              {Chart(data)}
+            </TabPane>
+            <TabPane tab="Prices" key="3">
+              {Chart(data)}
+            </TabPane>
+          </Tabs>
+        </Card>
+        {PriceRate(price, { width: '30%' })}
+      </div>
     </div>
   );
 };
