@@ -3,6 +3,7 @@ import React from 'react';
 import Card from '../../../components/card';
 import { Tabs } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import TenderTable from './components/Tender-table';
 //Styles
 import './Dashboard.less';
 
@@ -83,6 +84,26 @@ const price = [
     variety: 'Shinyanga',
     price: 2300,
   },
+  {
+    variety: 'Magugu',
+    price: 2300,
+  },
+  {
+    variety: 'Morogoro',
+    price: 2300,
+  },
+  {
+    variety: 'Mbeya',
+    price: 2300,
+  },
+  {
+    variety: 'Kilombero',
+    price: 2300,
+  },
+  {
+    variety: 'Ruvuma',
+    price: 2300,
+  },
 ];
 const PriceRate = (
   data: { variety: string; price: number }[],
@@ -161,7 +182,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
           actionBtn="View More"
         />
       </div>
-      <div className="dashboard--chartsection">
+      <div className="dashboard--section">
         <Card styles={{ width: '65%' }}>
           <Tabs defaultActiveKey="1" onChange={callback}>
             <TabPane
@@ -180,6 +201,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
           </Tabs>
         </Card>
         {PriceRate(price, { width: '30%' })}
+      </div>
+      <div className="dashboard--section">
+        <TenderTable />
       </div>
     </div>
   );
