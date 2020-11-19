@@ -10,16 +10,16 @@ import { Table } from 'antd';
 const dataSource = [
   {
     key: '1',
-    name: 'Mike Johnson',
-    amount: 32,
+    buyer: 'Mike Johnson',
     variety: 'Morogoro',
+    amount: 32,
     destination: 'Dar es salaam',
   },
   {
     key: '2',
-    name: 'John Doe',
-    amount: 20,
+    buyer: 'John Doe',
     variety: 'Kyela',
+    amount: 20,
     destination: 'Nairobi',
   },
 ];
@@ -27,18 +27,9 @@ const dataSource = [
 const TenderBid: React.FC = () => {
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Amount(Tonnes)',
-      dataIndex: 'amount',
-      key: 'amount',
-      sorter: {
-        // eslint-disable-next-line
-        compare: (a: any, b: any) => a.amount - b.amount,
-      },
+      title: 'Buyer',
+      dataIndex: 'buyer',
+      key: 'buyer',
     },
     {
       title: 'Variety',
@@ -47,6 +38,15 @@ const TenderBid: React.FC = () => {
       sorter: {
         // eslint-disable-next-line
         compare: (a: any, b: any) => a.variety.length - b.variety.length,
+      },
+    },
+    {
+      title: 'Amount(Tonnes)',
+      dataIndex: 'amount',
+      key: 'amount',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.amount - b.amount,
       },
     },
     {
