@@ -33,7 +33,13 @@ const Navigation: React.FC<Props> = ({ isCollapsable, className }) => {
       collapsed={isCollapsable ? collapsed : undefined}
       onCollapse={isCollapsable ? onCollapse : undefined}
       className={className}
-      style={{ overflow: 'auto', minHeight: '100vh' }}
+      style={{
+        overflow: 'auto',
+        minHeight: '100vh',
+        position: 'fixed',
+        left: 0,
+        zIndex: 200,
+      }}
     >
       <div className="logo">
         <img
