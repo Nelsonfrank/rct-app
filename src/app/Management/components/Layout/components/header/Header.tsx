@@ -21,6 +21,9 @@ const Header: React.FC<HeaderType> = () => {
         width: '100%',
         display: 'flex',
         backgroundColor: '#fff',
+        position: 'fixed',
+        top: 0,
+        zIndex: 100,
       }}
     >
       {/* <div style={{ display: sideBar ? 'block' : 'none' }}>
