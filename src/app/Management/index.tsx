@@ -9,9 +9,7 @@ const Management: React.FC = () => {
   return (
     <>
       <Layout>
-        <div style={{ marginLeft: '200px', marginTop: '50px' }}>
-          <Dashboard />
-        </div>
+        <Dashboard />
       </Layout>
     </>
   );

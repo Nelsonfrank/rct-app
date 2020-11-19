@@ -14,17 +14,19 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 import './Sider.less';
 
-export interface Props {
+export interface NavigationProps {
   isCollapsable?: boolean;
   className?: string;
+  isCollapsed: (value: boolean) => void;
 }
 
-// eslint-disable-next-line react/prop-types
-const Navigation: React.FC<Props> = ({ isCollapsable, className }) => {
+const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
+  const { className, isCollapsable, isCollapsed } = props;
   const onCollapse = () => {
     setCollapsed(!collapsed);
+    isCollapsed(!collapsed);
   };
 
   return (

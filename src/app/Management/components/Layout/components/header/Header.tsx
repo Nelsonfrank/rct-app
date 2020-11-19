@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Badge } from 'antd';
 import { Tooltip } from 'antd';
-import Slider from '../sider';
+// import Slider from '../sider';
 import './Header.less';
 export interface HeaderType {
   name: string;
@@ -26,9 +26,9 @@ const Header: React.FC<HeaderType> = () => {
         zIndex: 100,
       }}
     >
-      <div style={{ display: sideBar ? 'block' : 'none' }}>
+      {/* <div style={{ display: sideBar ? 'block' : 'none' }}>
         <Slider isCollapsable={false} />
-      </div>
+      </div> */}
       <div className="navigation">
         <div
           style={{ display: 'flex', marginLeft: '1rem' }}
