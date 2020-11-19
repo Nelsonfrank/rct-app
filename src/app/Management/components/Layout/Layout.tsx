@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Layout } from 'antd';
 import Navigation from './components/header';
-import Slider from './components/sider';
+import Sider from './components/sider';
 import './LayoutWrapper.less';
 
 export interface Props {
@@ -10,16 +10,30 @@ export interface Props {
 
 const LayoutWrapper: React.FC<Props> = (Props) => {
   const { children } = Props;
+
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const SiderCollapsed = (value: boolean) => {
+    setIsCollapsed(value);
+  };
   return (
     <>
       <Layout style={{ width: '100%' }}>
-        <Slider isCollapsable={true} className="sideBar" />
+        <Sider
+          isCollapsable={true}
+          className="sideBar"
+          isCollapsed={SiderCollapsed}
+        />
         <Layout
           className="site-layout"
           style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
         >
           <Navigation name="RCT" />
-          {children}
+          <div
+            style={{ marginLeft: isCollapsed ? 80 : 200, marginTop: '50px' }}
+          >
+            {children}
+          </div>
         </Layout>
       </Layout>
     </>
