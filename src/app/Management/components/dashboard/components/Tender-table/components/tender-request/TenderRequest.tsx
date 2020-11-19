@@ -10,35 +10,26 @@ import { Table } from 'antd';
 const dataSource = [
   {
     key: '1',
-    name: 'Mike Johnson',
+    seller: 'Mike Johnson',
+    variety: 'Kilombero',
     amount: 32,
-    variety: 'Morogoro',
-    destination: 'Dar es salaam',
+    location: 'Dar es salaam',
   },
   {
     key: '2',
-    name: 'John Doe',
-    amount: 20,
+    seller: 'John Doe',
     variety: 'Kyela',
-    destination: 'Nairobi',
+    amount: 20,
+    location: 'Mbeya',
   },
 ];
 
 const TenderRequest: React.FC = () => {
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Amount(Tonnes)',
-      dataIndex: 'amount',
-      key: 'amount',
-      sorter: {
-        // eslint-disable-next-line
-        compare: (a: any, b: any) => a.amount - b.amount,
-      },
+      title: 'Seller',
+      dataIndex: 'seller',
+      key: 'seller',
     },
     {
       title: 'Variety',
@@ -50,13 +41,21 @@ const TenderRequest: React.FC = () => {
       },
     },
     {
-      title: 'Destination',
-      dataIndex: 'destination',
-      key: 'destination',
+      title: 'Amount(Tonnes)',
+      dataIndex: 'amount',
+      key: 'amount',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) =>
-          a.destination.length - b.destination.length,
+        compare: (a: any, b: any) => a.amount - b.amount,
+      },
+    },
+    {
+      title: 'Location',
+      dataIndex: 'location',
+      key: 'location',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.location.length - b.location.length,
       },
     },
   ];
