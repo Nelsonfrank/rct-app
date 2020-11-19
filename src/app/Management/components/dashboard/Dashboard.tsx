@@ -109,7 +109,7 @@ const PriceRate = (
   data: { variety: string; price: number }[],
   style?: React.CSSProperties,
 ) => (
-  <Card styles={{ ...style }}>
+  <Card styles={{ ...style }} actionBtn="View More">
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div>
         <h2>Today Price Rate(Tzs/Kg)</h2>
