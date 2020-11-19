@@ -1,14 +1,15 @@
 import React from 'react';
 //Components
-import Card from '../../../components/card';
 import { Tabs } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { RouteComponentProps } from '@reach/router';
+import Card from '../../../components/card';
 import TenderTable from './components/Tender-table';
 //Styles
 import './Dashboard.less';
 
 //Types
-export interface DashboardProps {
+export interface DashboardProps extends RouteComponentProps {
   title?: string;
 }
 
