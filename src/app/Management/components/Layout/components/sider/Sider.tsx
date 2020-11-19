@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+//Components
 import { Layout } from 'antd';
 import { Menu } from 'antd';
 import {
@@ -9,11 +11,15 @@ import {
   AccountBookOutlined,
   MessageOutlined,
 } from '@ant-design/icons';
+import { Link } from '@reach/router';
+//Logo
 import Logo from '../../../../../../assets/images/rct-logo.jpeg';
-const { Sider } = Layout;
-const { SubMenu } = Menu;
+
+//Styles
 import './Sider.less';
 
+const { Sider } = Layout;
+const { SubMenu } = Menu;
 export interface NavigationProps {
   isCollapsable?: boolean;
   className?: string;
@@ -24,6 +30,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const { className, isCollapsable, isCollapsed } = props;
+
   const onCollapse = () => {
     setCollapsed(!collapsed);
     isCollapsed(!collapsed);
@@ -57,24 +64,30 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
         mode="inline"
       >
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          Dashboard
+          <Link to="/">Dashboard</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
-          Varieties
+          <Link to="/"> Varieties</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<AccountBookOutlined />}>
-          Price Rate
+          <Link to="/">Price Rate</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<TeamOutlined />} title="Users">
-          <Menu.Item key="4">Sellers</Menu.Item>
-          <Menu.Item key="5">Buyers</Menu.Item>
-          <Menu.Item key="6">Leaders</Menu.Item>
+          <Menu.Item key="4">
+            <Link to="users/sellers">Sellers</Link>
+          </Menu.Item>
+          <Menu.Item key="5">
+            <Link to="/">Buyers</Link>
+          </Menu.Item>
+          <Menu.Item key="6">
+            <Link to="/">Leaders</Link>
+          </Menu.Item>
         </SubMenu>
         <Menu.Item key="9" icon={<MessageOutlined />}>
-          Messages
+          <Link to="/">Messages</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<FileOutlined />}>
-          Report
+          <Link to="/">Report</Link>
         </Menu.Item>
       </Menu>
     </Sider>
