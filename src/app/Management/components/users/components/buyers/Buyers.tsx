@@ -3,21 +3,21 @@ import React from 'react';
 //Components
 import { Divider } from 'antd';
 import { RouteComponentProps } from '@reach/router';
-import SellersTable from './components/sellers-table';
+import BuyersTable from './components/buyers-table';
 import Card from '../../../../../components/card';
 
 // Props Types
-// export interface SellersProps {}
+// export interface BuyersProps {}
 
-const Sellers: React.FC<RouteComponentProps> = () => {
+const Buyers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card title="Sellers" styles={{ minHeight: '90vh' }}>
+      <Card title="Buyers" styles={{ minHeight: '90vh' }}>
         <Divider />
-        <SellersTable />
+        <BuyersTable />
       </Card>
     </>
   );
 };
 
-export default Sellers;
+export default Buyers;
