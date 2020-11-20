@@ -77,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
             <Link to="users/sellers">Sellers</Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to="/">Buyers</Link>
+            <Link to="users/buyers">Buyers</Link>
           </Menu.Item>
           <Menu.Item key="6">
             <Link to="/">Leaders</Link>
