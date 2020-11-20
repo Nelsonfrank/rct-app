@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
             <Link to="users/buyers">Buyers</Link>
           </Menu.Item>
           <Menu.Item key="6">
-            <Link to="/">Leaders</Link>
+            <Link to="users/leaders">Leaders</Link>
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="9" icon={<MessageOutlined />}>
