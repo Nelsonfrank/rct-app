@@ -1,20 +1,23 @@
 import React from 'react';
 
 //Components
-import { Router, Redirect } from '@reach/router';
+import { Router, Redirect, RouteComponentProps } from '@reach/router';
 import Dashboard from './components/dashboard';
 import UsersRoutes from './components/users';
+import Layout from './components/Layout';
 
 // Props Types
 // export interface ManagementRoutesProps {}
 
-const ManagementRoutes: React.FC = () => {
+const ManagementRoutes: React.FC<RouteComponentProps> = () => {
   return (
-    <Router>
-      <Dashboard path="/" default />
-      <UsersRoutes path="users/*" />
-      <Redirect from="users" to="sellers" noThrow />
-    </Router>
+    <Layout>
+      <Router>
+        <Dashboard path="/" />
+        <UsersRoutes path="users/*" />
+        <Redirect from="users" to="sellers" noThrow />
+      </Router>
+    </Layout>
   );
 };
 

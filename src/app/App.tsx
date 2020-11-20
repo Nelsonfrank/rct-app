@@ -1,11 +1,11 @@
 import React from 'react';
-import Management from './Management';
+import MainRoute from './MainRoute';
 import './App.less';
 
 function App() {
   return (
     <div className="app">
-      <Management />
+      <MainRoute />
     </div>
   );
 }

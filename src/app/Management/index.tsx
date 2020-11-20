@@ -1,16 +1,14 @@
 import React from 'react';
 // Components
-import Layout from './components/Layout';
+import { RouteComponentProps } from '@reach/router';
 import ManagementRoutes from './ManagementRoutes';
 //styles
 import './Management.less';
 
-const Management: React.FC = () => {
+const Management: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Layout>
-        <ManagementRoutes />
-      </Layout>
+      <ManagementRoutes path="/" />
     </>
   );
 };
