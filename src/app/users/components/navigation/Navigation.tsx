@@ -1,84 +1,40 @@
-import React, { useState } from 'react';
-import {
-  BellOutlined,
-  QuestionCircleOutlined,
-  MenuOutlined,
-  CloseOutlined,
-} from '@ant-design/icons';
+import React, { ReactNode, useState } from 'react';
+
+// Components
+import { RouteComponentProps } from '@reach/router';
+import HeaderNavigation from './components/header-navigation';
+import BottomNavigation from './components/bottom-navigation';
 
 // Styles
 import './Navigation.less';
 
 // Props Types
-// export interface NavigationProps {}
+export interface NavigationProps extends RouteComponentProps {
+  children: ReactNode;
+}
 
-const Navigation: React.FC = () => {
-  //State
-  const [isOpen, setisOpen] = useState(true);
+const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
+  // State
+  const [isNavOption, setIsNavOption] = useState(false);
 
+  // Props
+  const { children } = props;
+
+  const checkNavOption = (option: boolean) => {
+    setIsNavOption(option);
+  };
   return (
     <>
-      <div className={isOpen ? 'navigation--user_closed' : 'navigation--user'}>
-        <div className="navigation--menu" onClick={() => setisOpen(!isOpen)}>
-          <MenuOutlined style={{ fontSize: 24 }} />
-        </div>
-        <div className="user--app">
-          <div className="app--logo">
-            <h2 style={{ marginBottom: 0 }}>RCT APP</h2>
-          </div>
-          <div className="navigation--user_action">
-            <div>
-              <BellOutlined style={{ fontSize: 18, margin: '0 0.25rem' }} />
-            </div>
-            <div>
-              <QuestionCircleOutlined
-                style={{ fontSize: 18, margin: '0 0.25rem' }}
-              />
-            </div>
-          </div>
-        </div>
+      <HeaderNavigation CheckNavOption={checkNavOption} />
+      <div
+        style={{ marginLeft: '1rem' }}
+        className={
+          isNavOption ? 'navigation-childern_closed' : 'navigation-childern'
+        }
+      >
+        {children}
       </div>
-      <div className={isOpen ? 'nav--list' : 'nav--list_closed'}>
-        <div className="nav-close">
-          <button
-            type="button"
-            style={{ backgroundColor: 'transparent', border: 'none' }}
-            className="nav--close_btn"
-            onClick={() => setisOpen(!isOpen)}
-          >
-            <CloseOutlined style={{ fontSize: 28 }} />
-          </button>
-        </div>
-        <div className="user--nav">
-          <ul className="nav--option">
-            <li>
-              <a href="#" className="nav--option_item">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                Tender Request
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                Tender Bid
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                Report
-              </a>
-            </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                My Profile
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <BottomNavigation navOptionOpened={isNavOption} />
     </>
   );
 };

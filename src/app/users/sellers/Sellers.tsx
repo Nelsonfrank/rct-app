@@ -10,7 +10,9 @@ import Navigation from '../components/navigation';
 const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Navigation />
+      <Navigation>
+        <p>Hello World</p>
+      </Navigation>
     </>
   );
 };
