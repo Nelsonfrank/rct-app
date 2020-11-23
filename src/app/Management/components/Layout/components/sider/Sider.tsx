@@ -64,13 +64,13 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
         mode="inline"
       >
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          <Link to="/">Dashboard</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
-          <Link to="/"> Varieties</Link>
+          <Link to="/dashboard"> Varieties</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<AccountBookOutlined />}>
-          <Link to="/">Price Rate</Link>
+          <Link to="/dashboard">Price Rate</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<TeamOutlined />} title="Users">
           <Menu.Item key="4">
@@ -84,10 +84,10 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="9" icon={<MessageOutlined />}>
-          <Link to="/">Messages</Link>
+          <Link to="/dashboard">Chats</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<FileOutlined />}>
-          <Link to="/">Report</Link>
+          <Link to="/dashboard">Report</Link>
         </Menu.Item>
       </Menu>
     </Sider>
