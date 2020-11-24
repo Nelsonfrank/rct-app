@@ -27,7 +27,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
     <>
       <HeaderNavigation CheckNavOption={checkNavOption} />
       <div
-        style={{ marginLeft: '0.5rem' }}
+        style={{ margin: '0rem 0.5rem' }}
         className={
           isNavOption ? 'navigation-childern_closed' : 'navigation-childern'
         }
