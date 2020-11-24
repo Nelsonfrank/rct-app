@@ -1,10 +1,13 @@
 import React from 'react';
 
+//Styles
+import './OptionButtons.less';
+
 // Props Types
 // export interface OptionButtonsProps {}
 
 const OptionButtons: React.FC = () => {
-  // Styles
+  // Inline-Styles
   const styles: React.CSSProperties = {
     fontWeight: 550,
     borderRadius: 5,
@@ -18,6 +21,7 @@ const OptionButtons: React.FC = () => {
             <button
               type="button"
               style={{ ...styles, backgroundColor: '#000', color: '#fff' }}
+              className="actionButton"
             >
               Language
             </button>
@@ -25,7 +29,13 @@ const OptionButtons: React.FC = () => {
           <div>
             <button
               type="button"
-              style={{ ...styles, backgroundColor: '#bdc682', color: '#fff' }}
+              style={{
+                ...styles,
+                backgroundColor: '#bdc682',
+                border: '2px solid #bdc682',
+                color: '#fff',
+              }}
+              className="actionButton"
             >
               Price Rate
             </button>
