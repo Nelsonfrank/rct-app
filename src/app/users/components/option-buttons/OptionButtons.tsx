@@ -12,7 +12,7 @@ const OptionButtons: React.FC = () => {
   };
   return (
     <>
-      <div style={{ marginRight: '0.5rem', marginTop: '0.5rem' }}>
+      <div style={{ marginBottom: '0.5rem', marginTop: '0.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <button
