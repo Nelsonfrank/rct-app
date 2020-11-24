@@ -4,6 +4,9 @@ import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import Navigation from '../components/navigation';
 import OptionButtons from '../components/option-buttons';
+import Header from '../components/header';
+// Styles
+import './Sellers.less';
 
 // Props Types
 // export interface SellersProps {}
@@ -13,6 +16,7 @@ const Sellers: React.FC<RouteComponentProps> = () => {
     <>
       <Navigation>
         <OptionButtons />
+        <Header />
       </Navigation>
     </>
   );
