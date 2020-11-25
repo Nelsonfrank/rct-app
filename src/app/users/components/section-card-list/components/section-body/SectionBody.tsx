@@ -4,9 +4,13 @@ import React from 'react';
 import CardItem from './components/card-item';
 
 // Props Types
-// export interface SectionBodyProps {}
+export interface SectionBodyProps {
+  objectList: { name: string; image?: string }[];
+}
 
-const SectionBody: React.FC = () => {
+const SectionBody: React.FC<SectionBodyProps> = (props: SectionBodyProps) => {
+  const { objectList } = props;
+
   return (
     <>
       <div
@@ -16,8 +20,9 @@ const SectionBody: React.FC = () => {
           marginTop: '0.75rem',
         }}
       >
-        <CardItem />
-        <CardItem />
+        {objectList.map((item) => (
+          <CardItem username={item.name} key={item.name} />
+        ))}
       </div>
     </>
   );

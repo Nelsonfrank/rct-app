@@ -4,12 +4,16 @@ import React from 'react';
 import ProfileImg from '../../../../../../../../assets/images/profile.webp';
 
 // Props Type
-// export interface CardItemProps {}
+export interface CardItemProps {
+  username: string;
+  image?: string;
+}
 
-const CardItem: React.FC = () => {
+const CardItem: React.FC<CardItemProps> = (props: CardItemProps) => {
+  const { username } = props;
   return (
     <>
-      <div style={{ width: 170, borderRadius: '5px' }}>
+      <div style={{ width: 145, borderRadius: '5px' }}>
         <img
           src={ProfileImg}
           alt="ProfileImg"
@@ -35,7 +39,7 @@ const CardItem: React.FC = () => {
               fontSize: '0.875rem',
             }}
           >
-            Sarafina Milling
+            {username}
           </p>
         </div>
       </div>

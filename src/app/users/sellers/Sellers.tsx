@@ -12,16 +12,28 @@ import './Sellers.less';
 // Props Types
 // export interface SellersProps {}
 
+const data = [
+  {
+    name: 'John Doe',
+    image: 'https://imageplaceholder_webp.com',
+  },
+  {
+    name: 'Sarah John',
+    image: 'https://imageplaceholder_webp.com',
+  },
+];
 const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Navigation>
         <OptionButtons />
         <Header />
-        <div style={{ marginBottom: 60 }}>
-          <SectionCardList />
-          <SectionCardList />
-        </div>
+        <SectionCardList
+          title="Recent Tender Request"
+          route="#"
+          objectList={data}
+        />
+        <SectionCardList title="Shop By Seller" route="#" objectList={data} />
       </Navigation>
     </>
   );

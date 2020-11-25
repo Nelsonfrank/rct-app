@@ -1,9 +1,17 @@
 import React from 'react';
 
+// Components
+import { Link, RouteComponentProps } from '@reach/router';
 // Props Types
-// export interface SectionHeaderProps {}
+export interface SectionHeaderProps extends RouteComponentProps {
+  title: string;
+  route?: string;
+}
 
-const SectionHeader: React.FC = () => {
+const SectionHeader: React.FC<SectionHeaderProps> = (
+  props: SectionHeaderProps,
+) => {
+  const { title, route = '#' } = props;
   return (
     <div
       style={{
@@ -26,7 +34,7 @@ const SectionHeader: React.FC = () => {
             color: '#fff',
           }}
         >
-          Recent Tender Requests
+          {title}
         </p>
       </div>
       <div>
@@ -38,7 +46,7 @@ const SectionHeader: React.FC = () => {
             color: '#fff',
           }}
         >
-          {'View All >'}
+          <Link to={route}>{'View All >'}</Link>
         </p>
       </div>
     </div>
