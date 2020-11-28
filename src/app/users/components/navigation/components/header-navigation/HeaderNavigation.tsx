@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+
+// Components
+import { Input } from 'antd';
+import { Divider } from 'antd';
 import {
-  BellOutlined,
-  QuestionCircleOutlined,
+  // BellOutlined,
+  // QuestionCircleOutlined,
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
@@ -10,44 +14,110 @@ import {
 import './HeaderNavigation.less';
 
 // Props Types
-export interface HeaderNavigation {
-  CheckNavOption: (value: boolean) => void;
-}
+// export interface HeaderNavigation {}
 
-const HeaderNavigation: React.FC<HeaderNavigation> = (
-  props: HeaderNavigation,
-) => {
+const { Search } = Input;
+
+const HeaderNavigation: React.FC = () => {
   //State
   const [isOpen, setisOpen] = useState(false);
 
-  // Props
-  const { CheckNavOption } = props;
-
   const toggleNavigationOption = () => {
     setisOpen(!isOpen);
-    CheckNavOption(!isOpen);
   };
+
+  const onSearch = (value: string) => console.log(value);
+
+  // const DividerComponent = ()=>
+
   return (
     <>
-      <div className={isOpen ? 'navigation--user_closed' : 'navigation--user'}>
-        <div className="navigation--menu" onClick={toggleNavigationOption}>
-          <MenuOutlined style={{ fontSize: 24 }} />
-        </div>
-        <div className="user--app">
-          <div className="app--logo">
-            <h2 style={{ marginBottom: 0 }}>RCT APP</h2>
+      <div
+        className={
+          isOpen ? 'navigation--user_closed' : 'navigation--user_container'
+        }
+      >
+        <div className="navigation--user">
+          <div className="navigation--menu" onClick={toggleNavigationOption}>
+            <div className="humbergerIcon">
+              <MenuOutlined style={{ fontSize: 24 }} />
+            </div>
+            <div className="app--logo">
+              <h2 style={{ marginBottom: 0 }}>RCT APP</h2>
+            </div>
           </div>
-          <div className="navigation--user_action">
-            <div>
-              <BellOutlined style={{ fontSize: 18, margin: '0 0.25rem' }} />
+          <div className="user--app">
+            <div className="search--input">
+              <Search
+                placeholder="Search Here"
+                size="large"
+                onSearch={onSearch}
+                allowClear
+                style={{ width: '90%' }}
+                enterButton
+              />
+            </div>
+            <div className="navigation--user_action">
+              {/* <div>
+              <BellOutlined style={{ fontSize: 20, margin: '0 0.25rem' }} />
             </div>
             <div>
               <QuestionCircleOutlined
-                style={{ fontSize: 18, margin: '0 0.25rem' }}
+                style={{ fontSize: 20, margin: '0 0.25rem' }}
               />
+            </div> */}
+              <div className="registry-container">
+                <span className="register--welcome">Welcome!</span>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <a href="#">Sign In</a>{' '}
+                  <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
+                  <a href="#">Register</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <Divider
+          style={{
+            margin: '0  0 0.5rem 0 ',
+            borderTop: '2px solid rgba(0, 0, 0, 0.06)',
+          }}
+        />
+      </div>
+      <div className="option--group">
+        <div className="options-lgscreen">
+          <div className="option--item__lgscreen ">
+            <p style={{ marginBottom: 0 }}>
+              <a href="#">Tender request</a>
+            </p>
+          </div>
+          <div className="option--item__lgscreen ">
+            <p style={{ marginBottom: 0 }}>
+              <a href="#">Tender bid</a>
+            </p>
+          </div>
+          <div className="option--item__lgscreen ">
+            <p style={{ marginBottom: 0 }}>
+              <a href="#">Price rate</a>
+            </p>
+          </div>
+          <div className="option--item__lgscreen ">
+            <p style={{ marginBottom: 0 }}>
+              <a href="#">Varieties</a>
+            </p>
+          </div>
+          <div className="option--item__lgscreen ">
+            <p style={{ marginBottom: 0 }}>
+              <a href="#">Sellers</a>
+            </p>
+          </div>
+        </div>
+        <Divider
+          style={{
+            margin: '0.5rem 0 ',
+            borderTop: '1px solid rgba(0, 0, 0, 0.06)',
+          }}
+        />
       </div>
       <div className={isOpen ? 'nav--list' : 'nav--list_closed'}>
         <div className="nav-close">

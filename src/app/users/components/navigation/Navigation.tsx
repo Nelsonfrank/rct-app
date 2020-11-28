@@ -1,9 +1,8 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 
 // Components
 import { RouteComponentProps } from '@reach/router';
 import HeaderNavigation from './components/header-navigation';
-import BottomNavigation from './components/bottom-navigation';
 
 // Styles
 import './Navigation.less';
@@ -14,27 +13,15 @@ export interface NavigationProps extends RouteComponentProps {
 }
 
 const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
-  // State
-  const [isNavOption, setIsNavOption] = useState(false);
-
   // Props
   const { children } = props;
 
-  const checkNavOption = (option: boolean) => {
-    setIsNavOption(option);
-  };
   return (
     <>
-      <HeaderNavigation CheckNavOption={checkNavOption} />
-      <div
-        style={{ margin: '0rem 0.5rem', padding: '3rem 0 3.75rem 0' }}
-        className={
-          isNavOption ? 'navigation-childern_closed' : 'navigation-childern'
-        }
-      >
+      <HeaderNavigation />
+      <div style={{ margin: '0rem 0.5rem', padding: '0.5rem 0 0 0' }}>
         {children}
       </div>
-      <BottomNavigation navOptionOpened={isNavOption} />
     </>
   );
 };

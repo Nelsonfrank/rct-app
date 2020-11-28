@@ -1,13 +1,12 @@
 .navigation--user {
   display: flex;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  z-index: 100;
+  width: 100%;
   background-color: #fff;
   justify-content: flex-start;
-  border-bottom: 2px solid #1da57a;
+  align-items: center;
   height: 50px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navigation--user_closed {
@@ -17,25 +16,31 @@
 .user--app {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
 }
 
 .navigation--menu {
   display: flex;
   align-items: center;
-  margin-right: 1.25rem;
-  margin-left: 1rem;
+  padding-right: 1.25rem;
+  padding-left: 1rem;
+  // We Hide Navigation button here
+  // display: none;
 }
 
+.search--input {
+  display: none;
+}
 .app--logo {
-  display: flex;
+  display: none;
   align-items: center;
 }
 .navigation--user_action {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 0 1rem;
+  width: 90%;
 }
 
 // Navigation options Container
@@ -85,5 +90,87 @@
     font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 2rem;
+  }
+}
+
+.option--group {
+  display: none;
+}
+
+.register--welcome {
+  display: none;
+}
+
+.registry-container {
+  width: 70%;
+  margin-left: 0.5rem;
+}
+@media screen and (min-width: 514px) {
+  .app--logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+
+    h2 {
+      font-size: 1.25rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navigation--user {
+    height: 80px;
+    max-width: 970px;
+  }
+  .app--logo {
+    display: flex;
+    align-items: center;
+  }
+  .humbergerIcon {
+    display: none;
+  }
+  .option--group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .option--item__lgscreen {
+    margin-right: 3rem;
+    font-size: 1rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+  }
+  .options-lgscreen {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1200;
+    margin: 1rem auto;
+    padding: 0 2.25rem 0 6rem;
+  }
+  .register--welcome {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 18;
+    font-weight: 500;
+    padding-right: 10px;
+  }
+  .search--input {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    width: 100%;
+  }
+
+  .registry-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .navigation--user_action {
+    width: 40%;
   }
 }
