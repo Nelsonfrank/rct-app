@@ -18,25 +18,11 @@ import './Header.less';
 // Props types
 // export interface UsersHeaderProps {}
 
-const ArrowLeft = () => (
-  <button className="Arrow" style={{ right: '30px' }}>
-    <RightOutlined style={{ fontSize: '4rem' }} />
-  </button>
-);
-
-const ArrowRight = () => (
-  <button className="Arrow" style={{ left: '-15px' }}>
-    <LeftOutlined style={{ fontSize: '4rem' }} />
-  </button>
-);
-
 // Carousel Setting
 const settings = {
   infinite: true,
   speed: 500,
-  arrows: true,
-  prevArrow: <ArrowRight />,
-  nextArrow: <ArrowLeft />,
+  arrows: false,
   swipeToSlide: true,
   autoplay: true,
   pauseOnFocus: true,
@@ -49,52 +35,22 @@ const UsersHeader: React.FC = () => {
       <div style={{ margin: '1rem 0rem' }}>
         <Carousel {...settings}>
           <div>
-            <img
-              src={Slider1}
-              alt="Slider1"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider1} alt="Slider1" className="carousel--image" />
           </div>
           <div>
-            <img
-              src={Slider2}
-              alt="Slider2"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider2} alt="Slider2" className="carousel--image" />
           </div>
           <div>
-            <img
-              src={Slider3}
-              alt="Slider3"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider3} alt="Slider3" className="carousel--image" />
           </div>
           <div>
-            <img
-              src={Slider4}
-              alt="Slider4"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider4} alt="Slider4" className="carousel--image" />
           </div>
           <div>
-            <img
-              src={Slider5}
-              alt="Slider5"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider5} alt="Slider5" className="carousel--image" />
           </div>
           <div>
-            <img
-              src={Slider6}
-              alt="Slider6"
-              height="200"
-              style={{ width: '100%' }}
-            />
+            <img src={Slider6} alt="Slider6" className="carousel--image" />
           </div>
         </Carousel>
       </div>

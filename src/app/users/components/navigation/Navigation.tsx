@@ -19,9 +19,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
   return (
     <>
       <HeaderNavigation />
-      <div style={{ margin: '0rem 0.5rem', padding: '0.5rem 0 0 0' }}>
-        {children}
-      </div>
+      <div className="content--section">{children}</div>
     </>
   );
 };
