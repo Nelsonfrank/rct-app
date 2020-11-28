@@ -2,7 +2,6 @@ import React from 'react';
 
 // Components
 import { Carousel } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 //Images
 import Slider1 from '../../../../assets/images/slider-1.jpg';
