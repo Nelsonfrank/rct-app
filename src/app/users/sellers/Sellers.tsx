@@ -3,6 +3,8 @@ import React from 'react';
 // Components
 import { RouteComponentProps } from '@reach/router';
 import Navigation from '../components/navigation';
+import Header from '../components/header';
+
 // Styles
 import './Sellers.less';
 
@@ -13,7 +15,7 @@ const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Navigation>
-        <p>Hello</p>
+        <Header />
       </Navigation>
     </>
   );
