@@ -4,13 +4,9 @@ import React from 'react';
 import CardItem from './components/card-item';
 
 // Props Types
-export interface SectionBodyProps {
-  objectList?: { name: string; image?: string }[];
-}
+// export interface SectionBodyProps {}
 
-const SectionBody: React.FC<SectionBodyProps> = (props: SectionBodyProps) => {
-  const { objectList } = props;
-
+const SectionBody: React.FC = () => {
   return (
     <>
       <div

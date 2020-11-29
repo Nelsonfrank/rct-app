@@ -22,7 +22,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = (
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        margin: '1.5rem 0 0 0',
+        margin: '1.5rem 0 1rem 0',
         padding: '0 0.5rem',
         width: '100%',
         borderRadius: '4px',
