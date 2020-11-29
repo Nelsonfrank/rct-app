@@ -4,6 +4,7 @@ import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import Navigation from '../components/navigation';
 import Header from '../components/header';
+import CardSection from '../components/section-card-list';
 
 // Styles
 import './Sellers.less';
@@ -16,6 +17,9 @@ const Sellers: React.FC<RouteComponentProps> = () => {
     <>
       <Navigation>
         <Header />
+        <CardSection title="Recent Tender Request" />
+        <CardSection title="Shop by Seller" />
+        <CardSection title="Shop By Platform" />
       </Navigation>
     </>
   );

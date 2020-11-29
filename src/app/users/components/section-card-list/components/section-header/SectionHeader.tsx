@@ -2,6 +2,10 @@ import React from 'react';
 
 // Components
 import { Link, RouteComponentProps } from '@reach/router';
+import { Button } from 'antd';
+
+//Styles
+import './SectionHeader.less';
 // Props Types
 export interface SectionHeaderProps extends RouteComponentProps {
   title: string;
@@ -17,37 +21,20 @@ const SectionHeader: React.FC<SectionHeaderProps> = (
       style={{
         display: 'flex',
         justifyContent: 'space-between',
-        backgroundColor: 'green',
         alignItems: 'center',
-        margin: '0rem',
-        padding: '0 0.125rem',
+        margin: '1.5rem 0 0 0',
+        padding: '0 0.5rem',
         width: '100%',
         borderRadius: '4px',
       }}
     >
       <div>
-        <p
-          style={{
-            marginBottom: 0,
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            color: '#fff',
-          }}
-        >
-          {title}
-        </p>
+        <h2 className="section--header_title">{title}</h2>
       </div>
-      <div>
-        <p
-          style={{
-            marginBottom: 0,
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            color: '#fff',
-          }}
-        >
+      <div className="actionBtn-section">
+        <Button type="ghost" className="view-all_button">
           <Link to={route}>{'View All >'}</Link>
-        </p>
+        </Button>
       </div>
     </div>
   );
