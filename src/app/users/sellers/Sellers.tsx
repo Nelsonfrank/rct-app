@@ -19,7 +19,11 @@ const Sellers: React.FC<RouteComponentProps> = () => {
       <Navigation>
         <Header />
         <div className="seller--card_group">
-          <Card subtitle="Tender Request" className="seller--card">
+          <Card
+            subtitle="Tender Request"
+            className="seller--card"
+            styles={{ margin: '0.5rem 0' }}
+          >
             <div>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
@@ -29,7 +33,11 @@ const Sellers: React.FC<RouteComponentProps> = () => {
               </p>
             </div>
           </Card>
-          <Card subtitle="Tender Bid" className="seller--card">
+          <Card
+            subtitle="Tender Bid"
+            className="seller--card"
+            styles={{ margin: '0.5rem 0' }}
+          >
             <div>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
@@ -39,7 +47,11 @@ const Sellers: React.FC<RouteComponentProps> = () => {
               </p>
             </div>
           </Card>
-          <Card subtitle="Price Rate" className="seller--card">
+          <Card
+            subtitle="Price Rate"
+            className="seller--card"
+            styles={{ margin: '0.5rem 0' }}
+          >
             <div>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
