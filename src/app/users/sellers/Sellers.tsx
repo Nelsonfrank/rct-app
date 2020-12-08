@@ -6,6 +6,7 @@ import Navigation from '../components/navigation';
 import Header from '../components/header';
 import CardSection from '../components/section-card-list';
 import Card from '../../components/card';
+import Footer from '../components/footer';
 
 // Styles
 import './Sellers.less';
@@ -66,6 +67,7 @@ const Sellers: React.FC<RouteComponentProps> = () => {
           <CardSection title="Shop By Platform" />
         </div>
       </Navigation>
+      <Footer />
     </>
   );
 };
