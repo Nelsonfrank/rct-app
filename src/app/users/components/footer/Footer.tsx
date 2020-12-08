@@ -67,14 +67,14 @@ const Footer: React.FC = () => {
         <hr />
         <div className="container">
           <div className="row">
-            <div className="col-md-8 col-sm-6 col-xs-12">
+            <div className="copyright">
               <p className="copyright-text">
-                Copyright &copy; 2017 All Rights Reserved by
+                Copyright &copy; 2020 All Rights Reserved by
                 <a href="#">Scanfcode</a>.
               </p>
             </div>
 
-            <div className="col-md-4 col-sm-6 col-xs-12">
+            <div className="social-media">
               <ul className="social-icons">
                 <li>
                   <a className="facebook" href="#">
@@ -87,8 +87,8 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="dribbble" href="#">
-                    <i className="fa fa-dribbble"></i>
+                  <a className="instagram" href="#">
+                    <i className="fa fa-instagram"></i>
                   </a>
                 </li>
                 <li>
