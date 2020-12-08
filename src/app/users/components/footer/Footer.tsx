@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     <footer className="site-footer">
       <div className="container">
         <div className="row">
-          <div className="col-sm-12 ">
+          <div className="about">
             <h6>About</h6>
             <p className="text-justify">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          <div className="col-xs-6 col-md-3">
+          <div className="categories">
             <h6>Categories</h6>
             <ul className="footer-links">
               <li>
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className="col-xs-6 col-md-3">
+          <div className="QuickLink">
             <h6>Quick Links</h6>
             <ul className="footer-links">
               <li>
