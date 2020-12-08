@@ -7,7 +7,7 @@ import { Button } from 'antd';
 // Styles
 import './SectionCardList.less';
 //Images
-import Slider1 from '../../../../assets/images/slider-1.jpg';
+import Slider1 from '../../../../assets/images/slider-1.webp';
 
 // Props Types
 export interface SectionCardListProps {
