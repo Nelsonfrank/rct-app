@@ -12,7 +12,7 @@ const MainRoute: React.FC = () => {
   return (
     <>
       <Router>
-        <Redirect from="/" to="app/sellers" />
+        <Redirect from="/" to="app/buyers" />
         <UsersRoutes path="app/*" />
         <ManagementRoutes path="dashboard/*" />
       </Router>

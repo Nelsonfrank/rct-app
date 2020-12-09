@@ -1,0 +1,156 @@
+.listItemContainer {
+  display: inline-flex;
+  width: 100%;
+}
+
+.listitemImageContainer {
+  width: 120px;
+  margin-right: 1rem;
+}
+
+.listitemImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.listDetailsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.listDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10;
+}
+
+.listDetailsHeader {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0rem 0.125rem;
+}
+
+.listDetailsParag {
+  margin-bottom: 0;
+  font-size: 14px;
+  text-align: justify;
+}
+.listDetailsParagBold {
+  font-weight: 500;
+}
+.dispay-parag {
+  display: none;
+}
+.dispay-item {
+  display: none;
+}
+
+.listItemIconBtn {
+  display: flex;
+  align-items: center;
+  margin-right: 10;
+}
+
+.listItemIcon {
+  font-size: 24px;
+}
+
+.listOptions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.moreDetailsBtn {
+  display: none;
+}
+
+.listOptions_items {
+  display: flex;
+  flex-direction: column;
+}
+
+.pickup_location {
+  display: none;
+}
+@media screen and (min-width: 480px) {
+  .listitemImageContainer {
+    width: 220px;
+    margin-right: 1rem;
+  }
+
+  .listDetails {
+    justify-content: flex-start;
+  }
+
+  .dispay-item {
+    display: inline-block;
+  }
+  .dispay-parag {
+    display: none;
+  }
+  .listItemIcon {
+    font-size: 30px;
+  }
+
+  .listDetailsParag {
+    margin: '1.125rem 0';
+  }
+
+  .pickup_location {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dispay-parag {
+    display: inline-block;
+  }
+
+  .listDetailsContainer {
+    display: flex;
+    width: 90%;
+    justify-content: flex-start;
+    margin: 0rem 1.25rem;
+  }
+
+  .listItemIcon {
+    font-size: 45px;
+  }
+
+  .moreDetailsBtn {
+    display: inline-block;
+    align-self: flex-end;
+    margin-bottom: 5px;
+  }
+
+  .listItemIconBtn {
+    display: none;
+  }
+
+  .listDetailsParag {
+    margin: '1.125rem 0';
+  }
+}
+
+@media screen and (min-width: 1128px) {
+  .listitemImageContainer {
+    width: 320px;
+    margin-right: 1rem;
+  }
+  .listDetailsHeader {
+    font-size: 24px;
+  }
+  .listDetailsParag {
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: justify;
+  }
+  .pickup_location {
+    display: block;
+  }
+}

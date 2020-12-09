@@ -2,13 +2,13 @@ import React from 'react';
 
 // Components
 import { RouteComponentProps } from '@reach/router';
-import UserProfile from '../components/profile';
+import List from '../components/list';
 
 // Props Types
 // export interface BuyersProps {}
 
 const Buyers: React.FC<RouteComponentProps> = () => {
-  return <UserProfile />;
+  return <List />;
 };
 
 export default Buyers;
