@@ -7,6 +7,9 @@ import ListItem from './components/list-item';
 // Styles
 import './List.less';
 
+// Placeholder Data
+import { ListDAtaPlaeholder } from './ListData';
+
 // export interface ListProps {}
 
 const FilterSort = () => (
@@ -15,7 +18,7 @@ const FilterSort = () => (
       margin: '0rem auto',
       width: '100%',
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
     }}
   >
     <div style={{ margin: '0rem 0.5rem' }}>
@@ -59,7 +62,21 @@ const FilterResultCount = () => (
 const { Option } = Select;
 
 const List: React.FC = () => {
-  const [indeterminate, setIndeterminate] = React.useState(true);
+  const [indeterminate, setIndeterminate] = React.useState(false);
+  const [checkedItems, setCheckedItems] = React.useState<
+    { ownerName: string; id: number }[] | undefined
+  >();
+
+  const addCheckedItem = (value: { ownerName: string; id: number }) => {
+    const values = checkedItems?.concat(value);
+    setCheckedItems(values);
+    console.log(checkedItems);
+  };
+
+  const removeCheckedItem = (id: number) => {
+    const items = checkedItems?.filter((item) => item.id !== id);
+    setCheckedItems(items);
+  };
 
   return (
     <div className="list-container">
@@ -76,18 +93,19 @@ const List: React.FC = () => {
           </Checkbox>
           <div style={{ height: 3, width: '100%', backgroundColor: 'grey' }} />
         </div>
-        <Checkbox style={{ display: 'flex', margin: '1rem 0.125rem' }}>
-          <ListItem />
-        </Checkbox>
-        <Checkbox style={{ display: 'flex', margin: '1rem 0.125rem' }}>
-          <ListItem />
-        </Checkbox>
-        <Checkbox style={{ display: 'flex', margin: '1rem 0.125rem' }}>
-          <ListItem />
-        </Checkbox>
-        <Checkbox style={{ display: 'flex', margin: '1rem 0.125rem' }}>
-          <ListItem />
-        </Checkbox>
+        {ListDAtaPlaeholder.map((value) => (
+          <ListItem
+            key={value.id}
+            id={value.id}
+            image={value.image}
+            ownerName={value.ownerName}
+            description={value.description}
+            variety={value.variety}
+            pickupLocation={value.pickupLocation}
+            grade={value.grade}
+            checkItem={addCheckedItem}
+          />
+        ))}
       </div>
     </div>
   );
