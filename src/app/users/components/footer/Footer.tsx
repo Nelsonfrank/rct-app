@@ -6,7 +6,7 @@ import './Footer.less';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer-container">
+    <footer>
       <div className="site-footer">
         <div className="container">
           <div className="row">

@@ -13,7 +13,7 @@ import Footer from '../components/footer';
 const Buyers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Navigation>
+      <Navigation hideOptions>
         <TenderRequest />
       </Navigation>
       <Footer />

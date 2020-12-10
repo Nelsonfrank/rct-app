@@ -14,14 +14,19 @@ import {
 import './HeaderNavigation.less';
 
 // Props Types
-// export interface HeaderNavigation {}
+export interface HeaderNavigationProps {
+  hideOptions?: boolean;
+}
 
 const { Search } = Input;
 
-const HeaderNavigation: React.FC = () => {
+const HeaderNavigation: React.FC<HeaderNavigationProps> = (
+  props: HeaderNavigationProps,
+) => {
   //State
   const [isOpen, setisOpen] = useState(false);
 
+  const { hideOptions } = props;
   const toggleNavigationOption = () => {
     setisOpen(!isOpen);
   };
@@ -84,7 +89,10 @@ const HeaderNavigation: React.FC = () => {
           }}
         />
       </div>
-      <div className="option--group">
+      <div
+        className="option--group"
+        style={{ display: hideOptions ? 'none' : 'block' }}
+      >
         <div className="options-lgscreen">
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>

@@ -10,15 +10,16 @@ import './Navigation.less';
 // Props Types
 export interface NavigationProps extends RouteComponentProps {
   children: ReactNode;
+  hideOptions?: boolean;
 }
 
 const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
   // Props
-  const { children } = props;
+  const { children, hideOptions } = props;
 
   return (
     <>
-      <HeaderNavigation />
+      <HeaderNavigation hideOptions={hideOptions} />
       <div className="content--section">{children}</div>
     </>
   );
