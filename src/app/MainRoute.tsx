@@ -4,6 +4,7 @@ import React from 'react';
 import { Router, Redirect } from '@reach/router';
 import UsersRoutes from './users';
 import ManagementRoutes from './Management';
+import SignUp from './components/signup';
 
 // Props Types
 // export interface MainRouteProps {}
@@ -12,7 +13,7 @@ const MainRoute: React.FC = () => {
   return (
     <>
       <Router>
-        <Redirect from="/" to="app/buyers" />
+        <SignUp path="/" />
         <UsersRoutes path="app/*" />
         <ManagementRoutes path="dashboard/*" />
       </Router>
