@@ -89,10 +89,7 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
           }}
         />
       </div>
-      <div
-        className="option--group"
-        style={{ display: hideOptions ? 'none' : 'block' }}
-      >
+      <div className={`${hideOptions ? 'option-list_hide' : 'option--group'} `}>
         <div className="options-lgscreen">
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
