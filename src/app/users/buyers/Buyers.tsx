@@ -7,6 +7,7 @@ import TenderRequest from './components/TenderRequest';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 
+
 // Props Types
 // export interface BuyersProps {}
 
@@ -19,6 +20,7 @@ const Buyers: React.FC<RouteComponentProps> = () => {
       <Footer />
     </>
   );
+
 };
 
 export default Buyers;
