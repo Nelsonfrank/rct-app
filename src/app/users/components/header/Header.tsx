@@ -4,12 +4,12 @@ import React from 'react';
 import { Carousel } from 'antd';
 
 //Images
-import Slider1 from '../../../../assets/images/slider-1.webp';
-import Slider2 from '../../../../assets/images/slider-2.webp';
-import Slider3 from '../../../../assets/images/slider-3.webp';
-import Slider4 from '../../../../assets/images/slider-4.webp';
-import Slider5 from '../../../../assets/images/slider-5.webp';
-import Slider6 from '../../../../assets/images/slider-6.webp';
+import Slider1 from '../../../../assets/images/Slide-1.jpg';
+import Slider2 from '../../../../assets/images/Slide-2.jpg';
+import Slider3 from '../../../../assets/images/Slide-3.jpg';
+import Slider4 from '../../../../assets/images/Slide-4.jpg';
+// import Slider5 from '../../../../assets/images/slider-5.webp';
+// import Slider6 from '../../../../assets/images/slider-6.webp';
 
 // Styles
 import './Header.less';
@@ -45,12 +45,12 @@ const UsersHeader: React.FC = () => {
           <div>
             <img src={Slider4} alt="Slider4" className="carousel--image" />
           </div>
-          <div>
+          {/* <div>
             <img src={Slider5} alt="Slider5" className="carousel--image" />
           </div>
           <div>
             <img src={Slider6} alt="Slider6" className="carousel--image" />
-          </div>
+          </div> */}
         </Carousel>
       </div>
     </>
