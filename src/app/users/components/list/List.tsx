@@ -62,7 +62,7 @@ const FilterResultCount = () => (
 const { Option } = Select;
 
 const List: React.FC = () => {
-  const [indeterminate, setIndeterminate] = React.useState(false);
+  // const [indeterminate, setIndeterminate] = React.useState(false);
   const [checkedItems, setCheckedItems] = React.useState<
     { ownerName: string; id: number }[] | undefined
   >();
@@ -73,10 +73,10 @@ const List: React.FC = () => {
     console.log(checkedItems);
   };
 
-  const removeCheckedItem = (id: number) => {
-    const items = checkedItems?.filter((item) => item.id !== id);
-    setCheckedItems(items);
-  };
+  // const removeCheckedItem = (id: number) => {
+  //   const items = checkedItems?.filter((item) => item.id !== id);
+  //   setCheckedItems(items);
+  // };
 
   return (
     <div className="list-container">
@@ -86,7 +86,7 @@ const List: React.FC = () => {
       <div>
         <div>
           <Checkbox
-            indeterminate={indeterminate}
+            // indeterminate={indeterminate}
             style={{ display: 'flex', margin: '1rem 0.125rem' }}
           >
             <FilterResultCount />

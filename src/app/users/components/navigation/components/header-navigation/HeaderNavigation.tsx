@@ -9,7 +9,7 @@ import {
   MenuOutlined,
   CloseOutlined,
 } from '@ant-design/icons';
-
+import { Link } from '@reach/router';
 // Styles
 import './HeaderNavigation.less';
 
@@ -43,8 +43,8 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
         }
       >
         <div className="navigation--user">
-          <div className="navigation--menu" onClick={toggleNavigationOption}>
-            <div className="humbergerIcon">
+          <div className="navigation--menu">
+            <div className="humbergerIcon" onClick={toggleNavigationOption}>
               <MenuOutlined style={{ fontSize: 24 }} />
             </div>
             <div className="app--logo">
@@ -74,9 +74,9 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
               <div className="registry-container">
                 <span className="register--welcome">Welcome!</span>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <a href="#">Sign In</a>{' '}
+                  <Link to="/">Sign In</Link>{' '}
                   <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
-                  <a href="#">Register</a>
+                  <Link to="/signup">Register</Link>
                 </div>
               </div>
             </div>

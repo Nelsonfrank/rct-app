@@ -2,9 +2,9 @@ import React from 'react';
 
 // Components
 import { RouteComponentProps } from '@reach/router';
+
 import Navigation from '../components/navigation';
-import Home from './components/home';
-import TenderBid from './components/TenderBid';
+import SellersRoutes from './SellersRoutes';
 import Footer from '../components/footer';
 
 // Styles
@@ -17,7 +17,7 @@ const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Navigation hideOptions>
-        <TenderBid />
+        <SellersRoutes />
       </Navigation>
       <Footer />
     </>

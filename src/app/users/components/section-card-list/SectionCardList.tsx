@@ -4,6 +4,7 @@ import React from 'react';
 import SectionHeader from './components/section-header';
 import Card from '../../../components/card';
 import { Button } from 'antd';
+import { Link } from '@reach/router';
 // Styles
 import './SectionCardList.less';
 //Images
@@ -12,7 +13,7 @@ import Slider1 from '../../../../assets/images/slider-1.webp';
 // Props Types
 export interface SectionCardListProps {
   title: string;
-  route?: string;
+  route: string;
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
@@ -50,7 +51,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
       </div>
       <div className="SeeAll-Btn-sm">
         <Button type="primary" shape="round" size="large">
-          See All
+          <Link to={route}>See All</Link>
         </Button>
       </div>
     </>

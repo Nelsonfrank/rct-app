@@ -7,16 +7,16 @@ import Card from '../../../../components/card';
 import { RouteComponentProps } from '@reach/router';
 //Styles
 import './Home.less';
-// export interface HomeProps {}
+// export interface BuyerHomeProps {}
 
-const Home: React.FC<RouteComponentProps> = () => {
+const BuyerHome: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Header />
-      <div className="seller--card_group">
+      <div className="buyer--card_group">
         <Card
           subtitle="Tender Request"
-          className="seller--card"
+          className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
@@ -30,7 +30,7 @@ const Home: React.FC<RouteComponentProps> = () => {
         </Card>
         <Card
           subtitle="Tender Bid"
-          className="seller--card"
+          className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
@@ -44,7 +44,7 @@ const Home: React.FC<RouteComponentProps> = () => {
         </Card>
         <Card
           subtitle="Price Rate"
-          className="seller--card"
+          className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
@@ -56,11 +56,12 @@ const Home: React.FC<RouteComponentProps> = () => {
             </p>
           </div>
         </Card>
-        <CardSection title="Recent Tender Bids" route="tender-bids" />
-        <CardSection title="Shop by Buyers" route="buyers-list" />
+        <CardSection title="Recent Tender Request" route="tender-requests" />
+        <CardSection title="Shop by Seller" route="shop-by-sellers" />
+        <CardSection title="Shop By Platform" route="shop-by-platforms" />
       </div>
     </>
   );
 };
 
-export default Home;
+export default BuyerHome;

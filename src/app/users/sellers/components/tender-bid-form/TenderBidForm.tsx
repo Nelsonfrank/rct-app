@@ -2,13 +2,13 @@ import React from 'react';
 
 // Component
 import { Input, Select, Button, InputNumber, Divider, Radio } from 'antd';
-
+import { RouteComponentProps } from '@reach/router';
 //Styles
-import './TenderBid.less';
+import './TenderBidForm.less';
 
 // export interface TenderBidProps {}
 
-const TenderBid: React.FC = () => {
+const TenderBid: React.FC<RouteComponentProps> = () => {
   return (
     <div>
       <div>

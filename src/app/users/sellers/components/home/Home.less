@@ -1,0 +1,31 @@
+// Sellers page Styles
+
+.seller--card_group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 1.125rem;
+}
+.seller--card {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .seller--card_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .seller--card {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 1224px) {
+  .content--section {
+    max-width: 1200px;
+  }
+}

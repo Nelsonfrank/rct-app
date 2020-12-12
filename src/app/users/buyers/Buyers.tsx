@@ -2,8 +2,7 @@ import React from 'react';
 
 // Components
 import { RouteComponentProps } from '@reach/router';
-import List from '../components/list';
-import TenderRequest from './components/TenderRequest';
+import BuyerRoutes from './BuyerRoutes';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 
@@ -14,7 +13,7 @@ const Buyers: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Navigation hideOptions>
-        <TenderRequest />
+        <BuyerRoutes />
       </Navigation>
       <Footer />
     </>

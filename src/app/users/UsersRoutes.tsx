@@ -12,8 +12,8 @@ const Users: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Router>
-        <Buyers path="buyers" />
-        <Sellers path="sellers" />
+        <Buyers path="buyers/*" />
+        <Sellers path="sellers/*" />
       </Router>
     </>
   );
