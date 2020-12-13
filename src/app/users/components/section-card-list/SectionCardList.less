@@ -52,7 +52,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .card-section_container:nth-child(odd) {
+  .card-section_container:nth-child(3n) {
     display: block;
   }
 
@@ -66,6 +66,26 @@
     justify-content: space-between;
   }
   .card-section_container {
-    width: 240px;
+    width: 220px;
+  }
+}
+
+@media screen and (min-width: 854px) {
+  .card-section_container {
+    width: 270px;
+  }
+}
+@media screen and (min-width: 1048px) {
+  .card-section_container {
+    width: 220px;
+  }
+  .card-section_container:nth-child(odd) {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1221px) {
+  .card-section_container {
+    width: 250px;
   }
 }
