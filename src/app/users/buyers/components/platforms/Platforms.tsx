@@ -8,7 +8,7 @@ import { RouteComponentProps } from '@reach/router';
 const Platforms: React.FC<RouteComponentProps> = () => {
   return (
     <div>
-      <List />
+      <List btnTitle="Give Tender" routes="tender-request-form" />
     </div>
   );
 };

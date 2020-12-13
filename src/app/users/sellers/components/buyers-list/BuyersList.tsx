@@ -9,7 +9,7 @@ import { RouteComponentProps } from '@reach/router';
 const BuyersList: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <List />
+      <List btnTitle="Request Tender" routes="tender-bid-form" />
     </>
   );
 };

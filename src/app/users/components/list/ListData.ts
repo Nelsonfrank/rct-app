@@ -1,6 +1,6 @@
 import CardImage from '../../../../assets/images/slider-1.webp';
 
-export const ListDAtaPlaeholder: {
+export const ListDataPlaceholder: {
   id: number;
   image: string;
   ownerName: string;
