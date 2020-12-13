@@ -64,19 +64,43 @@ const { Option } = Select;
 const List: React.FC = () => {
   // const [indeterminate, setIndeterminate] = React.useState(false);
   const [checkedItems, setCheckedItems] = React.useState<
-    { ownerName: string; id: number }[] | undefined
-  >();
+    { ownerName: string; id: number }[]
+  >([]);
+  const [isAllChecked, setIsAllChecked] = React.useState(false);
 
-  const addCheckedItem = (value: { ownerName: string; id: number }) => {
-    const values = checkedItems?.concat(value);
-    setCheckedItems(values);
-    console.log(checkedItems);
+  React.useEffect(() => {
+    checkedItems.length == 0 ? setIsAllChecked(false) : null;
+  }, [checkedItems]);
+
+  const addAllItems = () => {
+    setIsAllChecked(!isAllChecked);
+    const value = ListDAtaPlaeholder.map((data) => ({
+      ownerName: data.ownerName,
+      id: data.id,
+    }));
+    isAllChecked ? setCheckedItems([]) : setCheckedItems(value);
   };
 
-  // const removeCheckedItem = (id: number) => {
-  //   const items = checkedItems?.filter((item) => item.id !== id);
-  //   setCheckedItems(items);
-  // };
+  const addCheckedItem = (value: { ownerName: string; id: number }) => {
+    // const values = checkedItems?.concat(value);
+    const items: { ownerName: string; id: number }[] = [
+      ...checkedItems,
+      value,
+    ].filter(
+      (v, i, self) =>
+        i ===
+        self.findIndex(
+          (item) => item.id === v.id && item.ownerName === v.ownerName,
+        ),
+    );
+
+    setCheckedItems(items);
+  };
+
+  const removeCheckedItem = (id: number) => {
+    const items = checkedItems?.filter((item) => item.id !== id);
+    setCheckedItems(items);
+  };
 
   return (
     <div className="list-container">
@@ -87,7 +111,9 @@ const List: React.FC = () => {
         <div>
           <Checkbox
             // indeterminate={indeterminate}
+            checked={isAllChecked}
             style={{ display: 'flex', margin: '1rem 0.125rem' }}
+            onChange={addAllItems}
           >
             <FilterResultCount />
           </Checkbox>
@@ -103,7 +129,9 @@ const List: React.FC = () => {
             variety={value.variety}
             pickupLocation={value.pickupLocation}
             grade={value.grade}
-            checkItem={addCheckedItem}
+            addCheckedItem={addCheckedItem}
+            removeCheckedItem={removeCheckedItem}
+            isAllChecked={isAllChecked}
           />
         ))}
       </div>

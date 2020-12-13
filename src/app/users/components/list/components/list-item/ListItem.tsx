@@ -14,8 +14,9 @@ export interface ListItemProps {
   variety: string;
   grade: string;
   pickupLocation: string;
-  isChecked?: boolean;
-  checkItem: (value: { ownerName: string; id: number }) => void;
+  isAllChecked: boolean;
+  addCheckedItem: (value: { ownerName: string; id: number }) => void;
+  removeCheckedItem: (id: number) => void;
 }
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
@@ -27,15 +28,28 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     variety,
     grade,
     pickupLocation,
-    checkItem,
+    isAllChecked,
+    addCheckedItem,
+    removeCheckedItem,
   } = props;
+
+  React.useEffect(() => {
+    isAllChecked ? setIsChecked(true) : setIsChecked(false);
+  }, [isAllChecked]);
+
+  const [isChecked, setIsChecked] = React.useState(false);
+
+  const toggleCheckBox = () => {
+    setIsChecked(!isChecked);
+    isChecked ? removeCheckedItem(id) : addCheckedItem({ ownerName, id });
+  };
   return (
     <Checkbox
       key={id}
-      // checked={isChecked}
+      checked={isChecked}
       value={id}
       style={{ display: 'flex', margin: '1rem 0.125rem' }}
-      onChange={() => checkItem({ ownerName, id })}
+      onChange={toggleCheckBox}
     >
       <div className="listItemContainer">
         <div className="listitemImageContainer">
