@@ -7,7 +7,7 @@ import UserList from './components/user-list';
 import Platform from './components/platforms';
 import TenderRequests from './components/tender-requests';
 import TenderRequestForm from './components/TenderRequestForm';
-
+import Profile from '../components/profile';
 // export interface BuyerRoutesProps {}
 
 const BuyerRoutes: React.FC = () => {
@@ -18,6 +18,7 @@ const BuyerRoutes: React.FC = () => {
       <Platform path="shop-by-platforms" />
       <TenderRequests path="tender-requests" />
       <TenderRequestForm path="tender-request-form" />
+      <Profile path="user-profile" />
     </Router>
   );
 };

@@ -3,25 +3,26 @@ import React from 'react';
 //Components
 import Card from '../../../components/card';
 import { Button, Tabs } from 'antd';
+import { RouteComponentProps } from '@reach/router';
 
 //Images
-import ProfilePicture from '../../../../assets/images/profile-image.webp';
 import Placeholder from '../../../../assets/images/profile.webp';
+import Profile from '../../../../assets/images/Profile-icon.jpg';
 //Styles
 import './Profile.less';
 // export interface UserProfileProps {}
 
 const { TabPane } = Tabs;
 
-const UserProfile: React.FC = () => {
+const UserProfile: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card>
+      <div>
         <div className="userprofile-container">
           <div>
             <div className="profile-image_container">
               <img
-                src={ProfilePicture}
+                src={Profile}
                 alt="user profile picture"
                 className="profile-picture"
               />
@@ -114,7 +115,7 @@ const UserProfile: React.FC = () => {
                       >
                         <div>
                           <h3>Phone</h3>
-                          <p>+255 684 010 010</p>
+                          <p>+255 684 xxx xxx</p>
                         </div>
                         <div>
                           <h3>Email</h3>
@@ -181,7 +182,7 @@ const UserProfile: React.FC = () => {
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </>
   );
 };
