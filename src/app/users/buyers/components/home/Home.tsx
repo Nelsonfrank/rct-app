@@ -15,7 +15,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
       <Header />
       <div className="buyer--card_group">
         <Card
-          subtitle="Tender Request"
+          subtitle="1. Give Tender"
           className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
@@ -29,7 +29,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           </div>
         </Card>
         <Card
-          subtitle="Tender Bid"
+          subtitle="2. Request Tender"
           className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
@@ -43,7 +43,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           </div>
         </Card>
         <Card
-          subtitle="Price Rate"
+          subtitle="3. Price Rate"
           className="buyer--card"
           styles={{ margin: '0.5rem 0' }}
         >
