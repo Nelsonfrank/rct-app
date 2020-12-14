@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import { InputNumber, Button, Divider } from 'antd';
-import { navigate, RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps, Link } from '@reach/router';
 //Styles
 import './Login.less';
 
@@ -40,6 +40,25 @@ const Login: React.FC<RouteComponentProps> = () => {
                   {' '}
                   Login
                 </Button>
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div style={{ marginTop: 10 }}>
+                  <p>
+                    Dont have an account?!.{' '}
+                    <Link to="/signup"> Register Here</Link>
+                  </p>
+                </div>
+                <div>
+                  <Link to="/">
+                    <p>Go Back</p>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

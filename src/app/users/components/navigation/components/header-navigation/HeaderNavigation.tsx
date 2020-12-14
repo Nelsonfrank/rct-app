@@ -74,7 +74,7 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
               <div className="registry-container">
                 <span className="register--welcome">Welcome!</span>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Link to="/">Sign In</Link>{' '}
+                  <Link to="/login">Sign In</Link>{' '}
                   <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
                   <Link to="/signup">Register</Link>
                 </div>

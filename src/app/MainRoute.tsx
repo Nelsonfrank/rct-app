@@ -16,7 +16,7 @@ const MainRoute: React.FC = () => {
     <>
       <Router>
         <Redirect from="/" to="/app/buyers" />
-        <Login path="/" />
+        <Login path="/login" />
         <SignUp path="/signup" />
         <VerifyPhone path="/verify-phone" />
         <UsersRoutes path="app/*" />
