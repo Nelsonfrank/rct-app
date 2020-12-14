@@ -27,24 +27,28 @@ const SectionCardList: React.FC<SectionCardListProps> = (
       <SectionHeader title={title} route={route} />
       <div className="card--list_group">
         <Card
+          styles={{ margin: '0 10px' }}
           className="card-section_container"
           img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
+          styles={{ margin: '0 10px' }}
           className="card-section_container"
           img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
+          styles={{ margin: '0 10px' }}
           className="card-section_container"
           img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
+          styles={{ margin: '0 10px' }}
           className="card-section_container"
           img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
