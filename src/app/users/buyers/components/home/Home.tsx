@@ -56,8 +56,12 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
             </p>
           </div>
         </Card>
-        <CardSection title="Recent Tender Request" route="tender-requests" />
-        <CardSection title="Shop by Seller" route="shop-by-sellers" />
+        <CardSection
+          title="Recent Tender Request"
+          route="tender-requests"
+          users
+        />
+        <CardSection title="Shop by Seller" route="shop-by-sellers" users />
         <CardSection title="Shop By Platform" route="shop-by-platforms" />
       </div>
     </>

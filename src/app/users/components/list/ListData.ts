@@ -1,4 +1,4 @@
-import CardImage from '../../../../assets/images/slider-1.webp';
+import CardImage from '../../../../assets/images/Profile-icon.jpg';
 
 export const ListDataPlaceholder: {
   id: number;

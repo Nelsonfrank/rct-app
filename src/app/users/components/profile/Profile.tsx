@@ -132,31 +132,10 @@ const UserProfile: React.FC<RouteComponentProps> = () => {
                       </div>
                     </div>
                   </div>
-                </TabPane>
-                <TabPane tab="Stats" key="2">
-                  Content of Tab Pane 2
-                </TabPane>
-                <TabPane tab="Related Seller" key="3">
+
                   <div>
+                    <h2>Related Sellers</h2>
                     <div className="sells-lists">
-                      <Card
-                        className="card-sells_container"
-                        img={Placeholder}
-                        imgTitle="Darell Steward"
-                        imgDescrip="Arusha"
-                      ></Card>
-                      <Card
-                        className="card-sells_container"
-                        img={Placeholder}
-                        imgTitle="Darell Steward"
-                        imgDescrip="Arusha"
-                      ></Card>
-                      <Card
-                        className="card-sells_container"
-                        img={Placeholder}
-                        imgTitle="Darell Steward"
-                        imgDescrip="Arusha"
-                      ></Card>
                       <Card
                         className="card-sells_container"
                         img={Placeholder}

@@ -56,8 +56,8 @@ const Home: React.FC<RouteComponentProps> = () => {
             </p>
           </div>
         </Card>
-        <CardSection title="Recent Tender Bids" route="tender-bids" />
-        <CardSection title="Shop by Buyers" route="buyers-list" />
+        <CardSection title="Recent Tender Bids" route="tender-bids" users />
+        <CardSection title="Shop by Buyers" route="buyers-list" users />
       </div>
     </>
   );

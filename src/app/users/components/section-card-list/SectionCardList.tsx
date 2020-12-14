@@ -8,43 +8,45 @@ import { Link } from '@reach/router';
 // Styles
 import './SectionCardList.less';
 //Images
-import Slider1 from '../../../../assets/images/slider-1.webp';
+import ProfileIcon from '../../../../assets/images/Profile-icon.jpg';
+import PlatformIcon from '../../../../assets/images/Platform-icon.png';
 
 // Props Types
 export interface SectionCardListProps {
   title: string;
   route: string;
+  users?: boolean;
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
   props: SectionCardListProps,
 ) => {
-  const { title, route } = props;
+  const { title, route, users } = props;
   return (
     <>
       <SectionHeader title={title} route={route} />
       <div className="card--list_group">
         <Card
           className="card-section_container"
-          img={Slider1}
+          img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           className="card-section_container"
-          img={Slider1}
+          img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           className="card-section_container"
-          img={Slider1}
+          img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           className="card-section_container"
-          img={Slider1}
+          img={users ? ProfileIcon : PlatformIcon}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
