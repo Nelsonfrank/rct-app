@@ -16,7 +16,7 @@ import './Sellers.less';
 const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Navigation hideOptions>
+      <Navigation>
         <SellersRoutes />
       </Navigation>
       <Footer />
