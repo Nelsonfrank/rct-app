@@ -3,6 +3,7 @@ import React from 'react';
 //Components
 import { Button, Tag } from 'antd';
 import SectionCard from '../../../section-card-list';
+import { navigate } from '@reach/router';
 // export interface UserInfoProps {}
 
 const UserInfo: React.FC = () => {
@@ -125,7 +126,12 @@ const UserInfo: React.FC = () => {
           </div>
           <div>
             <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>Action</h3>
-            <Button type="primary">Give Tender</Button>
+            <Button
+              type="primary"
+              onClick={() => navigate('tender-request-form')}
+            >
+              Give Tender
+            </Button>
           </div>
         </div>
         <div style={{ marginTop: '4rem' }}>
