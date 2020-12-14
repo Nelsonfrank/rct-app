@@ -8,20 +8,24 @@ import { Link } from '@reach/router';
 // Styles
 import './SectionCardList.less';
 //Images
-import ProfileIcon from '../../../../assets/images/Profile-icon.jpg';
-import PlatformIcon from '../../../../assets/images/Platform-icon.png';
+import Request1 from '../../../../assets/images/11.jpg';
+import Request2 from '../../../../assets/images/7.jpg';
+import Request3 from '../../../../assets/images/13.jpg';
+import User1 from '../../../../assets/images/2.png';
+import Platform from '../../../../assets/images/14.jpg';
 
 // Props Types
 export interface SectionCardListProps {
   title: string;
   route: string;
   users?: boolean;
+  tenderRequest?: boolean;
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
   props: SectionCardListProps,
 ) => {
-  const { title, route, users } = props;
+  const { title, route, users, tenderRequest } = props;
   return (
     <>
       <SectionHeader title={title} route={route} />
@@ -29,28 +33,28 @@ const SectionCardList: React.FC<SectionCardListProps> = (
         <Card
           styles={{ margin: '0 10px' }}
           className="card-section_container"
-          img={users ? ProfileIcon : PlatformIcon}
+          img={users ? User1 : tenderRequest ? Request2 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
           className="card-section_container"
-          img={users ? ProfileIcon : PlatformIcon}
+          img={users ? User1 : tenderRequest ? Request1 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
           className="card-section_container"
-          img={users ? ProfileIcon : PlatformIcon}
+          img={users ? User1 : tenderRequest ? Request2 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
           className="card-section_container"
-          img={users ? ProfileIcon : PlatformIcon}
+          img={users ? User1 : tenderRequest ? Request3 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
         ></Card>
