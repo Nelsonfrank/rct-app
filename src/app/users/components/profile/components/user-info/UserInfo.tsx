@@ -113,7 +113,7 @@ const UserInfo: React.FC = () => {
                     RCT Approved
                   </Tag>
                   <Tag color="#87d068" style={{ padding: '0.2rem 0.5rem' }}>
-                    TBS Approved
+                    TBS Certified
                   </Tag>
                   <Tag color="#108ee9" style={{ padding: '0.2rem 0.5rem' }}>
                     Individual
@@ -125,11 +125,11 @@ const UserInfo: React.FC = () => {
           </div>
           <div>
             <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>Action</h3>
-            <Button type="primary">Chat with Seller</Button>
+            <Button type="primary">Give Tender</Button>
           </div>
         </div>
         <div style={{ marginTop: '4rem' }}>
-          <SectionCard title="Recent Work" route="/" users />
+          <SectionCard title="Related Sellers" route="/" users />
         </div>
       </div>
     </div>

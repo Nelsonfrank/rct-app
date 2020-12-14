@@ -20,11 +20,10 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              recusandae earum sequi vero blanditiis aliquid impedit eos aut vel
-              reprehenderit velit sunt natus voluptates iure, facere neque nemo
-              non culpa.
+            <p style={{ fontSize: 16 }}>
+              A formal, structured procedure for generating competing offers
+              from different potential suppliers or contractors looking to
+              obtain an award of business activity in works, supply.
             </p>
           </div>
         </Card>
@@ -34,11 +33,10 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              recusandae earum sequi vero blanditiis aliquid impedit eos aut vel
-              reprehenderit velit sunt natus voluptates iure, facere neque nemo
-              non culpa.
+            <p style={{ fontSize: 16 }}>
+              A formal, structured procedure for generating competing offers
+              from different potential suppliers or contractors looking to
+              obtain an award of business activity in works, supply.
             </p>
           </div>
         </Card>
@@ -48,11 +46,10 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           styles={{ margin: '0.5rem 0' }}
         >
           <div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              recusandae earum sequi vero blanditiis aliquid impedit eos aut vel
-              reprehenderit velit sunt natus voluptates iure, facere neque nemo
-              non culpa.
+            <p style={{ fontSize: 16 }}>
+              A formal, structured procedure for generating competing offers
+              from different potential suppliers or contractors looking to
+              obtain an award of business activity in works, supply.
             </p>
           </div>
         </Card>

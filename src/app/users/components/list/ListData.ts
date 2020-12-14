@@ -1,5 +1,5 @@
-import CardImage from '../../../../assets/images/Profile-icon.jpg';
-
+import User1 from '../../../../assets/images/2.png';
+import User2 from '../../../../assets/images/10.jpg';
 export const ListDataPlaceholder: {
   id: number;
   image: string;
@@ -11,7 +11,7 @@ export const ListDataPlaceholder: {
 }[] = [
   {
     id: 1,
-    image: CardImage,
+    image: User1,
     ownerName: 'East Africa milling Ltd',
     description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                   Cum at veritatis consequatur, sapiente iste optio ea quisquam? Quasi eos 
@@ -22,7 +22,7 @@ export const ListDataPlaceholder: {
   },
   {
     id: 2,
-    image: CardImage,
+    image: User2,
     ownerName: 'East Africa milling Ltd',
     description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                   Cum at veritatis consequatur, sapiente iste optio ea quisquam? Quasi eos 
@@ -33,7 +33,7 @@ export const ListDataPlaceholder: {
   },
   {
     id: 3,
-    image: CardImage,
+    image: User1,
     ownerName: 'East Africa milling Ltd',
     description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                   Cum at veritatis consequatur, sapiente iste optio ea quisquam? Quasi eos 
@@ -44,7 +44,7 @@ export const ListDataPlaceholder: {
   },
   {
     id: 4,
-    image: CardImage,
+    image: User2,
     ownerName: 'East Africa milling Ltd',
     description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                   Cum at veritatis consequatur, sapiente iste optio ea quisquam? Quasi eos 
@@ -55,7 +55,7 @@ export const ListDataPlaceholder: {
   },
   {
     id: 5,
-    image: CardImage,
+    image: User1,
     ownerName: 'East Africa milling Ltd',
     description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                   Cum at veritatis consequatur, sapiente iste optio ea quisquam? Quasi eos 
