@@ -13,6 +13,7 @@ export interface CardsProps {
   img?: string;
   imgTitle?: string;
   imgDescrip?: string;
+  onClick?: () => void;
 }
 
 const Cards: React.FC<CardsProps> = (CardsProps) => {
@@ -26,6 +27,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     img,
     imgTitle,
     imgDescrip,
+    onClick,
   } = CardsProps;
   return (
     <Card
@@ -35,6 +37,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
       }}
       cover={img && <img src={img} alt="slider-1" style={{ width: '100%' }} />}
       className={className}
+      onClick={onClick}
     >
       {title ? (
         <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: 0 }}>

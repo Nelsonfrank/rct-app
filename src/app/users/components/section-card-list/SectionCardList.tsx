@@ -4,7 +4,7 @@ import React from 'react';
 import SectionHeader from './components/section-header';
 import Card from '../../../components/card';
 import { Button } from 'antd';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 // Styles
 import './SectionCardList.less';
 //Images
@@ -36,6 +36,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           img={users ? User1 : tenderRequest ? Request2 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
+          onClick={() => navigate('buyers/user-profile')}
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
@@ -43,6 +44,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           img={users ? User1 : tenderRequest ? Request1 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
+          onClick={() => navigate('buyers/user-profile')}
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
@@ -50,6 +52,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           img={users ? User1 : tenderRequest ? Request2 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
+          onClick={() => navigate('buyers/user-profile')}
         ></Card>
         <Card
           styles={{ margin: '0 10px' }}
@@ -57,6 +60,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           img={users ? User1 : tenderRequest ? Request3 : Platform}
           imgTitle="Sarafina John"
           imgDescrip="Arusha"
+          onClick={() => navigate('buyers/user-profile')}
         ></Card>
       </div>
       <div className="SeeAll-Btn-sm">
