@@ -1,0 +1,28 @@
+/* Remove extra left and right margins, due to padding */
+.platformlist-row {
+  margin: 0 -5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Clear floats after the columns */
+.platformlist-row:after {
+  content: '';
+  display: flex;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .platformlist-column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.platformlist-card {
+  padding: 16px;
+  text-align: center;
+  width: 25%;
+}

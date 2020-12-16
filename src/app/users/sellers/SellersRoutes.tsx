@@ -12,7 +12,7 @@ import Profile from '../components/profile';
 const SellersRoutes: React.FC = () => {
   return (
     <>
-      <Router>
+      <Router primary={false}>
         <Home path="/" />
         <TenderBidForm path="tender-bid-form" />
         <BuyersList path="buyers-list" />

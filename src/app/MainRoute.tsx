@@ -14,7 +14,7 @@ import VerifyPhone from './components/verify-phone';
 const MainRoute: React.FC = () => {
   return (
     <>
-      <Router>
+      <Router primary={false}>
         <Redirect from="/" to="/app/buyers" />
         <Login path="/login" />
         <SignUp path="/signup" />

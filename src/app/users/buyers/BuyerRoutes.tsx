@@ -12,7 +12,7 @@ import Profile from '../components/profile';
 
 const BuyerRoutes: React.FC = () => {
   return (
-    <Router>
+    <Router primary={false}>
       <Home path="/" />
       <UserList path="shop-by-sellers" />
       <Platform path="shop-by-platforms" />

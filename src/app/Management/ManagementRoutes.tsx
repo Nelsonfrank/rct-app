@@ -2,8 +2,9 @@ import React from 'react';
 
 //Components
 import { Router, Redirect, RouteComponentProps } from '@reach/router';
-import Dashboard from './components/dashboard';
-import UsersRoutes from './components/users';
+import Dashboard from './pages/dashboard';
+import UsersRoutes from './pages/users';
+import Platform from './pages/platform';
 import Layout from './components/Layout';
 
 // Props Types
@@ -15,6 +16,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
       <Router>
         <Dashboard path="/" />
         <UsersRoutes path="users/*" />
+        <Platform path="platforms" />
         <Redirect from="users" to="sellers" noThrow />
       </Router>
     </Layout>

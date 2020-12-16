@@ -11,7 +11,7 @@ import Sellers from './sellers';
 const Users: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Router>
+      <Router primary={false}>
         <Buyers path="buyers/*" />
         <Sellers path="sellers/*" />
       </Router>

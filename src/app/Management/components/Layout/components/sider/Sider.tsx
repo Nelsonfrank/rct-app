@@ -10,6 +10,7 @@ import {
   TeamOutlined,
   AccountBookOutlined,
   MessageOutlined,
+  BlockOutlined,
 } from '@ant-design/icons';
 import { Link } from '@reach/router';
 //Logo
@@ -83,8 +84,11 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
             <Link to="users/leaders">Leaders</Link>
           </Menu.Item>
         </SubMenu>
-        <Menu.Item key="9" icon={<MessageOutlined />}>
-          <Link to="/dashboard">Chats</Link>
+        <Menu.Item key="7" icon={<BlockOutlined />}>
+          <Link to="/dashboard/platforms">Platforms</Link>
+        </Menu.Item>
+        <Menu.Item key="8" icon={<MessageOutlined />}>
+          <Link to="/dashboard">Feedback</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<FileOutlined />}>
           <Link to="/dashboard">Report</Link>
