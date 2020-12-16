@@ -71,7 +71,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           <Link to="/dashboard"> Varieties</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<AccountBookOutlined />}>
-          <Link to="/dashboard">Price Rate</Link>
+          <Link to="price-rate">Price Rate</Link>
         </Menu.Item>
         <SubMenu key="sub1" icon={<TeamOutlined />} title="Users">
           <Menu.Item key="4">
