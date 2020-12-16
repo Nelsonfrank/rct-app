@@ -91,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           <Link to="/dashboard">Feedback</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<FileOutlined />}>
-          <Link to="/dashboard">Report</Link>
+          <Link to="logs">Logs</Link>
         </Menu.Item>
       </Menu>
     </Sider>
