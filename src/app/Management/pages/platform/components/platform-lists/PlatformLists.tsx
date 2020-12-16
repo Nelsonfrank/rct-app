@@ -1,4 +1,7 @@
 import React from 'react';
+//dependencies
+import { RouteComponentProps, navigate } from '@reach/router';
+import { Button } from 'antd';
 
 // Components
 import Card from '../../../../../components/card';
@@ -7,10 +10,19 @@ import './PlatformList.less';
 
 // export interface PlatformListsProps {}
 
-const PlatformLists: React.FC = () => {
+const PlatformLists: React.FC<RouteComponentProps> = () => {
+  const handleAddPlatform = () => {
+    navigate('platforms/add-platform-form');
+  };
   return (
     <>
-      <div>
+      <div className="platform-container">
+        <div className="platform-heading">
+          <Button size="large" type="primary" onClick={handleAddPlatform}>
+            Add Platform
+          </Button>
+        </div>
+
         <div className="platformlist-row">
           <Card
             className="platformlist-card"

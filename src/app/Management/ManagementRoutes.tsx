@@ -16,7 +16,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
       <Router>
         <Dashboard path="/" />
         <UsersRoutes path="users/*" />
-        <Platform path="platforms" />
+        <Platform path="platforms/*" />
         <Redirect from="users" to="sellers" noThrow />
       </Router>
     </Layout>

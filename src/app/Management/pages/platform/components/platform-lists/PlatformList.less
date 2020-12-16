@@ -1,28 +1,36 @@
-/* Remove extra left and right margins, due to padding */
+.platform-container {
+  height: 100vh;
+  margin: 0rem 1.5rem;
+}
+
+.platform-heading {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.25rem 1rem;
+}
+
 .platformlist-row {
   margin: 0 -5px;
   display: flex;
   flex-wrap: wrap;
 }
 
-/* Clear floats after the columns */
 .platformlist-row:after {
   content: '';
   display: flex;
 }
 
-/* Responsive columns */
+.platformlist-card {
+  padding: 16px;
+  text-align: center;
+  width: 25%;
+}
+
 @media screen and (max-width: 600px) {
   .platformlist-column {
     width: 100%;
     display: block;
     margin-bottom: 20px;
   }
-}
-
-/* Style the counter cards */
-.platformlist-card {
-  padding: 16px;
-  text-align: center;
-  width: 25%;
 }
