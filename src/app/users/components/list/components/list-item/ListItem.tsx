@@ -12,9 +12,11 @@ export interface ListItemProps {
   image: string;
   ownerName: string;
   description: string;
-  variety: string;
-  grade: string;
-  pickupLocation: string;
+  variety?: string;
+  grade?: string;
+  pickupLocation?: string;
+  stock?: string;
+  need?: string;
   isAllChecked: boolean;
   addCheckedItem: (value: { ownerName: string; id: number }) => void;
   removeCheckedItem: (id: number) => void;
@@ -29,6 +31,8 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     variety,
     grade,
     pickupLocation,
+    stock,
+    need,
     isAllChecked,
     addCheckedItem,
     removeCheckedItem,
@@ -69,25 +73,47 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
               <p className="listDetailsParag dispay-parag">{description}</p>
               <div className="listOptions">
                 <div className="listOptions_items">
-                  <p className="listDetailsParag listDetailsParagBold">
-                    {' '}
-                    <span style={{ fontWeight: 600, marginRight: 2 }}>
-                      Variety:{' '}
-                    </span>
-                    {variety}
-                  </p>
-                  <p className="listDetailsParag listDetailsParagBold dispay-item">
-                    <span style={{ fontWeight: 600, marginRight: 2 }}>
-                      Grade:{' '}
-                    </span>{' '}
-                    {grade}
-                  </p>
-                  <p className="listDetailsParag listDetailsParagBold pickup_location">
-                    <span style={{ fontWeight: 600, marginRight: 2 }}>
-                      Pickup Location:{' '}
-                    </span>{' '}
-                    {pickupLocation}
-                  </p>
+                  {variety ? (
+                    <p className="listDetailsParag listDetailsParagBold">
+                      {' '}
+                      <span style={{ fontWeight: 600, marginRight: 2 }}>
+                        Variety:{' '}
+                      </span>
+                      {variety}
+                    </p>
+                  ) : null}
+                  {grade ? (
+                    <p className="listDetailsParag listDetailsParagBold dispay-item">
+                      <span style={{ fontWeight: 600, marginRight: 2 }}>
+                        Grade:{' '}
+                      </span>{' '}
+                      {grade}
+                    </p>
+                  ) : null}
+                  {stock ? (
+                    <p className="listDetailsParag listDetailsParagBold pickup_location">
+                      <span style={{ fontWeight: 600, marginRight: 2 }}>
+                        Stock:{' '}
+                      </span>{' '}
+                      {stock}
+                    </p>
+                  ) : null}
+                  {pickupLocation ? (
+                    <p className="listDetailsParag listDetailsParagBold pickup_location">
+                      <span style={{ fontWeight: 600, marginRight: 2 }}>
+                        Pickup Location:{' '}
+                      </span>{' '}
+                      {pickupLocation}
+                    </p>
+                  ) : null}
+                  {need ? (
+                    <p className="listDetailsParag listDetailsParagBold pickup_location">
+                      <span style={{ fontWeight: 600, marginRight: 2 }}>
+                        Buyers Need:{' '}
+                      </span>{' '}
+                      {need}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="moreDetailsBtn">
                   <Button type="primary" onClick={handleMoreDetails}>

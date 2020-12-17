@@ -8,9 +8,6 @@ import { navigate } from '@reach/router';
 // Styles
 import './List.less';
 
-// Placeholder Data
-import { ListDataPlaceholder } from './ListData';
-
 export interface FilterSortProps {
   itemSelected: boolean;
   title: string;
@@ -28,6 +25,7 @@ const FilterSort = ({ itemSelected, title, route }: FilterSortProps) => {
         width: '100%',
         display: 'flex',
         justifyContent: 'space-between',
+        flexWrap: 'wrap',
       }}
     >
       <div
@@ -58,7 +56,7 @@ const FilterSort = ({ itemSelected, title, route }: FilterSortProps) => {
           </Select>
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginTop: '1rem' }}>
         <Button
           disabled={itemSelected}
           danger
@@ -96,13 +94,29 @@ const FilterResultCount = (props: filterResultProps) => {
 
 const { Option } = Select;
 
-export interface ListProps {
+export interface ListItemProps {
+  itemData: {
+    id: number;
+    image: string;
+    ownerName: string;
+    description: string;
+    variety?: string;
+    grade?: string;
+    pickupLocation?: string;
+    stock?: string;
+    need?: string;
+  }[];
+}
+export interface ListProps extends ListItemProps {
   listType?: string;
   btnTitle: string;
   routes: string;
 }
-const List: React.FC<ListProps> = ({ btnTitle, routes }: ListProps) => {
-  // const [indeterminate, setIndeterminate] = React.useState(false);
+const List: React.FC<ListProps> = ({
+  btnTitle,
+  routes,
+  itemData,
+}: ListProps) => {
   const [checkedItems, setCheckedItems] = React.useState<
     { ownerName: string; id: number }[]
   >([]);
@@ -114,7 +128,7 @@ const List: React.FC<ListProps> = ({ btnTitle, routes }: ListProps) => {
 
   const addAllItems = () => {
     setIsAllChecked(!isAllChecked);
-    const value = ListDataPlaceholder.map((data) => ({
+    const value = itemData.map((data) => ({
       ownerName: data.ownerName,
       id: data.id,
     }));
@@ -159,11 +173,11 @@ const List: React.FC<ListProps> = ({ btnTitle, routes }: ListProps) => {
             style={{ display: 'flex', margin: '1rem 0.125rem' }}
             onChange={addAllItems}
           >
-            <FilterResultCount count={ListDataPlaceholder.length} />
+            <FilterResultCount count={itemData.length} />
           </Checkbox>
           <div style={{ height: 3, width: '100%', backgroundColor: 'grey' }} />
         </div>
-        {ListDataPlaceholder.map((value) => (
+        {itemData.map((value) => (
           <ListItem
             key={value.id}
             id={value.id}
@@ -173,6 +187,8 @@ const List: React.FC<ListProps> = ({ btnTitle, routes }: ListProps) => {
             variety={value.variety}
             pickupLocation={value.pickupLocation}
             grade={value.grade}
+            stock={value.stock}
+            need={value.need}
             addCheckedItem={addCheckedItem}
             removeCheckedItem={removeCheckedItem}
             isAllChecked={isAllChecked}
