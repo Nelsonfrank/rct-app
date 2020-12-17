@@ -17,6 +17,7 @@ export interface ListItemProps {
   pickupLocation?: string;
   stock?: string;
   need?: string;
+  profileRoute?: string;
   isAllChecked: boolean;
   addCheckedItem: (value: { ownerName: string; id: number }) => void;
   removeCheckedItem: (id: number) => void;
@@ -50,7 +51,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   };
 
   const handleMoreDetails = () => {
-    navigate('user-profile');
+    navigate('profile');
   };
   return (
     <>

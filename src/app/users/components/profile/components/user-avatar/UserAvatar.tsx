@@ -1,16 +1,22 @@
 import React from 'react';
 
-//Images
-import Placeholder from '../../../../../../assets/images/profile.webp';
-import Profile from '../../../../../../assets/images/user-one.jpg';
-// export interface UserAvatarProps {}
+export interface UserAvatarProps {
+  profileImage: string;
+  recentTenders: {
+    id: number;
+    tenderImg: string;
+    title: string;
+    descript: string;
+  }[];
+}
 
-const UserAvatar: React.FC = () => {
+const UserAvatar: React.FC<UserAvatarProps> = (props: UserAvatarProps) => {
+  const { profileImage, recentTenders } = props;
   return (
     <div className="profile-sidebar">
       <div className="profile-image_container">
         <img
-          src={Profile}
+          src={profileImage}
           alt="user profile picture"
           className="profile-picture"
         />
@@ -21,20 +27,15 @@ const UserAvatar: React.FC = () => {
             <h2>Recent Work</h2>
           </div>
           <div className="recent-work">
-            <div className="recent-work_item">
-              <img
-                src={Placeholder}
-                alt="User Recent Work"
-                className="recent-work_picture"
-              />
-            </div>
-            <div>
-              <img
-                src={Placeholder}
-                alt="User Recent Work"
-                className="recent-work_picture"
-              />
-            </div>
+            {recentTenders.map((item) => (
+              <div className="recent-work_item" key={item.id}>
+                <img
+                  src={item.tenderImg}
+                  alt="User Recent Work"
+                  className="recent-work_picture"
+                />
+              </div>
+            ))}
           </div>
           <div className="recent-work_linkContainer ">
             <span>

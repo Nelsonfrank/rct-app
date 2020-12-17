@@ -29,11 +29,4 @@ export const ShopByBuyerData: {
     cardDescrip: `Lorem is here`,
     routes: 'sellers/user-profile',
   },
-  {
-    id: 4,
-    img: User2,
-    title: 'East Africa milling Ltd',
-    cardDescrip: `Lorem is here`,
-    routes: 'sellers/user-profile',
-  },
 ];

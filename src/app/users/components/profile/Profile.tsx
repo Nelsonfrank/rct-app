@@ -4,7 +4,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 import UserInfo from './components/user-info';
-import RecentWork from './components/recent-work';
+import RecentTender from './components/recent-tender';
 import UserAvatar from './components/user-avatar';
 //Styles
 import './Profile.less';
@@ -13,33 +13,96 @@ import './Profile.less';
 
 const { TabPane } = Tabs;
 
-const Heading = () => (
+const Heading = (props: { fullName: string; userCategory: string }) => (
   <div>
-    <h1 className="username">Darell Steward</h1>
-    <p>Seller</p>
+    <h1 className="username">{props.fullName}</h1>
+    <p>{props.userCategory}</p>
   </div>
 );
 
-const UserProfile: React.FC<RouteComponentProps> = () => {
+export interface UserProfileProfile extends RouteComponentProps {
+  userInfo: {
+    id: number;
+    profileImg: string;
+    recentTenders: {
+      id: number;
+      tenderImg: string;
+      title: string;
+      descript: string;
+    }[];
+    userCategory: string;
+    firstName: string;
+    lastName: string;
+    nationality: string;
+    phone: string;
+    email: string;
+    website: string;
+    scaleStatus: string;
+    experience: string;
+    fullName: string;
+    tags: string[];
+  }[];
+}
+const UserProfile: React.FC<UserProfileProfile> = (
+  props: UserProfileProfile,
+) => {
   return (
     <>
       <div>
-        <div className="userprofile-container">
-          <UserAvatar />
-          <div className="userprofile_detailed">
-            <Heading />
-            <div>
-              <Tabs defaultActiveKey="1" size="large" style={{ fontSize: 16 }}>
-                <TabPane tab="Info" key="1">
-                  <UserInfo />
-                </TabPane>
-                <TabPane tab="Recent Work" key="2">
-                  <RecentWork />
-                </TabPane>
-              </Tabs>
-            </div>
-          </div>
-        </div>
+        {props.userInfo
+          .filter((item) => item.id === 1)
+          .map((item) => {
+            const {
+              profileImg,
+              recentTenders,
+              userCategory,
+              fullName,
+              firstName,
+              lastName,
+              tags,
+              nationality,
+              scaleStatus,
+              phone,
+              email,
+              website,
+              experience,
+            } = item;
+            return (
+              <div className="userprofile-container" key={item.id}>
+                <UserAvatar
+                  profileImage={profileImg}
+                  recentTenders={[recentTenders[0], recentTenders[1]]}
+                />
+                <div className="userprofile_detailed">
+                  <Heading fullName={fullName} userCategory={userCategory} />
+                  <div>
+                    <Tabs
+                      defaultActiveKey="1"
+                      size="large"
+                      style={{ fontSize: 16 }}
+                    >
+                      <TabPane tab="Info" key="1">
+                        <UserInfo
+                          firstName={firstName}
+                          lastName={lastName}
+                          nationality={nationality}
+                          scaleStatus={scaleStatus}
+                          phone={phone}
+                          website={website}
+                          email={email}
+                          experience={experience}
+                          tags={tags}
+                        />
+                      </TabPane>
+                      <TabPane tab="Recent Tender" key="2">
+                        <RecentTender tenderItem={recentTenders} />
+                      </TabPane>
+                    </Tabs>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </>
   );
