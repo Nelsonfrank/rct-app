@@ -45,6 +45,14 @@ const TenderRequest: React.FC<RouteComponentProps> = () => {
         </div>
         <div className="select-option">
           <div className="option-select">
+            <Select size="large" defaultValue="grade" style={{ width: '100%' }}>
+              <Option value="grade">Select Grade</Option>
+              <Option value="one">1</Option>
+              <Option value="two">2</Option>
+              <Option value="three">3</Option>
+            </Select>
+          </div>
+          <div className="option-select">
             <Select
               size="large"
               defaultValue="variety"
@@ -54,14 +62,6 @@ const TenderRequest: React.FC<RouteComponentProps> = () => {
               <Option value="kyela">Kyela</Option>
               <Option value="mbeya">Mbeya</Option>
               <Option value="shinyanga">Shinyanga</Option>
-            </Select>
-          </div>
-          <div className="option-select">
-            <Select size="large" defaultValue="grade" style={{ width: '100%' }}>
-              <Option value="grade">Select Grade</Option>
-              <Option value="one">One</Option>
-              <Option value="two">Two</Option>
-              <Option value="three">Three</Option>
             </Select>
           </div>
         </div>
