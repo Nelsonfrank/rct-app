@@ -7,12 +7,6 @@ import { Button } from 'antd';
 import { Link, navigate } from '@reach/router';
 // Styles
 import './SectionCardList.less';
-//Images
-import Request1 from '../../../../assets/images/11.jpg';
-import Request2 from '../../../../assets/images/7.jpg';
-import Request3 from '../../../../assets/images/13.jpg';
-import User1 from '../../../../assets/images/2.png';
-import Platform from '../../../../assets/images/14.jpg';
 
 // Props Types
 export interface SectionCardListProps {
@@ -20,48 +14,36 @@ export interface SectionCardListProps {
   route: string;
   users?: boolean;
   tenderRequest?: boolean;
+  listItems: {
+    id: number;
+    img: string;
+    title: string;
+    cardDescrip: string;
+    routes: string;
+  }[];
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
   props: SectionCardListProps,
 ) => {
-  const { title, route, users, tenderRequest } = props;
+  const { title, route, listItems } = props;
   return (
     <>
       <SectionHeader title={title} route={route} />
       <div className="card--list_group">
-        <Card
-          styles={{ margin: '0 10px' }}
-          className="card-section_container"
-          img={users ? User1 : tenderRequest ? Request2 : Platform}
-          imgTitle="Sarafina John"
-          imgDescrip="Arusha"
-          onClick={() => navigate('buyers/user-profile')}
-        ></Card>
-        <Card
-          styles={{ margin: '0 10px' }}
-          className="card-section_container"
-          img={users ? User1 : tenderRequest ? Request1 : Platform}
-          imgTitle="Sarafina John"
-          imgDescrip="Arusha"
-          onClick={() => navigate('buyers/user-profile')}
-        ></Card>
-        <Card
-          styles={{ margin: '0 10px' }}
-          className="card-section_container"
-          img={users ? User1 : tenderRequest ? Request2 : Platform}
-          imgTitle="Sarafina John"
-          imgDescrip="Arusha"
-          onClick={() => navigate('buyers/user-profile')}
-        ></Card>
-        <Card
-          styles={{ margin: '0 10px' }}
-          className="card-section_container"
-          img={users ? User1 : tenderRequest ? Request3 : Platform}
-          imgTitle="Sarafina John"
-          imgDescrip="Arusha"
-          onClick={() => navigate('buyers/user-profile')}
-        ></Card>
+        {listItems
+          ? listItems.map((item) => (
+              <Card
+                key={item.id}
+                styles={{ margin: '0 10px' }}
+                className="card-section_container"
+                img={item.img}
+                imgTitle={item.title}
+                imgDescrip={item.cardDescrip}
+                onClick={() => navigate(item.routes)}
+              ></Card>
+            ))
+          : null}
       </div>
       <div className="SeeAll-Btn-sm">
         <Button type="primary" shape="round" size="large">

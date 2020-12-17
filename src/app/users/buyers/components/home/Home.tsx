@@ -5,6 +5,13 @@ import Header from '../../../components/header';
 import CardSection from '../../../components/section-card-list';
 import Card from '../../../../components/card';
 import { RouteComponentProps } from '@reach/router';
+
+// placeholder data
+import {
+  ShopBySellersData,
+  TenderRequestsData,
+  ShopByPlatformsData,
+} from './BuyerSectionData';
 //Styles
 import './Home.less';
 // export interface BuyerHomeProps {}
@@ -56,10 +63,18 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         <CardSection
           title="Recent Tender Request"
           route="tender-requests"
-          tenderRequest
+          listItems={TenderRequestsData}
         />
-        <CardSection title="Shop by Seller" route="shop-by-sellers" users />
-        <CardSection title="Shop By Platform" route="shop-by-platforms" />
+        <CardSection
+          title="Shop by Seller"
+          route="shop-by-sellers"
+          listItems={ShopBySellersData}
+        />
+        <CardSection
+          title="Shop By Platform"
+          route="shop-by-platforms"
+          listItems={ShopByPlatformsData}
+        />
       </div>
     </>
   );

@@ -4,6 +4,9 @@ import React from 'react';
 import { Button, Tag } from 'antd';
 import SectionCard from '../../../section-card-list';
 import { navigate } from '@reach/router';
+
+// placeholder data
+import { ShopByBuyerData } from '../../ProfileData';
 // export interface UserInfoProps {}
 
 const UserInfo: React.FC = () => {
@@ -110,13 +113,22 @@ const UserInfo: React.FC = () => {
                   Label:
                 </h3>
                 <div style={{ display: 'flex' }}>
-                  <Tag color="#f50" style={{ padding: '0.2rem 0.5rem' }}>
+                  <Tag
+                    color="#f50"
+                    style={{ padding: '0.2rem 0.5rem', fontSize: '14px' }}
+                  >
                     RCT Approved
                   </Tag>
-                  <Tag color="#87d068" style={{ padding: '0.2rem 0.5rem' }}>
+                  <Tag
+                    color="#87d068"
+                    style={{ padding: '0.2rem 0.5rem', fontSize: '14px' }}
+                  >
                     TBS Certified
                   </Tag>
-                  <Tag color="#108ee9" style={{ padding: '0.2rem 0.5rem' }}>
+                  <Tag
+                    color="#108ee9"
+                    style={{ padding: '0.2rem 0.5rem', fontSize: '14px' }}
+                  >
                     Individual
                   </Tag>
                 </div>
@@ -135,7 +147,11 @@ const UserInfo: React.FC = () => {
           </div>
         </div>
         <div style={{ marginTop: '4rem' }}>
-          <SectionCard title="Related Sellers" route="/" users />
+          <SectionCard
+            title="Related Sellers"
+            route="/"
+            listItems={ShopByBuyerData}
+          />
         </div>
       </div>
     </div>
