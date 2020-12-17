@@ -2,13 +2,16 @@ import React from 'react';
 
 // Component
 import { Input, Select, Button, InputNumber, Divider, Radio } from 'antd';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, navigate } from '@reach/router';
 //Styles
 import './TenderBidForm.less';
 
 // export interface TenderBidProps {}
 
 const TenderBid: React.FC<RouteComponentProps> = () => {
+  const handleNavigateNext = () => {
+    navigate('upload-images');
+  };
   return (
     <div>
       <div>
@@ -35,7 +38,7 @@ const TenderBid: React.FC<RouteComponentProps> = () => {
           />
         </div>
         <div className="Bid-quantity_input">
-          <h3>Quantity Needed</h3>
+          <h3>Quantity Available</h3>
           <InputNumber
             size="large"
             placeholder="Quantity in Kg"
@@ -80,6 +83,16 @@ const TenderBid: React.FC<RouteComponentProps> = () => {
               style={{ width: '100%' }}
             />
           </div>
+
+          <div style={{ marginTop: '1rem' }}>
+            <h3>Add Batch Certificate</h3>
+            <Input
+              type="file"
+              size="large"
+              placeholder="Add Batch Certified Number"
+              style={{ width: '100%' }}
+            />
+          </div>
         </div>
         <div className="Bid-quantity_input">
           <h3>Pickup Location</h3>
@@ -100,8 +113,8 @@ const TenderBid: React.FC<RouteComponentProps> = () => {
           />
         </div>
         <div className="Bid-action_btn">
-          <Button size="large" type="primary">
-            Post Tender
+          <Button size="large" type="primary" onClick={handleNavigateNext}>
+            Next
           </Button>
         </div>
       </div>
