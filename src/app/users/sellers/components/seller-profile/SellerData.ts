@@ -22,19 +22,27 @@ export const SellerProfileData: {
   scaleStatus: string;
   experience: string;
   tags: string[];
+  tenderDetails: {
+    variety: string;
+    grade: string;
+    stock?: string;
+    request?: string;
+    location?: string;
+    pickupLocation?: string;
+  }[];
 }[] = [
   {
     id: 1,
     fullName: 'John Emanuel',
-    userCategory: 'seller;',
-    firstName: ' John;',
+    userCategory: 'seller',
+    firstName: ' John',
     lastName: 'Emanuel',
     phone: '+255 688 532 234',
     nationality: 'Tanzanian',
     email: 'string',
     website: 'https://rct.co.tz',
-    scaleStatus: 'large;',
-    experience: '11-20;',
+    scaleStatus: 'large',
+    experience: '11-20',
     profileImg: profile1,
     recentTenders: [
       {
@@ -57,20 +65,30 @@ export const SellerProfileData: {
       },
     ],
     tags: ['RTC Approved', 'TBS Certified', 'Individual'],
+    tenderDetails: [
+      {
+        variety: 'kyela',
+        grade: '1',
+        stock: '1.5 tonnes',
+        pickupLocation: 'string',
+        request: 'string',
+        location: 'string',
+      },
+    ],
   },
   {
     id: 2,
     fullName: 'Emanuel John',
-    userCategory: 'seller;',
-    firstName: ' John;',
-    lastName: 'Emanuel;',
-    phone: '+255 688 532 234;',
-    nationality: 'Tanzanian;',
-    website: 'https://rct.co.tz;',
+    userCategory: 'seller',
+    firstName: ' John',
+    lastName: 'Emanuel',
+    phone: '+255 688 532 234',
+    nationality: 'Tanzanian',
+    website: 'https://rct.co.tz',
     email: 'string',
     profileImg: profile2,
-    scaleStatus: 'large;',
-    experience: '11-20;',
+    scaleStatus: 'large',
+    experience: '11-20',
     tags: ['RTC Approved', 'TBS Certified', 'Individual'],
     recentTenders: [
       {
@@ -92,20 +110,30 @@ export const SellerProfileData: {
         descript: 'string',
       },
     ],
+    tenderDetails: [
+      {
+        variety: 'kyela',
+        grade: '1',
+        stock: '1.5 tonnes',
+        pickupLocation: 'string',
+        request: 'string',
+        location: 'string',
+      },
+    ],
   },
   {
     id: 3,
     fullName: 'Emanuel Johnathan',
-    userCategory: 'seller;',
-    firstName: ' John;',
-    lastName: 'Emanuel;',
-    phone: '+255 688 532 234;',
-    nationality: 'Tanzanian;',
-    website: 'https://rct.co.tz;',
+    userCategory: 'seller',
+    firstName: ' John',
+    lastName: 'Emanuel',
+    phone: '+255 688 532 234',
+    nationality: 'Tanzanian',
+    website: 'https://rct.co.tz',
     email: 'string',
     profileImg: profile3,
-    scaleStatus: 'large;',
-    experience: '11-20;',
+    scaleStatus: 'large',
+    experience: '11-20',
     tags: ['RTC Approved', 'TBS Certified', 'Individual'],
     recentTenders: [
       {
@@ -125,6 +153,16 @@ export const SellerProfileData: {
         tenderImg: profile3,
         title: 'string',
         descript: 'string',
+      },
+    ],
+    tenderDetails: [
+      {
+        variety: 'kyela',
+        grade: '1',
+        stock: '1.5 tonnes',
+        pickupLocation: 'string',
+        request: 'string',
+        location: 'string',
       },
     ],
   },

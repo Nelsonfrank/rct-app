@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import React from 'react';
 
 //Components
@@ -18,20 +19,181 @@ export interface UserInfoProps {
   scaleStatus?: string;
   experience?: string;
   tags?: string[];
+  tenderDetails?: {
+    variety: string;
+    grade: string;
+    stock?: string;
+    request?: string;
+    location?: string;
+    pickupLocation?: string;
+  }[];
 }
 
 const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
-  const {
-    nationality,
-    firstName,
-    lastName,
-    phone,
-    email,
-    website,
-    scaleStatus,
-    experience,
-    tags,
-  } = props;
+  const { phone, scaleStatus, experience, tags } = props;
+
+  interface AvailableStockProps {
+    item: {
+      variety?: string;
+      grade?: string;
+      stock?: string;
+      pickupLocation?: string;
+    }[];
+  }
+  const AvailableStock = (props: AvailableStockProps) => (
+    <div>
+      <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
+        <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
+          Available Stock
+        </h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+          }}
+        >
+          {props.item.map((_item) => (
+            <>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.variety}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.grade}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Stock: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.stock}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>
+                  Pickup Location:{' '}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.pickupLocation}
+                </p>
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  interface StockRequiredProps {
+    item: {
+      variety?: string;
+      grade?: string;
+      request?: string;
+      location?: string;
+    }[];
+    shopBySeller: boolean;
+    shopByBuyer: boolean;
+    recentTenderRequest: boolean;
+    recentTenderBid: boolean;
+  }
+  const StockRequired = (props: StockRequiredProps) => (
+    <div>
+      <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
+        <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
+          Available Stock
+        </h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+          }}
+        >
+          {props.item.map((_item) => (
+            <>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.variety}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.grade}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Request: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.request}
+                </p>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <h3 style={{ textTransform: 'capitalize' }}>Location: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {_item.location}
+                </p>
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div>
       <div style={{ width: '80%' }}>
@@ -43,24 +205,50 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
+              flexWrap: 'wrap',
             }}
           >
-            {firstName ? (
-              <div>
-                <h3>First Name</h3>
-                <p style={{ fontSize: 16 }}>{firstName}</p>
+            {phone ? (
+              <div style={{ display: 'flex' }}>
+                <h3>Phone Number: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {phone}
+                </p>
               </div>
             ) : null}
-            {lastName ? (
-              <div>
-                <h3>LastName</h3>
-                <p style={{ fontSize: 16 }}>{lastName}</p>
+            {scaleStatus ? (
+              <div style={{ display: 'flex' }}>
+                <h3>Scale Status: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {scaleStatus}
+                </p>
               </div>
             ) : null}
-            {nationality ? (
-              <div>
-                <h3>Nationality</h3>
-                <p style={{ fontSize: 16 }}>{nationality}</p>
+            {experience ? (
+              <div style={{ display: 'flex' }}>
+                <h3>Experience: </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    marginLeft: '1rem',
+                    textAlign: 'center',
+                  }}
+                >
+                  {experience} years in rice business
+                </p>
               </div>
             ) : null}
           </div>
@@ -68,78 +256,10 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
         <div style={{ marginBottom: '1.25rem' }}>
           <div
             style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            {phone ? (
-              <div>
-                <h3>Phone</h3>
-                <p style={{ fontSize: 16 }}>{phone}</p>
-              </div>
-            ) : null}
-            {email ? (
-              <div>
-                <h3>Email</h3>
-                <p style={{ fontSize: 16 }}>{email}</p>
-              </div>
-            ) : null}
-            {website ? (
-              <div>
-                <h3>Website</h3>
-                <p style={{ fontSize: 16 }}>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`http://${website}`}
-                  >
-                    {website}
-                  </a>
-                </p>
-              </div>
-            ) : null}
-          </div>
-          <hr />
-          <div
-            style={{
               marginBottom: '1.25rem',
               marginTop: '1.25rem',
             }}
           >
-            {scaleStatus ? (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-                    Scale Status:
-                  </h3>
-                  <p style={{ fontSize: 16 }}>{scaleStatus}</p>
-                </div>
-              </div>
-            ) : null}
-            <hr />
-            {experience ? (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-                    Experience:
-                  </h3>
-                  <p style={{ fontSize: 16 }}>
-                    {experience} years in the rice value chain
-                  </p>
-                </div>
-              </div>
-            ) : null}
-            <hr />
             {(tags || []).length !== 0 ? (
               <div
                 style={{
@@ -167,13 +287,20 @@ const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
             ) : null}
             <hr />
           </div>
+          {/* <div>{true ? <AvailableStock /> : <StockRequired />}</div> */}
           <div>
             <h3 style={{ fontSize: '1.125rem', fontWeight: 600 }}>Action</h3>
             <Button
               type="primary"
               onClick={() => navigate('tender-request-form')}
             >
-              Give Tender
+              {/* {shopBySeller || shopByPlatform
+                ? 'Give Tender'
+                : shopByBuyer
+                ? 'Request Tender'
+                : recentTenderBid
+                ? 'Chat With Seller'
+                : 'Chat with Buyer'} */}
             </Button>
           </div>
         </div>

@@ -41,6 +41,14 @@ export interface UserProfileProfile extends RouteComponentProps {
     experience: string;
     fullName: string;
     tags: string[];
+    tenderDetails: {
+      variety: string;
+      grade: string;
+      stock?: string;
+      request?: string;
+      location?: string;
+      pickupLocation?: string;
+    }[];
   }[];
 }
 const UserProfile: React.FC<UserProfileProfile> = (
@@ -92,6 +100,7 @@ const UserProfile: React.FC<UserProfileProfile> = (
                           email={email}
                           experience={experience}
                           tags={tags}
+                          // tenderDetails={}
                         />
                       </TabPane>
                       <TabPane tab="Recent Tender" key="2">
