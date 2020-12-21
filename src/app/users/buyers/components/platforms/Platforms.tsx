@@ -1,22 +1,84 @@
 import React from 'react';
 
 // Components
-import List from '../../../components/list';
-import { RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
+import Card from '../../../../components/card';
+import placeholder from '../../../../../assets/images/2.png';
 
 // placeholder data
-import { ListDataPlaceholder } from './PlatformData';
 
 // export interface PlatformsProps {}
 
 const Platforms: React.FC<RouteComponentProps> = () => {
   return (
     <div>
-      <List
-        btnTitle="Give Tender"
-        routes="tender-request-form"
-        itemData={ListDataPlaceholder}
-      />
+      <h1>Platforms</h1>
+      <hr />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+        <Card
+          imgTitle="Mbeya"
+          imgDescrip="Some description here"
+          img={placeholder}
+          styles={{ maxWidth: '300px' }}
+          onClick={() => navigate('platform-subscriber-list')}
+        />
+      </div>
     </div>
   );
 };

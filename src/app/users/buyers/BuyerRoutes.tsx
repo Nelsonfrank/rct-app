@@ -5,6 +5,7 @@ import { Router } from '@reach/router';
 import Home from './components/home';
 import UserList from './components/user-list';
 import Platform from './components/platforms';
+import PlatformList from './components/platforms/components/platform-list';
 import TenderRequests from './components/tender-requests';
 import TenderRequestForm from './components/TenderRequestForm';
 
@@ -16,6 +17,7 @@ const BuyerRoutes: React.FC = () => {
       <Home path="/" />
       <UserList path="shop-by-sellers" />
       <Platform path="shop-by-platforms" />
+      <PlatformList path="platform-subscriber-list" />
       <TenderRequests path="tender-requests" />
       <TenderRequestForm path="tender-request-form" />
     </Router>
