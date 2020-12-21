@@ -21,12 +21,13 @@ export interface SectionCardListProps {
     cardDescrip: string;
     routes: string;
   }[];
+  cardStyles?: React.CSSProperties;
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
   props: SectionCardListProps,
 ) => {
-  const { title, route, listItems } = props;
+  const { title, route, listItems, cardStyles } = props;
   return (
     <>
       <SectionHeader title={title} route={route} />
@@ -35,7 +36,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           ? listItems.map((item) => (
               <Card
                 key={item.id}
-                styles={{ margin: '0 10px' }}
+                styles={{ margin: '0 10px', ...cardStyles }}
                 className="card-section_container"
                 img={item.img}
                 imgTitle={item.title}

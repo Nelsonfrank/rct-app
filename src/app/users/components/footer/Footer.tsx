@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               <div className="copyright">
                 <p className="copyright-text">
                   Copyright &copy; 2020 All Rights Reserved by
-                  <a href="#">Scanfcode</a>.
+                  <a href="#">{` RCT`}</a>.
                 </p>
               </div>
 

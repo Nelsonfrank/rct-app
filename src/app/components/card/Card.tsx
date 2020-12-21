@@ -34,6 +34,8 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
       style={{
         ...styles,
         borderRadius: 10,
+        marginBottom: '1.2rem',
+        marginLeft: '1rem',
       }}
       cover={img && <img src={img} alt="slider-1" style={{ width: '100%' }} />}
       className={className}

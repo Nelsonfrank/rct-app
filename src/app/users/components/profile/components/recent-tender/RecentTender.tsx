@@ -30,6 +30,7 @@ const RecentWork: React.FC<RecentTendersProps> = (
               img={item.tenderImg}
               imgTitle={item.title}
               imgDescrip={item.descript}
+              styles={{ maxWidth: '300px' }}
             ></Card>
           ))}
         </div>

@@ -62,11 +62,6 @@
       text-transform: capitalize;
     }
   }
-  .sells-lists {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
   .card-sells_container {
     margin-bottom: 1.125rem;
   }
@@ -79,5 +74,68 @@
   .related-user_body {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+.profile-sm-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1.25rem 0rem;
+}
+
+.profile-sm-image_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-sm-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+}
+
+.profile-user-name {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.profile-sm-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .profile-sm-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    div {
+      margin-right: 0.5rem;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.profile-lg-container {
+  display: none;
+}
+
+.profile-sm-container {
+  display: block;
+}
+
+@media screen and (min-width: 1025px) {
+  .profile-lg-container {
+    display: block;
+  }
+
+  .profile-sm-container {
+    display: none;
   }
 }
