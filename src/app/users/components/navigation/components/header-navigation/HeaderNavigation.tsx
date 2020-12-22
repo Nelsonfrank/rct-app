@@ -93,27 +93,27 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
         <div className="options-lgscreen">
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
-              <a href="#">Tender request</a>
+              <Link to="/">Home</Link>
             </p>
           </div>
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
-              <a href="#">Tender bid</a>
+              <Link to="tender-requests">Tender Request</Link>
             </p>
           </div>
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
-              <a href="#">Price rate</a>
+              <Link to="shop-by-sellers">Sellers</Link>
             </p>
           </div>
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
-              <a href="#">Varieties</a>
+              <Link to="shop-by-platforms">Platforms</Link>
             </p>
           </div>
           <div className="option--item__lgscreen ">
             <p style={{ marginBottom: 0 }}>
-              <a href="#">Sellers</a>
+              <Link to="market-info">Market Today</Link>
             </p>
           </div>
         </div>
@@ -138,26 +138,31 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
         <div className="user--nav">
           <ul className="nav--option">
             <li>
-              <a href="#" className="nav--option_item">
+              <Link to="/" className="nav--option_item">
                 Home
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="#" className="nav--option_item">
+            <li onClick={toggleNavigationOption}>
+              <Link to="tender-request" className="nav--option_item">
                 Tender Request
-              </a>
+              </Link>
             </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                Tender Bid
-              </a>
+            <li onClick={toggleNavigationOption}>
+              <Link to="shop-by-sellers" className="nav--option_item">
+                Seller
+              </Link>
             </li>
-            <li>
-              <a href="#" className="nav--option_item">
-                Report
-              </a>
+            <li onClick={toggleNavigationOption}>
+              <Link to="shop-by-platforms" className="nav--option_item">
+                Platform
+              </Link>
             </li>
-            <li>
+            <li onClick={toggleNavigationOption}>
+              <Link to="market-info" className="nav--option_item">
+                Market Info
+              </Link>
+            </li>
+            <li onClick={toggleNavigationOption}>
               <a href="#" className="nav--option_item">
                 My Profile
               </a>
