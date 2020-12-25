@@ -11,6 +11,8 @@ import {
   AccountBookOutlined,
   MessageOutlined,
   BlockOutlined,
+  UpSquareOutlined,
+  AppstoreAddOutlined,
 } from '@ant-design/icons';
 import { Link } from '@reach/router';
 //Logo
@@ -87,10 +89,16 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
         <Menu.Item key="7" icon={<BlockOutlined />}>
           <Link to="/dashboard/platforms">Platforms</Link>
         </Menu.Item>
-        <Menu.Item key="8" icon={<MessageOutlined />}>
+        <Menu.Item key="8" icon={<UpSquareOutlined />}>
+          <Link to="/dashboard/platforms">Tender Request</Link>
+        </Menu.Item>
+        <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
+          <Link to="/dashboard/platforms">Tender Given</Link>
+        </Menu.Item>
+        <Menu.Item key="10" icon={<MessageOutlined />}>
           <Link to="/dashboard">Feedback</Link>
         </Menu.Item>
-        <Menu.Item key="10" icon={<FileOutlined />}>
+        <Menu.Item key="11" icon={<FileOutlined />}>
           <Link to="logs">Logs</Link>
         </Menu.Item>
       </Menu>

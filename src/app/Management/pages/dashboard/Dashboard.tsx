@@ -150,7 +150,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
     console.log(key);
   };
   return (
-    <div>
+    <div className="dashboard-container">
       <div className="dashboard">
         <Card
           styles={{ width: 250 }}

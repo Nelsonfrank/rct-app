@@ -16,7 +16,7 @@ const TenderTable: React.FC = () => {
         <TabPane tab="Tender Request" key="1">
           <TenderRequest />
         </TabPane>
-        <TabPane tab="Tender Bid" key="2">
+        <TabPane tab="Tender Given" key="2">
           <TenderBid />
         </TabPane>
       </Tabs>

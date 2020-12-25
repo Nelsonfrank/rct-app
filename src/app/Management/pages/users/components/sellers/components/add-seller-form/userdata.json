@@ -1,0 +1,19 @@
+{
+  "user": {
+    "dial_code": "+255",
+    "phone_number": "7164055909",
+    "name": "Chelsea Team"
+  },
+  "seller": {
+    "first_time": "Chelsea",
+    "last_name": "Team",
+    "application_type": "ab",
+    "address": "Masaki",
+    "website": "www.kikoti.com",
+    "grade": "2",
+    "experience": "4",
+    "tbs_certification_number": "4332",
+    "certification_number": "",
+    "variety_name": "Magoli ya uefa"
+  }
+}

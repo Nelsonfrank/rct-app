@@ -1,66 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //Components
-import { Table } from 'antd';
+import { Table, Space, Button } from 'antd';
+
+const { Column, ColumnGroup } = Table;
 
 // Props Types
 // export interface SellersTableProps {}
 
 // placeholder data
-const dataSource = [
+const data = [
   {
     key: '1',
-    buyer: 'Mike Johnson',
-    variety: 'Morogoro',
-    amount: 32,
-    destination: 'Dar es salaam',
+    firstName: 'John',
+    lastName: 'Brown',
+    phone: '07812121212',
+    platform: 'mbeya',
+    leader: 'Mr.John Doe',
+    location: 'Mbeya',
   },
   {
     key: '2',
-    buyer: 'John Doe',
-    variety: 'Kyela',
-    amount: 20,
-    destination: 'Nairobi',
+    firstName: 'Jim',
+    lastName: 'Green',
+    phone: '07812121212',
+    platform: 'mbeya',
+    leader: 'Mr.John Doe',
+    location: 'Mbeya',
+  },
+  {
+    key: '3',
+    firstName: 'Joe',
+    lastName: 'Black',
+    phone: '07812121212',
+    platform: 'mbeya',
+    leader: 'Mr.John Doe',
+    location: 'Mbeya',
   },
 ];
 
 const SellersTable: React.FC = () => {
-  const columns = [
-    {
-      title: 'Buyer',
-      dataIndex: 'buyer',
-      key: 'buyer',
-    },
-    {
-      title: 'Variety',
-      dataIndex: 'variety',
-      key: 'variety',
-      sorter: {
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+  const handleOnRowChange = (selectedRowKey: any) => {
+    setSelectedRowKeys(selectedRowKey);
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: handleOnRowChange,
+  };
+  return (
+    <Table dataSource={data} rowSelection={rowSelection}>
+      <ColumnGroup title="Name">
+        <Column title="First Name" dataIndex="firstName" key="firstName" />
+        <Column title="Last Name" dataIndex="lastName" key="lastName" />
+      </ColumnGroup>
+      <Column title="Phone Number" dataIndex="phone" key="phone" />
+      <Column
+        title="Platform"
+        dataIndex="platform"
+        key="platform"
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.variety.length - b.variety.length,
-      },
-    },
-    {
-      title: 'Amount(Tonnes)',
-      dataIndex: 'amount',
-      key: 'amount',
-      sorter: {
+        sorter={(a: any, b: any) => a.platform - b.platform}
+      />
+      <Column title="Platform Leader" dataIndex="leader" key="leader" />
+      <Column
+        title="Location"
+        dataIndex="location"
+        key="location"
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.amount - b.amount,
-      },
-    },
-    {
-      title: 'Destination',
-      dataIndex: 'destination',
-      key: 'destination',
-      sorter: {
-        // eslint-disable-next-line
-        compare: (a: any, b: any) =>
-          a.destination.length - b.destination.length,
-      },
-    },
-  ];
-  return <Table dataSource={dataSource} columns={columns} />;
+        sorter={(a: any, b: any) => a.location - b.location}
+      />
+
+      <Column
+        title="Action"
+        key="action"
+        render={() => (
+          <Space size="middle">
+            <Button type="ghost">Disable</Button>
+            <Button danger>Delete</Button>
+          </Space>
+        )}
+      />
+    </Table>
+  );
 };
 
 export default SellersTable;

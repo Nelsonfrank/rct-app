@@ -30,7 +30,7 @@ const LayoutWrapper: React.FC<Props> = (Props) => {
         >
           <Navigation name="RCT" />
           <div
-            style={{ marginLeft: isCollapsed ? 80 : 200, marginTop: '50px' }}
+            style={{ marginLeft: isCollapsed ? 80 : 200, marginTop: '60px' }}
           >
             {children}
           </div>

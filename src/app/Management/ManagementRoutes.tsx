@@ -24,7 +24,6 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
         <Platform path="platforms/*" />
         <PriceRate path="price-rate/*" />
         <Logs path="logs" />
-        <Redirect from="users" to="sellers" noThrow />
       </Router>
     </Layout>
   );
