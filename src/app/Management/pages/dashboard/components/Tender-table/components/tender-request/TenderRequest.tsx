@@ -22,6 +22,27 @@ const dataSource = [
     amount: 20,
     location: 'Mbeya',
   },
+  {
+    key: '3',
+    seller: 'Mike Johnson',
+    variety: 'Kilombero',
+    amount: 32,
+    location: 'Dar es salaam',
+  },
+  {
+    key: '4',
+    seller: 'John Doe',
+    variety: 'Kyela',
+    amount: 20,
+    location: 'Mbeya',
+  },
+  {
+    key: '5',
+    seller: 'Mike Johnson',
+    variety: 'Kilombero',
+    amount: 32,
+    location: 'Dar es salaam',
+  },
 ];
 
 const TenderRequest: React.FC = () => {

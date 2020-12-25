@@ -22,14 +22,12 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     const value = countryList.filter(
       (item: any) => item.code === countryPickes,
     );
-    // console.log(value);
     const item =
       Array.isArray(value) && value.length >= 1 ? value[0].dial_code : '';
     setcountryCode(item);
   };
 
   const handleOnSelectChange = (value: any) => {
-    // e.preventDefault();
     setcountrySelected(value);
   };
 
@@ -104,9 +102,10 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             size="large"
             placeholder="Experience"
           >
-            <Option value="jack">0 - 11 years</Option>
-            <Option value="lucy">12 - 20 years</Option>
-            <Option value="Yiminghe">20 years - above</Option>
+            <Option value="0-5">0 - 5 years</Option>
+            <Option value="6-10">6 - 10 years</Option>
+            <Option value="11-20">11 - 20 years</Option>
+            <Option value="21+">21 years - above</Option>
           </Select>
         </div>
         <div className="add-seller-input">
@@ -116,8 +115,19 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             placeholder="Applicant Category"
           >
             <Option value="individual">Individual</Option>
-            <Option value="platform">Platform</Option>
             <Option value="association">Association</Option>
+            <Option value="company">Company</Option>
+          </Select>
+        </div>
+        <div className="add-seller-input">
+          <Select
+            style={{ width: '100%' }}
+            size="large"
+            placeholder="Scale Status"
+          >
+            <Option value="small">Small</Option>
+            <Option value="medium">Medium</Option>
+            <Option value="large">Large</Option>
           </Select>
         </div>
         <div className="add-seller-input">
