@@ -22,6 +22,27 @@ const dataSource = [
     amount: 20,
     destination: 'Nairobi',
   },
+  {
+    key: '3',
+    buyer: 'Mike Johnson',
+    variety: 'Morogoro',
+    amount: 32,
+    destination: 'Dar es salaam',
+  },
+  {
+    key: '4',
+    buyer: 'John Doe',
+    variety: 'Kyela',
+    amount: 20,
+    destination: 'Nairobi',
+  },
+  {
+    key: '5',
+    buyer: 'Mike Johnson',
+    variety: 'Morogoro',
+    amount: 32,
+    destination: 'Dar es salaam',
+  },
 ];
 
 const TenderBid: React.FC = () => {

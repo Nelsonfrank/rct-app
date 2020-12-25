@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //Components
-import { Table, Space, Button } from 'antd';
+import { Table, Space, Tag, Button } from 'antd';
 
 const { Column, ColumnGroup } = Table;
 
@@ -18,6 +18,7 @@ const data = [
     platform: 'mbeya',
     leader: 'Mr.John Doe',
     location: 'Mbeya',
+    tags: ['Individual', 'TBS Certified'],
   },
   {
     key: '2',
@@ -27,6 +28,7 @@ const data = [
     platform: 'mbeya',
     leader: 'Mr.John Doe',
     location: 'Mbeya',
+    tags: ['Individual', 'TBS Certified'],
   },
   {
     key: '3',
@@ -36,6 +38,7 @@ const data = [
     platform: 'mbeya',
     leader: 'Mr.John Doe',
     location: 'Mbeya',
+    tags: ['Individual', 'TBS Certified'],
   },
 ];
 
@@ -45,7 +48,11 @@ const SellersTable: React.FC = () => {
   const handleOnRowChange = (selectedRowKey: any) => {
     setSelectedRowKeys(selectedRowKey);
   };
-
+  const randomColorGenenrator = () => {
+    const color = ['#2db7f5', '#f50', '#2db7f5', '#9B59B6'];
+    const random = Math.floor(Math.random() * color.length);
+    return color[random];
+  };
   const rowSelection = {
     selectedRowKeys,
     onChange: handleOnRowChange,
@@ -72,7 +79,20 @@ const SellersTable: React.FC = () => {
         // eslint-disable-next-line
         sorter={(a: any, b: any) => a.location - b.location}
       />
-
+      <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={(tags) => (
+          <>
+            {tags.map((tag: any) => (
+              <Tag color={randomColorGenenrator()} key={tag}>
+                {tag}
+              </Tag>
+            ))}
+          </>
+        )}
+      />
       <Column
         title="Action"
         key="action"
