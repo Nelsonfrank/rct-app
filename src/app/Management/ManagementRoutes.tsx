@@ -26,7 +26,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
         <UsersRoutes path="users/*" />
         <Platform path="platforms/*" />
         <PriceRate path="price-rate/*" />
-        <TenderRequest path="tender-request" />
+        <TenderRequest path="tender-request/*" />
         <TenderGiven path="tender-given" />
         <Variety path="variety/*" />
         <Logs path="logs" />

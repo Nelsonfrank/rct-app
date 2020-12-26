@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Table, Space, Divider, Tooltip, Tag } from 'antd';
 import { EyeOutlined, StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import Card from '../../../../../components/card';
+import { navigate, RouteComponentProps } from '@reach/router';
 // Props Types
 // export interface TenderRequestsListProps {}
 
@@ -30,7 +31,7 @@ const dataSource = [
   },
 ];
 
-const TenderRequestsList: React.FC = () => {
+const TenderRequestsList: React.FC<RouteComponentProps> = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,7 +118,7 @@ const TenderRequestsList: React.FC = () => {
       render: () => (
         <>
           <Space split={<Divider type="vertical" />}>
-            <div>
+            <div onClick={() => navigate('tender-request/view')}>
               <Tooltip title="View More">
                 <EyeOutlined style={{ fontSize: '1.25rem' }} />
               </Tooltip>

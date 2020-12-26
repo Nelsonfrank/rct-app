@@ -1,16 +1,18 @@
 // dependencies
 import React from 'react';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, Router } from '@reach/router';
 
 // components
 import TenderRequestList from './components/tender-request-list';
+import TenderRequestView from './components/tender-request-view';
 // export interface TenderRequestProps {}
 
 const TenderRequest: React.FC<RouteComponentProps> = () => {
   return (
-    <>
-      <TenderRequestList />
-    </>
+    <Router>
+      <TenderRequestList path="/" />
+      <TenderRequestView path="view" />
+    </Router>
   );
 };
 
