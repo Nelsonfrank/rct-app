@@ -12,6 +12,7 @@ import Platform from './pages/platform';
 import PriceRate from './pages/price-rate';
 import Logs from './pages/logs';
 import Variety from './pages/variety';
+import TenderRequest from './pages/tender-request';
 
 // Props Types
 // export interface ManagementRoutesProps {}
@@ -24,6 +25,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
         <UsersRoutes path="users/*" />
         <Platform path="platforms/*" />
         <PriceRate path="price-rate/*" />
+        <TenderRequest path="tender-request" />
         <Variety path="variety/*" />
         <Logs path="logs" />
       </Router>
