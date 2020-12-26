@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 //Components
-import { Table, Space, Tag, Button } from 'antd';
+import { Table, Space, Tag, Tooltip, Divider } from 'antd';
+import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const { Column, ColumnGroup } = Table;
 
@@ -97,10 +98,22 @@ const SellersTable: React.FC = () => {
         title="Action"
         key="action"
         render={() => (
-          <Space size="middle">
-            <Button type="ghost">Disable</Button>
-            <Button danger>Delete</Button>
-          </Space>
+          <>
+            <Space split={<Divider type="vertical" />}>
+              <div>
+                <Tooltip title="Disable Buyer">
+                  <StopOutlined style={{ fontSize: '1.25rem' }} />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Delete Buyer" color={'red'}>
+                  <DeleteOutlined
+                    style={{ fontSize: '1.25rem', color: '#ff0000' }}
+                  />
+                </Tooltip>
+              </div>
+            </Space>
+          </>
         )}
       />
     </Table>

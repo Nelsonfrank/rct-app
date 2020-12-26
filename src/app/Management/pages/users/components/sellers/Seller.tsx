@@ -6,6 +6,7 @@ import { RouteComponentProps } from '@reach/router';
 import SellersTable from './components/sellers-table';
 import Card from '../../../../../components/card';
 import { navigate } from '@reach/router';
+
 // Props Types
 // export interface SellersProps {}
 
@@ -20,7 +21,11 @@ const Sellers: React.FC<RouteComponentProps> = () => {
             paddingRight: '4rem',
           }}
         >
-          <Button type="primary" onClick={() => navigate('add-sellers-form')}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => navigate('add-sellers-form')}
+          >
             {' '}
             Add Sellers
           </Button>
