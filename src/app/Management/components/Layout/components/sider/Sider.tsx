@@ -70,7 +70,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           <Link to="/dashboard">Dashboard</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
-          <Link to="/dashboard"> Varieties</Link>
+          <Link to="variety"> Varieties</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<AccountBookOutlined />}>
           <Link to="price-rate">Price Rate</Link>
@@ -87,13 +87,13 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="7" icon={<BlockOutlined />}>
-          <Link to="/dashboard/platforms">Platforms</Link>
+          <Link to="platforms">Platforms</Link>
         </Menu.Item>
         <Menu.Item key="8" icon={<UpSquareOutlined />}>
-          <Link to="/dashboard/platforms">Tender Request</Link>
+          <Link to="platforms">Tender Request</Link>
         </Menu.Item>
         <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
-          <Link to="/dashboard/platforms">Tender Given</Link>
+          <Link to="platforms">Tender Given</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<MessageOutlined />}>
           <Link to="/dashboard">Feedback</Link>
