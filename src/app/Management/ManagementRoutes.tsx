@@ -1,6 +1,6 @@
 import React from 'react';
 //dependencies
-import { Router, Redirect, RouteComponentProps } from '@reach/router';
+import { Router, RouteComponentProps } from '@reach/router';
 
 //Components
 import Layout from './components/Layout';
@@ -11,6 +11,7 @@ import UsersRoutes from './pages/users';
 import Platform from './pages/platform';
 import PriceRate from './pages/price-rate';
 import Logs from './pages/logs';
+import Variety from './pages/variety';
 
 // Props Types
 // export interface ManagementRoutesProps {}
@@ -23,6 +24,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
         <UsersRoutes path="users/*" />
         <Platform path="platforms/*" />
         <PriceRate path="price-rate/*" />
+        <Variety path="variety/*" />
         <Logs path="logs" />
       </Router>
     </Layout>
