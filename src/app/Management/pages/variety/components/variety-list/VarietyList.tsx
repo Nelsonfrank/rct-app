@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 
 //Components
-import { Table, Space, Divider, Button } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Space, Divider, Tooltip, Button } from 'antd';
+import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import { RouteComponentProps, navigate } from '@reach/router';
 import Card from '../../../../../components/card';
 // Props Types
@@ -77,8 +77,18 @@ const VarietyList: React.FC<RouteComponentProps> = () => {
       render: () => (
         <>
           <Space split={<Divider type="vertical" />}>
-            <EditOutlined style={{ fontSize: '1.25rem' }} />
-            <DeleteOutlined color="#ff0000" style={{ fontSize: '1.25rem' }} />
+            <div>
+              <Tooltip title="Disable Buyer">
+                <StopOutlined style={{ fontSize: '1.25rem' }} />
+              </Tooltip>
+            </div>
+            <div>
+              <Tooltip title="Delete Buyer" color={'red'}>
+                <DeleteOutlined
+                  style={{ fontSize: '1.25rem', color: '#ff0000' }}
+                />
+              </Tooltip>
+            </div>
           </Space>
         </>
       ),

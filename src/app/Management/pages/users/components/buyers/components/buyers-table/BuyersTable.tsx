@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 
 //Components
-import { Table, Space, Divider } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Space, Divider, Tooltip } from 'antd';
+import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 
 // Props Types
 // export interface BuyersTableProps {}
@@ -28,6 +28,7 @@ const dataSource = [
 
 const BuyersTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [toggleDisable, setToggleDisable] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selectedRowKeys: any) => {
@@ -44,6 +45,10 @@ const BuyersTable: React.FC = () => {
       title: 'First Name',
       dataIndex: 'firstName',
       key: 'firstName',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.firstName.length - b.firstName.length,
+      },
     },
     {
       title: 'LastName',
@@ -51,7 +56,7 @@ const BuyersTable: React.FC = () => {
       key: 'lastName',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.variety.length - b.variety.length,
+        compare: (a: any, b: any) => a.lastName.length - b.lastName.length,
       },
     },
     {
@@ -65,8 +70,7 @@ const BuyersTable: React.FC = () => {
       key: 'location',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) =>
-          a.destination.length - b.destination.length,
+        compare: (a: any, b: any) => a.location.length - b.location.length,
       },
     },
     {
@@ -76,8 +80,21 @@ const BuyersTable: React.FC = () => {
       render: () => (
         <>
           <Space split={<Divider type="vertical" />}>
-            <EditOutlined style={{ fontSize: '1.25rem' }} />
-            <DeleteOutlined color="#ff0000" style={{ fontSize: '1.25rem' }} />
+            <div onClick={() => setToggleDisable(!toggleDisable)}>
+              <Tooltip title="Disable Buyer">
+                <StopOutlined
+                  style={{ fontSize: '1.25rem' }}
+                  disabled={toggleDisable}
+                />
+              </Tooltip>
+            </div>
+            <div>
+              <Tooltip title="Delete Buyer" color={'red'}>
+                <DeleteOutlined
+                  style={{ fontSize: '1.25rem', color: '#ff0000' }}
+                />
+              </Tooltip>
+            </div>
           </Space>
         </>
       ),

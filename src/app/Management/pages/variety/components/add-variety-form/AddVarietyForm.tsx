@@ -1,7 +1,7 @@
 import React from 'react';
 
 // dependencies
-import { Input, InputNumber, DatePicker, Button } from 'antd';
+import { Input, Button } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 
 // Styles
