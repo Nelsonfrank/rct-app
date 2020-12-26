@@ -32,7 +32,6 @@ const dataSource = [
 
 const TenderRequestsList: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [toggleDisable, setToggleDisable] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selectedRowKeys: any) => {
@@ -52,7 +51,7 @@ const TenderRequestsList: React.FC = () => {
 
   const columns = [
     {
-      title: 'Quantity(kg)',
+      title: 'Quantity(kgs)',
       dataIndex: 'quantity',
       key: 'quantity',
       sorter: {
@@ -79,7 +78,7 @@ const TenderRequestsList: React.FC = () => {
       },
     },
     {
-      title: 'Price(TZS)',
+      title: 'Price (TZS/kg)',
       dataIndex: 'price',
       key: 'price',
       sorter: {
