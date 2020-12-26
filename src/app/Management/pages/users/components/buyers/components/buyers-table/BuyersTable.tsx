@@ -1,7 +1,9 @@
+/* eslint-disable react/display-name */
 import React, { useState } from 'react';
 
 //Components
-import { Table } from 'antd';
+import { Table, Space, Divider } from 'antd';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 // Props Types
 // export interface BuyersTableProps {}
@@ -66,6 +68,19 @@ const BuyersTable: React.FC = () => {
         compare: (a: any, b: any) =>
           a.destination.length - b.destination.length,
       },
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      render: () => (
+        <>
+          <Space split={<Divider type="vertical" />}>
+            <EditOutlined style={{ fontSize: '1.25rem' }} />
+            <DeleteOutlined color="#ff0000" style={{ fontSize: '1.25rem' }} />
+          </Space>
+        </>
+      ),
     },
   ];
   return (
