@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //dependencies
-import { Table } from 'antd';
+import { Table, Divider } from 'antd';
 import { RouteComponentProps } from '@reach/router';
+import Card from '../../../components/card';
 //styles
 import './Logs.less';
 
@@ -12,45 +13,82 @@ import './Logs.less';
 const dataSource = [
   {
     key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
+    action: 'Delete Seller',
+    performer: 'John Doe',
+    role: 'Admin',
+    time: 'Dec 10th, 12:00pm',
   },
   {
     key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
+    action: 'Add 10 Sellers',
+    performer: 'Ally Juma',
+    role: 'Leader',
+    time: 'Dec 10th, 11:00am',
   },
 ];
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'Action',
+    dataIndex: 'action',
+    key: 'action',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.action.length - b.action.length,
+    },
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Performer',
+    dataIndex: 'performer',
+    key: 'performer',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.performer.length - b.performer.length,
+    },
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Role',
+    dataIndex: 'role',
+    key: 'role',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.role.length - b.role.length,
+    },
+  },
+  {
+    title: 'Time',
+    dataIndex: 'time',
+    key: 'time',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.time.length - b.time.length,
+    },
   },
 ];
 const Logs: React.FC<RouteComponentProps> = () => {
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSelectChange = (selectedRowKeys: any) => {
+    console.log('selectedRowKeys changed: ', selectedRowKeys);
+    setSelectedRowKeys(selectedRowKeys);
+  };
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: handleSelectChange,
+  };
+
   return (
     <>
-      <div className="logs-container">
-        <div className="logs-header-container">
-          <h1 className="logs-header">Logs</h1>
-        </div>
-        <hr className="logs-divider" />
-        <Table dataSource={dataSource} columns={columns} />;
-      </div>
+      <Card title="Logs" styles={{ minHeight: '90vh' }}>
+        <Divider />
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          rowSelection={rowSelection}
+        />
+        ;
+      </Card>
     </>
   );
 };
