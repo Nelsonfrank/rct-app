@@ -9,21 +9,35 @@
 
   .detail-item {
     display: flex;
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: space-between;
+    width: 60%;
 
     .item-part {
-      margin-right: 1rem;
-      font-size: 1.125rem;
-      font-weight: 500;
+      width: 29%;
+      .item-part-title {
+        margin-right: 1rem;
+        font-size: 1.125rem;
+        font-weight: 500;
+      }
     }
     .item-info {
-      margin-left: 3rem;
-      font-size: 1.125rem;
-      font-weight: 400;
+      width: 69%;
+      .item-info-detail {
+        margin-left: 3rem;
+        font-size: 1.125rem;
+        font-weight: 400;
+      }
+    }
+    .item-description {
+      width: 69%;
+      .item-description-detail {
+        margin-left: 3rem;
+        font-size: 1.125rem;
+        font-weight: 400;
+        white-space: pre-wrap;
+      }
     }
   }
-
   .image-container {
     display: flex;
     width: 100%;
