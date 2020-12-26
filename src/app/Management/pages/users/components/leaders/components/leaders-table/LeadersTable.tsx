@@ -1,7 +1,9 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 
 //Components
-import { Table } from 'antd';
+import { Table, Space, Divider, Tooltip } from 'antd';
+import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 // Props Types
 // export interface LeadersTableProps {}
@@ -10,54 +12,81 @@ import { Table } from 'antd';
 const dataSource = [
   {
     key: '1',
-    buyer: 'Mike Johnson',
-    variety: 'Morogoro',
-    amount: 32,
-    destination: 'Dar es salaam',
+    name: 'Mike Johnson',
+    platform: 'Morogoro',
+    region: 'Morogoro',
+    country: 'Tanzania',
   },
   {
     key: '2',
-    buyer: 'John Doe',
-    variety: 'Kyela',
-    amount: 20,
-    destination: 'Nairobi',
+    name: 'John Doe',
+    platform: 'Kyela',
+    region: 'Mbeya',
+    country: 'Tanzania',
   },
 ];
 
 const LeadersTable: React.FC = () => {
   const columns = [
     {
-      title: 'Buyer',
-      dataIndex: 'buyer',
-      key: 'buyer',
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
-      title: 'Variety',
-      dataIndex: 'variety',
-      key: 'variety',
+      title: 'Platform',
+      dataIndex: 'platform',
+      key: 'platform',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.variety.length - b.variety.length,
+        compare: (a: any, b: any) => a.platform.length - b.platform.length,
       },
     },
     {
-      title: 'Amount(Tonnes)',
-      dataIndex: 'amount',
-      key: 'amount',
+      title: 'Region',
+      dataIndex: 'region',
+      key: 'region',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.amount - b.amount,
+        compare: (a: any, b: any) => a.region.length - b.region.length,
       },
     },
     {
-      title: 'Destination',
-      dataIndex: 'destination',
-      key: 'destination',
+      title: 'Country',
+      dataIndex: 'country',
+      key: 'country',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) =>
-          a.destination.length - b.destination.length,
+        compare: (a: any, b: any) => a.country.length - b.country.length,
       },
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      render: () => (
+        <>
+          <Space split={<Divider type="vertical" />}>
+            <div>
+              <Tooltip title="Edit">
+                <EditOutlined style={{ fontSize: '1.25rem' }} />
+              </Tooltip>
+            </div>
+            <div>
+              <Tooltip title="Disable Leader">
+                <StopOutlined style={{ fontSize: '1.25rem' }} />
+              </Tooltip>
+            </div>
+            <div>
+              <Tooltip title="Delete Leader" color={'red'}>
+                <DeleteOutlined
+                  style={{ fontSize: '1.25rem', color: '#ff0000' }}
+                />
+              </Tooltip>
+            </div>
+          </Space>
+        </>
+      ),
     },
   ];
   return <Table dataSource={dataSource} columns={columns} />;
