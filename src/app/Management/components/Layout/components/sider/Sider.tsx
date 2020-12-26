@@ -93,7 +93,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
           <Link to="tender-request">Tender Request</Link>
         </Menu.Item>
         <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
-          <Link to="platforms">Tender Given</Link>
+          <Link to="tender-given">Tender Given</Link>
         </Menu.Item>
         <Menu.Item key="10" icon={<MessageOutlined />}>
           <Link to="/dashboard">Feedback</Link>
