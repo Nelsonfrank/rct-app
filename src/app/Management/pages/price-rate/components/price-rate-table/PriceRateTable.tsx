@@ -1,7 +1,8 @@
 import React from 'react';
 
 // dependencies
-import { Table, Button } from 'antd';
+import { Table, Button, Divider } from 'antd';
+import Card from '../../../../../components/card';
 import { RouteComponentProps, navigate } from '@reach/router';
 
 //Styles
@@ -13,33 +14,51 @@ import './PriceRateTable.less';
 const dataSource = [
   {
     key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
+    variety: 'Super Kyela',
+    price: '2000/=',
+    admin: 'John Alfred',
   },
   {
     key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
+    variety: 'Super Shinyanga',
+    price: '2200/=',
+    admin: 'Peter Paul',
+  },
+  {
+    key: '3',
+    variety: 'Super Singida',
+    price: '1800/=',
+    admin: 'Peter John',
   },
 ];
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: 'Variety',
+    dataIndex: 'variety',
+    key: 'variety',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.variety.length - b.variety.length,
+    },
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Price (TZS)',
+    dataIndex: 'price',
+    key: 'price',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.price.length - b.price.length,
+    },
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Admin',
+    dataIndex: 'admin',
+    key: 'admin',
+    sorter: {
+      // eslint-disable-next-line
+      compare: (a: any, b: any) => a.admin.length - b.admin.length,
+    },
   },
 ];
 
@@ -50,16 +69,22 @@ const PriceRateTable: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      <div className="price-rate-table-container">
-        <div className="price-rate-table-actionBtn">
+      <Card title="Price Rate" styles={{ minHeight: '90vh' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            paddingRight: '4rem',
+          }}
+        >
           <Button type="primary" size="large" onClick={handleAddPriceRate}>
+            {' '}
             Add Price Rate
           </Button>
         </div>
-        <div>
-          <Table dataSource={dataSource} columns={columns} />
-        </div>
-      </div>
+        <Divider />
+        <Table dataSource={dataSource} columns={columns} />
+      </Card>
     </>
   );
 };

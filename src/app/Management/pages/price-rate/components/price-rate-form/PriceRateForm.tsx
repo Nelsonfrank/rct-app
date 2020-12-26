@@ -34,10 +34,10 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
               <Input
                 style={{ width: '30%' }}
                 disabled
-                defaultValue="Days"
+                defaultValue="Date"
                 size="large"
               />
-              <DatePicker.RangePicker style={{ width: '70%' }} size="large" />
+              <DatePicker style={{ width: '70%' }} size="large" />
             </Input.Group>
           </div>
           <div
