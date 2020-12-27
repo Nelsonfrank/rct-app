@@ -9,7 +9,7 @@ import {
   FileOutlined,
   TeamOutlined,
   AccountBookOutlined,
-  MessageOutlined,
+  // MessageOutlined,
   BlockOutlined,
   UpSquareOutlined,
   AppstoreAddOutlined,
@@ -95,9 +95,9 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
         <Menu.Item key="9" icon={<AppstoreAddOutlined />}>
           <Link to="tender-given">Tender Given</Link>
         </Menu.Item>
-        <Menu.Item key="10" icon={<MessageOutlined />}>
+        {/* <Menu.Item key="10" icon={<MessageOutlined />}>
           <Link to="/dashboard">Feedback</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="11" icon={<FileOutlined />}>
           <Link to="logs">Logs</Link>
         </Menu.Item>

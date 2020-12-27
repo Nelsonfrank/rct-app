@@ -28,73 +28,64 @@ const PlatformLists: React.FC<RouteComponentProps> = () => {
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 1</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Mbeya Platform</h3>
+            <p>24,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 2</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Shinyanga Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 3</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Morogoro Platform</h3>
+            <p>12,000 Sellers</p>{' '}
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Arusha Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Mwanza Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Kigoma Platfom</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Musoma Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Mpwapwa Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
           <Card
             className="platformlist-card"
             styles={{ margin: '1rem 1.125rem' }}
           >
-            <h3>platformlist-Card 4</h3>
-            <p>Some text</p>
-            <p>Some text</p>
+            <h3 style={{ fontSize: '1.5rem' }}>Lindi Platform</h3>
+            <p>12,000 Sellers</p>
           </Card>
         </div>
       </div>

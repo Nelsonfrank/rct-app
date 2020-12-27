@@ -36,7 +36,7 @@ const UserList: React.FC<RouteComponentProps> = () => {
       console.log(value);
     };
     dispatch(FetchUserList());
-  }, []);
+  }, [dispatch]);
 
   console.log(data);
   return (

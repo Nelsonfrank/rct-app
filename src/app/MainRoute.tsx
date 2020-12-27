@@ -17,7 +17,7 @@ const MainRoute: React.FC = () => {
     <>
       <Router primary={false}>
         <ScrollToTop path="/">
-          <Redirect from="/" to="/app/buyers" />
+          <Redirect from="/" to="/dashboard" />
           <Login path="/login" />
           <SignUp path="/signup" />
           <VerifyPhone path="/verify-phone" />

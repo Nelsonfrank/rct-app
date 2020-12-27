@@ -32,167 +32,167 @@ export interface UserInfoProps {
 const UserInfo: React.FC<UserInfoProps> = (props: UserInfoProps) => {
   const { phone, scaleStatus, experience, tags } = props;
 
-  interface AvailableStockProps {
-    item: {
-      variety?: string;
-      grade?: string;
-      stock?: string;
-      pickupLocation?: string;
-    }[];
-  }
-  const AvailableStock = (props: AvailableStockProps) => (
-    <div>
-      <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
-        <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-          Available Stock
-        </h2>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-          }}
-        >
-          {props.item.map((_item) => (
-            <>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.variety}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.grade}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Stock: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.stock}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>
-                  Pickup Location:{' '}
-                </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.pickupLocation}
-                </p>
-              </div>
-            </>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  // interface AvailableStockProps {
+  //   item: {
+  //     variety?: string;
+  //     grade?: string;
+  //     stock?: string;
+  //     pickupLocation?: string;
+  //   }[];
+  // }
+  // const AvailableStock = (props: AvailableStockProps) => (
+  //   <div>
+  //     <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
+  //       <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
+  //         Available Stock
+  //       </h2>
+  //       <div
+  //         style={{
+  //           display: 'flex',
+  //           justifyContent: 'space-between',
+  //           flexWrap: 'wrap',
+  //         }}
+  //       >
+  //         {props.item.map((_item) => (
+  //           <>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.variety}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.grade}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Stock: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.stock}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>
+  //                 Pickup Location:{' '}
+  //               </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.pickupLocation}
+  //               </p>
+  //             </div>
+  //           </>
+  //         ))}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
-  interface StockRequiredProps {
-    item: {
-      variety?: string;
-      grade?: string;
-      request?: string;
-      location?: string;
-    }[];
-    shopBySeller: boolean;
-    shopByBuyer: boolean;
-    recentTenderRequest: boolean;
-    recentTenderBid: boolean;
-  }
-  const StockRequired = (props: StockRequiredProps) => (
-    <div>
-      <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
-        <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
-          Available Stock
-        </h2>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-          }}
-        >
-          {props.item.map((_item) => (
-            <>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.variety}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.grade}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Request: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.request}
-                </p>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <h3 style={{ textTransform: 'capitalize' }}>Location: </h3>
-                <p
-                  style={{
-                    fontSize: 16,
-                    marginLeft: '1rem',
-                    textAlign: 'center',
-                  }}
-                >
-                  {_item.location}
-                </p>
-              </div>
-            </>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  // interface StockRequiredProps {
+  //   item: {
+  //     variety?: string;
+  //     grade?: string;
+  //     request?: string;
+  //     location?: string;
+  //   }[];
+  //   shopBySeller: boolean;
+  //   shopByBuyer: boolean;
+  //   recentTenderRequest: boolean;
+  //   recentTenderBid: boolean;
+  // }
+  // const StockRequired = (props: StockRequiredProps) => (
+  //   <div>
+  //     <div style={{ marginBottom: '1.25rem', marginTop: '1.25rem' }}>
+  //       <h2 style={{ fontSize: '1.125rem', fontWeight: 600 }}>
+  //         Available Stock
+  //       </h2>
+  //       <div
+  //         style={{
+  //           display: 'flex',
+  //           justifyContent: 'space-between',
+  //           flexWrap: 'wrap',
+  //         }}
+  //       >
+  //         {props.item.map((_item) => (
+  //           <>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Variety: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.variety}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Grade: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.grade}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Request: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.request}
+  //               </p>
+  //             </div>
+  //             <div style={{ display: 'flex' }}>
+  //               <h3 style={{ textTransform: 'capitalize' }}>Location: </h3>
+  //               <p
+  //                 style={{
+  //                   fontSize: 16,
+  //                   marginLeft: '1rem',
+  //                   textAlign: 'center',
+  //                 }}
+  //               >
+  //                 {_item.location}
+  //               </p>
+  //             </div>
+  //           </>
+  //         ))}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <div>
