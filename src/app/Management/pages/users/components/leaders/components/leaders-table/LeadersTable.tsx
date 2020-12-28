@@ -14,14 +14,12 @@ const dataSource = [
     key: '1',
     name: 'Mike Johnson',
     platform: 'Morogoro',
-    region: 'Morogoro',
     country: 'Tanzania',
   },
   {
     key: '2',
     name: 'John Doe',
     platform: 'Kyela',
-    region: 'Mbeya',
     country: 'Tanzania',
   },
 ];
@@ -40,15 +38,6 @@ const LeadersTable: React.FC = () => {
       sorter: {
         // eslint-disable-next-line
         compare: (a: any, b: any) => a.platform.length - b.platform.length,
-      },
-    },
-    {
-      title: 'Region',
-      dataIndex: 'region',
-      key: 'region',
-      sorter: {
-        // eslint-disable-next-line
-        compare: (a: any, b: any) => a.region.length - b.region.length,
       },
     },
     {

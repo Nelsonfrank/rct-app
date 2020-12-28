@@ -15,14 +15,14 @@ const dataSource = [
     firstName: 'Mike',
     lastName: 'Johnson',
     phoneNumber: '+255689300100',
-    location: 'Dar es salaam',
+    country: 'Tanzania',
   },
   {
     key: '2',
     firstName: 'John',
     lastName: 'Doe',
     phoneNumber: '+255689101300',
-    location: 'Nairobi',
+    country: 'Kenya',
   },
 ];
 
@@ -65,12 +65,12 @@ const BuyersTable: React.FC = () => {
       key: 'phoneNumber',
     },
     {
-      title: 'Location',
-      dataIndex: 'location',
-      key: 'location',
+      title: 'Country',
+      dataIndex: 'country',
+      key: 'country',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.location.length - b.location.length,
+        compare: (a: any, b: any) => a.country.length - b.country.length,
       },
     },
     {
