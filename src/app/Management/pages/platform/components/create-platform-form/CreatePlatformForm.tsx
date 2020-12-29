@@ -59,7 +59,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
                 <Input placeholder="First Name" size="large" />
               </div>
               <div className="platform-location-options">
-                <Input placeholder="Surname Name" size="large" />
+                <Input placeholder="Surname" size="large" />
               </div>
             </div>
             <div className="create-platform-location">
