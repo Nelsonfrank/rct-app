@@ -16,7 +16,7 @@ import {
 } from '@ant-design/icons';
 import { Link } from '@reach/router';
 //Logo
-import Logo from '../../../../../../assets/images/rct-logo.jpeg';
+import Logo from '../../../../../../assets/images/logo.png';
 
 //Styles
 import './Sider.less';
