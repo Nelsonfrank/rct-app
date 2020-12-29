@@ -1,6 +1,7 @@
 //dependencies
 import React, { useEffect, useState } from 'react';
-import { Input, Divider, Radio, Button } from 'antd';
+import { Input, Divider, Radio, Button, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import { RouteComponentProps } from '@reach/router';
 import { Select } from 'antd';
 import { country, region } from './country-dial';
@@ -13,7 +14,8 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState();
   const [isTbsCertified, setisTbsCertified] = useState(false);
-
+  const [idFileList, setIdFileState] = useState<any>([]);
+  const [TBSFileList, setTBSFileState] = useState<any>([]);
   useEffect(() => {
     handlePickCountryDial(country, countrySelected);
   }, [countrySelected]);
@@ -31,10 +33,38 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     setcountrySelected(value);
   };
 
+  const Idprops = {
+    name: 'file',
+    onRemove: (file: any) => {
+      const index = idFileList.indexOf(file);
+      const newFileList = idFileList.slice();
+      newFileList.splice(index, 1);
+      setIdFileState(newFileList);
+    },
+    beforeUpload: (file: any) => {
+      setIdFileState([...idFileList, file]);
+      return false;
+    },
+    idFileList,
+  };
+  const TBSprops = {
+    name: 'file',
+    onRemove: (file: any) => {
+      const index = TBSFileList.indexOf(file);
+      const newFileList = TBSFileList.slice();
+      newFileList.splice(index, 1);
+      setTBSFileState(newFileList);
+    },
+    beforeUpload: (file: any) => {
+      setTBSFileState([...TBSFileList, file]);
+      return false;
+    },
+    TBSFileList,
+  };
   return (
     <div style={{ minHeight: '90vh', marginTop: '2rem' }}>
       <div className="form-header">
-        <h1>Add Sellers Form</h1>
+        <h1>Add Sellers</h1>
       </div>
       <div className="add-seller-form-container">
         <Divider style={{ marginTop: 0 }} />
@@ -52,6 +82,8 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             showSearch
             style={{ width: '100%' }}
             placeholder="Select Country"
+            value="Tanzania"
+            disabled
             optionFilterProp="children"
             filterOption={(input, option: any) =>
               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -64,13 +96,6 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               </Option>
             ))}
           </Select>
-        </div>
-        <div className="add-seller-input">
-          <Input
-            addonBefore={countryCode || '+255'}
-            placeholder="PhoneNumber"
-            size="large"
-          />
         </div>
         <div className="add-sellers-name">
           <div className="add-sellers-name_item">
@@ -93,8 +118,24 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             </Select>
           </div>
           <div className="add-sellers-name_item">
-            <Input placeholder="Platform" size="large" />
+            <Select
+              style={{ width: '100%' }}
+              size="large"
+              placeholder="Platform"
+            >
+              <Option value="kyela">Mbeya Association</Option>
+              <Option value="shinganya">Shinyanga Association</Option>
+              <Option value="Magugu">Arusha Association</Option>
+              <Option value="Kilombero">Morogoro Association</Option>
+            </Select>
           </div>
+        </div>
+        <div className="add-seller-input">
+          <Input
+            addonBefore={countryCode || '+255'}
+            placeholder="PhoneNumber"
+            size="large"
+          />
         </div>
         <div className="add-seller-input">
           <Select
@@ -131,6 +172,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
           </Select>
         </div>
         <div className="add-seller-input">
+          <Input placeholder="P.O Box Address" size="large" />
+        </div>
+        <div className="add-seller-input">
           <Input placeholder="Website" size="large" />
         </div>
         <div className="add-seller-input">
@@ -146,12 +190,48 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             <Radio value={false}>No</Radio>
           </Radio.Group>
         </div>
+        <div className="add-sellers-name">
+          <div className="add-sellers-name_item">
+            <Input
+              placeholder="TBS Certification Number"
+              size="large"
+              disabled={!isTbsCertified}
+            />
+          </div>
+          <div className="add-sellers-name_item">
+            <Upload {...TBSprops} style={{ width: '100%' }} accept="image/*">
+              <Button
+                icon={<UploadOutlined />}
+                size="large"
+                disabled={!isTbsCertified}
+              >
+                Add TBS Certificate (pdf)
+              </Button>
+            </Upload>
+          </div>
+        </div>
         <div className="add-seller-input">
-          <Input
-            placeholder="User Batch Number"
+          <Select
+            style={{ width: '100%' }}
             size="large"
-            disabled={!isTbsCertified}
-          />
+            placeholder="Select Your Identification"
+          >
+            <Option value="voter">Voter Id</Option>
+            <Option value="nida">National Id</Option>
+            <Option value="driving-license">Driving License Id</Option>
+          </Select>
+        </div>
+        <div className="add-sellers-name">
+          <div className="add-sellers-name_item">
+            <Input placeholder="Add Id Number" size="large" />
+          </div>
+          <div className="add-sellers-name_item">
+            <Upload {...Idprops} style={{ width: '100%' }} accept="image/*">
+              <Button icon={<UploadOutlined />} size="large">
+                Add Identification file (pdf)
+              </Button>
+            </Upload>
+          </div>
         </div>
         <div className="add-seller-input">
           <Button type="primary" size="large">
