@@ -1,6 +1,6 @@
 import React from 'react';
 //Components
-import { Tabs } from 'antd';
+import { Tabs, Table } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { RouteComponentProps } from '@reach/router';
 import Card from '../../../components/card';
@@ -74,76 +74,103 @@ const Chart = (
 
 const price = [
   {
+    id: '1',
     variety: 'Kiyela',
     price: 2000,
+    region: 'Mbeya',
   },
   {
+    id: '2',
     variety: 'Mbeya',
     price: 2500,
+    region: 'Mbeya',
   },
   {
+    id: '3',
     variety: 'Shinyanga',
     price: 2300,
+    region: 'Shinyanga',
   },
   {
+    id: '4',
     variety: 'Magugu',
     price: 2300,
+    region: 'Arusha',
   },
   {
+    id: '5',
     variety: 'Morogoro',
     price: 2300,
+    region: 'Mbeya',
   },
   {
+    id: '6',
     variety: 'Mbeya',
     price: 2300,
+    region: 'Mbeya',
   },
   {
+    id: '7',
     variety: 'Kilombero',
     price: 2300,
+    region: 'Morogoro',
   },
   {
+    id: '8',
     variety: 'Ruvuma',
     price: 2300,
+    region: 'Ruvuma',
   },
 ];
 const PriceRate = (
-  data: { variety: string; price: number }[],
+  data: { variety: string; price: number; region: string }[],
   style?: React.CSSProperties,
-) => (
-  <Card styles={{ ...style }} actionBtn="View More">
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div>
-        <h2>Today Price Rate(Tzs/Kg)</h2>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '20% 40% 40%' }}>
-        <div style={{ marginRight: '1rem' }}>
-          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>S/N</p>
-        </div>
-        <div style={{ marginRight: '1rem' }}>
-          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>Variety</p>
-        </div>
+) => {
+  const columns = [
+    {
+      title: 'S/N',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'Variety',
+      dataIndex: 'variety',
+      key: 'variety',
+    },
+    {
+      title: 'Price (TZS)',
+      dataIndex: 'price',
+      key: 'price',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.price.length - b.price.length,
+      },
+    },
+    {
+      title: 'Region',
+      dataIndex: 'region',
+      key: 'region',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.region.length - b.region.length,
+      },
+    },
+  ];
+  return (
+    <Card
+      styles={{ ...style }}
+      actionBtn="View More"
+      actionBtnRoute="dashboard/variety"
+    >
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div>
-          <p style={{ fontSize: '1rem', fontWeight: 'bold' }}>Price</p>
+          <h2>Today Price Rate(Tzs/Kg)</h2>
         </div>
-        {data.map((_data, index) => (
-          <>
-            <div style={{ marginRight: '1rem' }}>
-              <p style={{ fontSize: '1rem' }}>{index + 1}</p>
-            </div>
-            <div style={{ marginRight: '1rem' }}>
-              <p style={{ fontSize: '1rem' }}>{_data.variety}</p>
-            </div>
-            <div>
-              <p style={{ fontSize: '1rem', justifySelf: 'flex-end' }}>
-                {_data.price}
-              </p>
-            </div>
-          </>
-        ))}
+        <Table dataSource={price} columns={columns} pagination={false} />
       </div>
-    </div>
-  </Card>
-);
+    </Card>
+  );
+};
 
 const Dashboard: React.FC<DashboardProps> = () => {
   const callback = (key: string) => {
@@ -154,33 +181,38 @@ const Dashboard: React.FC<DashboardProps> = () => {
       <div className="dashboard">
         <Card
           styles={{ width: 250 }}
-          title="235,000"
-          subtitle="Total Tons"
+          title="20"
+          subtitle="Total Platform"
           actionBtn="View More"
+          actionBtnRoute="dashboard/platforms"
         />
         <Card
           styles={{ width: 250 }}
           title="123,456"
           subtitle="Total Seller"
           actionBtn="View More"
+          actionBtnRoute="dashboard/users/sellers"
         />
         <Card
           styles={{ width: 250 }}
           title="432,578"
           subtitle="Total Buyers"
           actionBtn="View More"
+          actionBtnRoute="dashboard/users/buyers"
         />
         <Card
           styles={{ width: 250 }}
           title="17,000"
-          subtitle="Total Tender"
+          subtitle="Total Tender Request"
           actionBtn="View More"
+          actionBtnRoute="dashboard/tender-request"
         />
         <Card
           styles={{ width: 250 }}
           title="17,000"
-          subtitle="Total Tender"
+          subtitle="Total Tender Given"
           actionBtn="View More"
+          actionBtnRoute="dashboard/tender-given"
         />
       </div>
       <div className="dashboard--section">
