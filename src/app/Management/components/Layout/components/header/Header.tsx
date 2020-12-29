@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  BellOutlined,
-  InboxOutlined,
-  MenuOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons';
-import { Badge } from 'antd';
-import { Tooltip } from 'antd';
+import { MenuOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 // import Slider from '../sider';
 import './Header.less';
 export interface HeaderType {
@@ -44,26 +38,28 @@ const Header: React.FC<HeaderType> = () => {
         </div>
         <div className="navigation--options">
           <div className="navigation--notification">
-            <Tooltip placement="top" title="Notification">
+            <Button type="link">Update Profile</Button>
+            {/* <Tooltip placement="top" title="Notification">
               <Badge count={null}>
                 <BellOutlined className="navigation--icon" />
               </Badge>
-            </Tooltip>
+            </Tooltip> */}
           </div>
           <div className="navigation--DM">
-            <Tooltip placement="top" title="Message">
+            <Button type="link">Logout</Button>
+            {/* <Tooltip placement="top" title="Message">
               <Badge count={5}>
                 <InboxOutlined className="navigation--icon" />
               </Badge>
-            </Tooltip>
+            </Tooltip> */}
           </div>
-          <div>
+          {/* <div>
             <div className="profile">
               <div className="profile--shape">
                 <p className="user--name">N</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
