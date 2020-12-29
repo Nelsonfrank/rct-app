@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Table, Space, Tag, Tooltip, Divider } from 'antd';
 import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 
 // Props Types
 // export interface SellersTableProps {}
