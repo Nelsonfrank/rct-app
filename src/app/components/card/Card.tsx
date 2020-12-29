@@ -3,12 +3,13 @@ import React from 'react';
 //Components
 import { Card } from 'antd';
 import { Button } from 'antd';
-
+import { navigate } from '@reach/router';
 export interface CardsProps {
   title?: string;
   styles?: React.CSSProperties;
   subtitle?: string;
   actionBtn?: string;
+  actionBtnRoute?: string;
   className?: string;
   img?: string;
   imgTitle?: string;
@@ -23,6 +24,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     children,
     styles,
     actionBtn,
+    actionBtnRoute = '',
     className,
     img,
     imgTitle,
@@ -50,7 +52,11 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
       {img ? <Card.Meta title={imgTitle} description={imgDescrip} /> : null}
       {children}
       {actionBtn && (
-        <Button type="link" style={{ paddingLeft: 0 }}>
+        <Button
+          type="link"
+          style={{ paddingLeft: 0 }}
+          onClick={() => navigate(actionBtnRoute)}
+        >
           {actionBtn}
         </Button>
       )}
