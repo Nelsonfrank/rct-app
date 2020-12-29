@@ -160,7 +160,7 @@ const PriceRate = (
     <Card
       styles={{ ...style }}
       actionBtn="View More"
-      actionBtnRoute="dashboard/variety"
+      actionBtnRoute="dashboard/price-rate"
     >
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div>
