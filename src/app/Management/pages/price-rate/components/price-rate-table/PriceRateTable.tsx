@@ -91,7 +91,7 @@ const columns = [
               <EditOutlined style={{ fontSize: '1.25rem' }} />
             </Tooltip>
           </div>
-          <div>
+          <div onClick={() => navigate('price-rate/price-history')}>
             <Tooltip title="Price History">
               <HistoryOutlined style={{ fontSize: '1.25rem' }} />
             </Tooltip>
