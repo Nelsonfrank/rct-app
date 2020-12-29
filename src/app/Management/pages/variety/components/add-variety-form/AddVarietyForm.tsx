@@ -15,7 +15,7 @@ const AddVarietyForm: React.FC<RouteComponentProps> = () => {
     <>
       <div className="add-variety-container">
         <div>
-          <h1 className="add-variety-form-header">Add Variety form</h1>
+          <h1 className="add-variety-form-header">Add Variety</h1>
         </div>
         <hr />
         <div className="add-variety-inner">

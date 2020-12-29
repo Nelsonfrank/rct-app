@@ -51,7 +51,7 @@ const BuyersTable: React.FC = () => {
       },
     },
     {
-      title: 'LastName',
+      title: 'Last Name',
       dataIndex: 'lastName',
       key: 'lastName',
       sorter: {

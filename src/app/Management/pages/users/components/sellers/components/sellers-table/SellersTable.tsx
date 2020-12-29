@@ -60,10 +60,8 @@ const SellersTable: React.FC = () => {
   };
   return (
     <Table dataSource={data} rowSelection={rowSelection}>
-      <ColumnGroup title="Name">
-        <Column title="First Name" dataIndex="firstName" key="firstName" />
-        <Column title="Last Name" dataIndex="lastName" key="lastName" />
-      </ColumnGroup>
+      <Column title="First Name" dataIndex="firstName" key="firstName" />
+      <Column title="Last Name" dataIndex="lastName" key="lastName" />
       <Column title="Phone Number" dataIndex="phone" key="phone" />
       <Column
         title="Platform"
