@@ -23,7 +23,6 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
         <h1 className="create-platform-header">Create Platform</h1>
         <hr className="platform-divider" />
         <h3 className="platform-info">Platform Information</h3>
-        <hr className="platform-divider" />
         <div>
           <Input placeholder="Platform Name" size="large" />
         </div>
@@ -52,8 +51,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
           </div>
         </div>
         <div>
-          <h3>Add Platform Leader</h3>
-          <hr className="platform-divider" />
+          <h3 className="platform-info">Add Platform Leader</h3>
 
           <div>
             <div className="create-platform-location">

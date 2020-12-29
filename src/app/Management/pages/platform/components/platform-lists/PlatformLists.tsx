@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 //Components
 import { Table, Space, Divider, Tooltip, Button } from 'antd';
-import { EyeOutlined, StopOutlined, DeleteOutlined } from '@ant-design/icons';
+import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { navigate, RouteComponentProps } from '@reach/router';
 // Props Types
@@ -109,11 +109,6 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
       render: () => (
         <>
           <Space split={<Divider type="vertical" />}>
-            <div onClick={() => navigate('tender-request/view')}>
-              <Tooltip title="View More">
-                <EyeOutlined style={{ fontSize: '1.25rem' }} />
-              </Tooltip>
-            </div>
             <div>
               <Tooltip title="Disable Request">
                 <StopOutlined style={{ fontSize: '1.25rem' }} />
