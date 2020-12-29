@@ -18,6 +18,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
 
   const handleOnSelectChange = (value: any) => {
     setcountrySelected(value);
+    console.log(countrySelected);
   };
 
   return (
