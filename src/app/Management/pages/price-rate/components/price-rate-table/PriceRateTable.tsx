@@ -3,7 +3,11 @@ import React from 'react';
 
 // dependencies
 import { Table, Button, Tooltip, Divider, Space } from 'antd';
-import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import {
+  HistoryOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { RouteComponentProps, navigate } from '@reach/router';
 
@@ -19,21 +23,21 @@ const dataSource = [
     variety: 'Super Kyela',
     price: '2000/=',
     region: 'Mbeya',
-    admin: 'John Alfred',
+    effectiveDate: 'Jan 26, 2020',
   },
   {
     key: '2',
     variety: 'Super Shinyanga',
     price: '2200/=',
     region: 'Shinyanga',
-    admin: 'Peter Paul',
+    effectiveDate: 'Feb 25 2021',
   },
   {
     key: '3',
     variety: 'Super Singida',
     price: '1800/=',
     region: 'Singida',
-    admin: 'Peter John',
+    effectiveDate: 'jan 26 2020',
   },
 ];
 
@@ -67,11 +71,12 @@ const columns = [
   },
   {
     title: 'Effect Date',
-    dataIndex: 'admin',
-    key: 'admin',
+    dataIndex: 'effectiveDate',
+    key: 'effectiveDate',
     sorter: {
       // eslint-disable-next-line
-      compare: (a: any, b: any) => a.admin.length - b.admin.length,
+      compare: (a: any, b: any) =>
+        a.effectiveDate.length - b.effectiveDate.length,
     },
   },
   {
@@ -81,14 +86,14 @@ const columns = [
     render: () => (
       <>
         <Space split={<Divider type="vertical" />}>
-          <div onClick={() => navigate('tender-given/view')}>
+          <div>
             <Tooltip title="Update">
               <EditOutlined style={{ fontSize: '1.25rem' }} />
             </Tooltip>
           </div>
           <div>
-            <Tooltip title="Disable Tender">
-              <StopOutlined style={{ fontSize: '1.25rem' }} />
+            <Tooltip title="Price History">
+              <HistoryOutlined style={{ fontSize: '1.25rem' }} />
             </Tooltip>
           </div>
           <div>
