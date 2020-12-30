@@ -205,7 +205,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
                 size="large"
                 disabled={!isTbsCertified}
               >
-                Add TBS Certificate (pdf)
+                Attach TBS Certificate Image
               </Button>
             </Upload>
           </div>
@@ -228,7 +228,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
           <div className="add-sellers-name_item">
             <Upload {...Idprops} style={{ width: '100%' }} accept="image/*">
               <Button icon={<UploadOutlined />} size="large">
-                Add Identification file (pdf)
+                Attach Identification Image
               </Button>
             </Upload>
           </div>
