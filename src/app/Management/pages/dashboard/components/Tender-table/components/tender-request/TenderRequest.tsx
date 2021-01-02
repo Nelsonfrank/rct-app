@@ -51,11 +51,13 @@ const TenderRequest: React.FC = () => {
       title: 'Seller',
       dataIndex: 'seller',
       key: 'seller',
+      resposive: ['md'],
     },
     {
       title: 'Variety',
       dataIndex: 'variety',
       key: 'variety',
+      resposive: ['md'],
       sorter: {
         // eslint-disable-next-line
         compare: (a: any, b: any) => a.variety.length - b.variety.length,
@@ -65,6 +67,7 @@ const TenderRequest: React.FC = () => {
       title: 'Amount(Tonnes)',
       dataIndex: 'amount',
       key: 'amount',
+      resposive: ['md'],
       sorter: {
         // eslint-disable-next-line
         compare: (a: any, b: any) => a.amount - b.amount,

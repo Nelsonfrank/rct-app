@@ -2,7 +2,6 @@
 
 ## Todos
 
-
 - [x] Add Variety-list page
 - [x] Add create-variety form
 - [ ] Add Feedback page && Reply mechanism
@@ -13,3 +12,4 @@
 - [ ] Add Filter and Sorter in user list
 - [ ] Add Filter and Sorter in dashboard table
 - [ ] Add pagination in list component
+- [ ] Add filter modal to filter seller when buyer tyr to shop by seller

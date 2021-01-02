@@ -41,7 +41,7 @@ const PriceRate: React.FC<PriceRateProps> = (props: PriceRateProps) => {
   ];
   return (
     <Card
-      styles={{ ...style }}
+      styles={{ ...style, overflowY: 'auto' }}
       actionBtn="View More"
       actionBtnRoute="dashboard/price-rate"
     >

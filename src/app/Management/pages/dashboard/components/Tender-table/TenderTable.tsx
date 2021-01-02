@@ -11,11 +11,11 @@ import TenderBid from './components/tender-bid';
 const { TabPane } = Tabs;
 const TenderTable: React.FC = () => {
   return (
-    <Card styles={{ width: '95.6%' }}>
+    <Card styles={{ width: '97%' }}>
       <Tabs defaultActiveKey="1">
         <TabPane tab="Tender Request" key="1">
           <Card
-            styles={{ width: '100%' }}
+            styles={{ width: '100%', overflowY: 'auto' }}
             actionBtn="View More"
             actionBtnRoute="dashboard/tender-request"
           >
@@ -24,7 +24,7 @@ const TenderTable: React.FC = () => {
         </TabPane>
         <TabPane tab="Tender Given" key="2">
           <Card
-            styles={{ width: '100%' }}
+            styles={{ width: '100%', overflowY: 'auto' }}
             actionBtn="View More"
             actionBtnRoute="dashboard/tender-given"
           >
