@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Link } from '@reach/router';
 import './Header.less';
 export interface HeaderType {
-  name: string;
+  handleShowNavBar: () => void;
+  isNavBarOpened: boolean;
 }
 
-const Header: React.FC<HeaderType> = () => {
-  const [sideBar, showSideBar] = useState(false);
+const Header: React.FC<HeaderType> = ({
+  handleShowNavBar,
+  isNavBarOpened,
+}: HeaderType) => {
   return (
     <>
       <div
@@ -24,7 +27,7 @@ const Header: React.FC<HeaderType> = () => {
         <div className="navigation">
           <div
             style={{ display: 'flex', marginLeft: '1rem' }}
-            onClick={() => showSideBar(!sideBar)}
+            onClick={handleShowNavBar}
           >
             <div className="screen-sm" style={{ alignSelf: 'center' }}>
               <MenuOutlined style={{ fontSize: '1.25rem' }} />
@@ -57,71 +60,71 @@ const Header: React.FC<HeaderType> = () => {
           </div>
         </div>
       </div>
-      <div className={sideBar ? 'nav--list' : 'nav--list_closed'}>
+      <div className={isNavBarOpened ? 'nav--list' : 'nav--list_closed'}>
         <div className="nav-close">
           <button
             type="button"
             style={{ backgroundColor: 'transparent', border: 'none' }}
             className="nav--close_btn"
-            onClick={() => showSideBar(!sideBar)}
+            onClick={() => handleShowNavBar()}
           >
             <CloseOutlined style={{ fontSize: 28 }} />
           </button>
         </div>
         <div className="user--nav">
           <ul className="nav--option">
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="/dashboard" className="nav--option_item">
                 Dashboard
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="variety" className="nav--option_item">
                 {' '}
                 Varieties
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="price-rate" className="nav--option_item">
                 Price Rate
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="users/sellers" className="nav--option_item">
                 Sellers
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="users/buyers" className="nav--option_item">
                 Buyers
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="users/leaders" className="nav--option_item">
                 Leaders
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="platforms" className="nav--option_item">
                 Platforms
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="tender-request" className="nav--option_item">
                 Tender Request
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="tender-given" className="nav--option_item">
                 Tender Given
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="/dashboard" className="nav--option_item">
                 Feedback
               </Link>
             </li>
-            <li onClick={() => showSideBar(!sideBar)}>
+            <li onClick={() => handleShowNavBar()}>
               <Link to="/dashboard" className="nav--option_item">
                 My Profile
               </Link>

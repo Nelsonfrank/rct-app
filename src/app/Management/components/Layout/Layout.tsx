@@ -12,7 +12,11 @@ const LayoutWrapper: React.FC<Props> = (Props) => {
   const { children } = Props;
 
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [sideBar, showSideBar] = useState(false);
 
+  const handleShowSideBar = () => {
+    showSideBar(!sideBar);
+  };
   const SiderCollapsed = (value: boolean) => {
     setIsCollapsed(value);
   };
@@ -28,9 +32,12 @@ const LayoutWrapper: React.FC<Props> = (Props) => {
           className="site-layout"
           style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
         >
-          <Navigation name="RCT" />
+          <Navigation
+            handleShowNavBar={handleShowSideBar}
+            isNavBarOpened={sideBar}
+          />
           <div
-            style={{ marginTop: '60px' }}
+            style={{ marginTop: '60px', display: sideBar ? 'none' : 'block' }}
             className={
               isCollapsed ? 'marginAfterCollapse' : 'marginBeforeCollapse'
             }
