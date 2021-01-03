@@ -6,10 +6,18 @@
   display: flex;
   flex-wrap: wrap;
 }
-
+.dashboard-card {
+  width: 97%;
+}
 .dashboard--section {
   display: flex;
   width: 100%;
   flex-direction: column;
   // justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-card {
+    width: 30%;
+  }
 }
