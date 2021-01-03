@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, Popover } from 'antd';
 import { Link } from '@reach/router';
 import './Header.less';
 export interface HeaderType {
@@ -34,16 +34,30 @@ const Header: React.FC<HeaderType> = ({
             </div>
           </div>
           <div className="navigation--options">
-            <div className="navigation--notification">
+            {/* <div className="navigation--notification">
               <Button type="link">Update Profile</Button>
               {/* <Tooltip placement="top" title="Notification">
               <Badge count={null}>
                 <BellOutlined className="navigation--icon" />
               </Badge>
-            </Tooltip> */}
-            </div>
+            </Tooltip> 
+            </div> */}
             <div className="navigation--DM">
-              <Button type="link">Logout</Button>
+              <Popover
+                placement="bottom"
+                content={
+                  <>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <Button type="link">Update Username</Button>
+                      <Button type="link">Update Password</Button>
+                      <Button type="link">Logout</Button>
+                    </div>
+                  </>
+                }
+                trigger="click"
+              >
+                <Button type="link">Update Profile</Button>
+              </Popover>
               {/* <Tooltip placement="top" title="Message">
               <Badge count={5}>
                 <InboxOutlined className="navigation--icon" />
