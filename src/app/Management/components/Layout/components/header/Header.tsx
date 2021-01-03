@@ -56,7 +56,7 @@ const Header: React.FC<HeaderType> = ({
                 }
                 trigger="click"
               >
-                <Button type="link">Update Profile</Button>
+                <Button type="link">My Account</Button>
               </Popover>
               {/* <Tooltip placement="top" title="Message">
               <Badge count={5}>
