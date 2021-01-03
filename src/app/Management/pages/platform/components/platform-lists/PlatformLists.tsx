@@ -127,7 +127,10 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
     },
   ];
   return (
-    <Card title="Platform List" styles={{ minHeight: '90vh' }}>
+    <Card
+      title="Platform List"
+      styles={{ minHeight: '90vh', overflowY: 'auto' }}
+    >
       <div
         style={{
           display: 'flex',

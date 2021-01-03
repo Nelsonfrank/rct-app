@@ -12,7 +12,7 @@ import Card from '../../../../../components/card';
 const Buyers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card title="Buyers" styles={{ minHeight: '90vh' }}>
+      <Card title="Buyers" styles={{ minHeight: '90vh', overflowY: 'auto' }}>
         <Divider />
         <BuyersTable />
       </Card>

@@ -80,7 +80,7 @@ const Logs: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      <Card title="Logs" styles={{ minHeight: '90vh' }}>
+      <Card title="Logs" styles={{ minHeight: '90vh', overflowY: 'auto' }}>
         <Divider />
         <Table
           dataSource={dataSource}

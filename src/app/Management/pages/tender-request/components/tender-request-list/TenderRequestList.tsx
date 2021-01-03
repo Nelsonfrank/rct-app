@@ -141,7 +141,10 @@ const TenderRequestsList: React.FC<RouteComponentProps> = () => {
     },
   ];
   return (
-    <Card title="Tender Request" styles={{ minHeight: '90vh' }}>
+    <Card
+      title="Tender Request"
+      styles={{ minHeight: '90vh', overflowY: 'auto' }}
+    >
       <Divider />
       <Table
         rowSelection={rowSelection}

@@ -116,7 +116,10 @@ const PriceRateTable: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      <Card title="Price Rate" styles={{ minHeight: '90vh' }}>
+      <Card
+        title="Price Rate"
+        styles={{ minHeight: '90vh', overflowY: 'auto' }}
+      >
         <div
           style={{
             display: 'flex',

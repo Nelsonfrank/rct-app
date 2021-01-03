@@ -76,7 +76,7 @@ const VarietyList: React.FC<RouteComponentProps> = () => {
     },
   ];
   return (
-    <Card title="Varieties" styles={{ minHeight: '90vh' }}>
+    <Card title="Varieties" styles={{ minHeight: '90vh', overflowY: 'auto' }}>
       <div
         style={{
           display: 'flex',

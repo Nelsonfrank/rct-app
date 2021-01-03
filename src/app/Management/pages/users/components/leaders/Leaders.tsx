@@ -12,7 +12,7 @@ import Card from '../../../../../components/card';
 const Leaders: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card title="Leaders" styles={{ minHeight: '90vh' }}>
+      <Card title="Leaders" styles={{ minHeight: '90vh', overflowY: 'auto' }}>
         <Divider />
         <LeadersTable />
       </Card>

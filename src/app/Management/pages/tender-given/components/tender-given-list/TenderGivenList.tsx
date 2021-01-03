@@ -109,7 +109,10 @@ const TenderGivenList: React.FC<RouteComponentProps> = () => {
     },
   ];
   return (
-    <Card title="Tender Given" styles={{ minHeight: '90vh' }}>
+    <Card
+      title="Tender Given"
+      styles={{ minHeight: '90vh', overflowY: 'auto' }}
+    >
       <Divider />
       <Table
         rowSelection={rowSelection}

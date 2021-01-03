@@ -95,7 +95,10 @@ const columns = [
 const PriceHistoryList: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card title="Price History" styles={{ minHeight: '90vh' }}>
+      <Card
+        title="Price History"
+        styles={{ minHeight: '90vh', overflowY: 'auto' }}
+      >
         <Divider />
         <Table dataSource={dataSource} columns={columns} />
       </Card>

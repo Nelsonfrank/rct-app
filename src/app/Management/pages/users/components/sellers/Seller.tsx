@@ -13,7 +13,7 @@ import { navigate } from '@reach/router';
 const Sellers: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <Card title="Sellers" styles={{ minHeight: '90vh' }}>
+      <Card title="Sellers" styles={{ minHeight: '90vh', overflowY: 'auto' }}>
         <div
           style={{
             display: 'flex',
