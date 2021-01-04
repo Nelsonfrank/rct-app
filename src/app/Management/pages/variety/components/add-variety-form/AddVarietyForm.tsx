@@ -2,8 +2,11 @@ import React from 'react';
 
 // dependencies
 import { Input, Button } from 'antd';
-import { RouteComponentProps, navigate } from '@reach/router';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { RouteComponentProps } from '@reach/router';
+
+// Components
+import BackButton from '../../../../components/back-button';
+
 // Styles
 import './AddVarietyForm.less';
 
@@ -13,15 +16,7 @@ import './AddVarietyForm.less';
 const AddVarietyForm: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <div>
-        <div style={{ marginLeft: '1.5rem', marginTop: '1rem' }}>
-          <Button type="text" onClick={() => navigate('/dashboard/variety')}>
-            <ArrowLeftOutlined
-              style={{ fontSize: '1.875rem', fontWeight: 600 }}
-            />
-          </Button>
-        </div>
-      </div>
+      <BackButton routes="/dashboard/variety" />
       <div className="add-variety-container">
         <div>
           <h1 className="add-variety-form-header">Add Variety</h1>
