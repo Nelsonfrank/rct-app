@@ -5,6 +5,8 @@ import { Input, InputNumber, DatePicker, Button, Select } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 import { region, variety } from './country-dial';
 
+// components
+import BackButton from '../../../../components/back-button';
 // Styles
 import './PriceRateForm.less';
 
@@ -23,6 +25,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
+      <BackButton routes="/dashboard/price-rate" />
       <div className="price-rate-container">
         <div>
           <h1 className="price-rate-form-header">Add Price Rate</h1>
