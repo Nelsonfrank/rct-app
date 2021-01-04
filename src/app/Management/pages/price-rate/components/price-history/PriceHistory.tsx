@@ -97,6 +97,7 @@ const PriceHistoryList: React.FC<RouteComponentProps> = () => {
     <>
       <Card
         title="Price History"
+        backButtonRoute="/dashboard/price-rate"
         styles={{ minHeight: '90vh', overflowY: 'auto' }}
       >
         <Divider />
