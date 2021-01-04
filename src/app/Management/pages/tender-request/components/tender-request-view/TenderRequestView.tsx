@@ -26,7 +26,11 @@ const ImageContainer = () => (
 const TenderRequestView: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <CardContainer title="Tender Request View" styles={{ minHeight: '90vh' }}>
+      <CardContainer
+        title="Tender Request View"
+        backButtonRoute="/dashboard/tender-request"
+        styles={{ minHeight: '90vh' }}
+      >
         <Divider />
         <div className="Tender-request-container">
           <h2>Tender Information</h2>
