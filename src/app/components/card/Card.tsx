@@ -1,8 +1,8 @@
 import React from 'react';
 
 //Components
-import { Card } from 'antd';
-import { Button } from 'antd';
+import { Card, Button } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import { navigate } from '@reach/router';
 export interface CardsProps {
   title?: string;
@@ -14,6 +14,7 @@ export interface CardsProps {
   img?: string;
   imgTitle?: string;
   imgDescrip?: string;
+  backButtonRoute?: string;
   onClick?: () => void;
 }
 
@@ -29,6 +30,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     img,
     imgTitle,
     imgDescrip,
+    backButtonRoute,
     onClick,
   } = CardsProps;
   return (
@@ -44,9 +46,36 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
       onClick={onClick}
     >
       {title ? (
-        <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: 0 }}>
-          {title}
-        </h3>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {backButtonRoute ? (
+            <div>
+              <div
+                style={{
+                  // marginLeft: '1.5rem',
+                  // marginTop: '1rem',
+                  marginRight: '1rem',
+                }}
+              >
+                <Button
+                  type="text"
+                  onClick={() => navigate(backButtonRoute)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <ArrowLeftOutlined
+                    style={{ fontSize: '1.75rem', fontWeight: 600 }}
+                  />
+                </Button>
+              </div>
+            </div>
+          ) : null}
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: 0 }}>
+            {title}
+          </h3>
+        </div>
       ) : null}
       {subtitle ? <h1 style={{ fontSize: '1.125rem' }}>{subtitle}</h1> : null}
       {img ? <Card.Meta title={imgTitle} description={imgDescrip} /> : null}

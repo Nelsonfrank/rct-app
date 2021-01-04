@@ -11,7 +11,11 @@ import './TenderGivenView.less';
 
 const TenderGivenView: React.FC<RouteComponentProps> = () => {
   return (
-    <CardContainer title="Tender Given View" styles={{ minHeight: '90vh' }}>
+    <CardContainer
+      title="Tender Given View"
+      backButtonRoute="/dashboard/tender-given"
+      styles={{ minHeight: '90vh' }}
+    >
       <Divider />
       <div className="Tender-given-container">
         <h2>Tender Information</h2>
