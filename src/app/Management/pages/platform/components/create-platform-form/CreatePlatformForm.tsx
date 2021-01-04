@@ -3,6 +3,9 @@ import React from 'react';
 // dependence
 import { Input, InputNumber, Select, Button } from 'antd';
 import { RouteComponentProps } from '@reach/router';
+
+// components
+import BackButton from '../../../../components/back-button';
 // Styles
 import './CreatePlatform.less';
 
@@ -19,6 +22,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
   };
   return (
     <>
+      <BackButton routes="/dashboard/platforms" />
       <div className="create-platform-container">
         <h1 className="create-platform-header">Create Platform</h1>
         <hr className="platform-divider" />
