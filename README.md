@@ -13,3 +13,8 @@
 - [ ] Add Filter and Sorter in dashboard table
 - [ ] Add pagination in list component
 - [ ] Add filter modal to filter seller when buyer tyr to shop by seller
+- [ ] Add seller info view page
+- [x] Add back button in every page
+- [ ] Make every component in dashboard responsive
+- [ ] Diagnosis redux and setup it well ()
+- [ ] Setup axios configuration to allign with state management
