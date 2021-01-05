@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 
 //Components
 import { Table, Space, Tag, Tooltip, Divider } from 'antd';
-import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import {
+  StopOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+} from '@ant-design/icons';
+import { navigate } from '@reach/router';
 
 const { Column } = Table;
 
@@ -101,6 +107,11 @@ const SellersTable: React.FC = () => {
               <div>
                 <Tooltip title="Edit">
                   <EditOutlined style={{ fontSize: '1.25rem' }} />
+                </Tooltip>
+              </div>
+              <div onClick={() => navigate('view')}>
+                <Tooltip title="View More">
+                  <EyeOutlined style={{ fontSize: '1.25rem' }} />
                 </Tooltip>
               </div>
               <div>
