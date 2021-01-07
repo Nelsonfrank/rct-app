@@ -8,3 +8,8 @@ interface CreatePlatformTypes {
   platform_country_dial_code: string;
   platform_region: string;
 }
+
+interface userLoginProps {
+  dial_code: string;
+  phoneNumber: string;
+}

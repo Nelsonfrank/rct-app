@@ -88,3 +88,49 @@ export const FetchPlatformById = (platformId: string) => {
     .then((response) => response)
     .catch((error) => error);
 };
+
+export const UserLogin = (payload: any) => {
+  return axios
+    .post(`/api/v1/user/signin`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const CreateToken = (payload: any) => {
+  return axios
+    .post(`/api/v1/user/createotp`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const VerifyToken = (payload: any) => {
+  return axios
+    .post(`/api/v1/user/verifyotp`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const GenerateToken = (token: any) => {
+  return axios
+    .post(`/api/v1/session/generatetoken/${token}`)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const RefreshToken = (token: any) => {
+  return axios
+    .post(`/api/v1/session/refreshtoken`, token)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const GetUserInformation = (token: any) => {
+  return axios
+    .get(`/api/v1/user/information`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
