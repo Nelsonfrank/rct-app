@@ -8,6 +8,7 @@ import SignUp from './components/signup';
 import Login from './components/login';
 import VerifyPhone from './components/verify-phone';
 import ScrollToTop from './SrollToTop';
+import ManagementSignin from './Management/pages/management-signin';
 
 // Props Types
 // export interface MainRouteProps {}
@@ -23,6 +24,7 @@ const MainRoute: React.FC = () => {
           <VerifyPhone path="/verify-phone" />
           <UsersRoutes path="app/*" />
           <ManagementRoutes path="dashboard/*" />
+          <ManagementSignin path="management-signin" />
         </ScrollToTop>
       </Router>
     </>

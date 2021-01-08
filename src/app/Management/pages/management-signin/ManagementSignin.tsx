@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 
 // Components
 import { Input, Button, Divider, Select } from 'antd';
-import { RouteComponentProps, Link, navigate } from '@reach/router';
+import { RouteComponentProps, Link } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { country } from '../country-dial';
-import { UserLogin } from '../../../API';
+import { country } from '../../../components/country-dial';
+// import { UserLogin } from '../../../../API';
 const { Option } = Select;
 
 //Styles
-import './Login.less';
+// import './ManagementSignin.less';
 
 // export interface LoginProps {}
 
 type FormValues = {
   phoneNumber: string;
 };
-const Login: React.FC<RouteComponentProps> = () => {
+const ManagementSignin: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState();
 
@@ -24,6 +24,9 @@ const Login: React.FC<RouteComponentProps> = () => {
 
   const handleChange = (e: any) => {
     setValue('phone_number', e.target.value);
+  };
+  const handlePasswordChange = (e: any) => {
+    setValue('password', e.target.value);
   };
   const handleOnSelectChange = (value: any) => {
     setValue('dial_code', value);
@@ -41,22 +44,23 @@ const Login: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => {
     register('dial_code'); // custom register Antd input
     register('phone_number'); // custom register Antd input
+    register('password'); // custom register Antd input
     handlePickCountryDial(country, countrySelected);
   }, [register, countrySelected]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
 
-    const login = async () => {
-      const result = await UserLogin(data).then((response) => response);
-      if (result.status === 200) {
-        navigate('/verify-phone', { state: { data: data } });
-      } else if (result.status === 201) {
-        navigate('/signup', { state: { data: data } });
-      }
-    };
+    // const login = async () => {
+    //   const result = await UserLogin(data).then((response: any) => response);
+    //   if (result.status === 200) {
+    //     navigate('/verify-phone', { state: { data: data } });
+    //   } else if (result.status === 201) {
+    //     navigate('/signup', { state: { data: data } });
+    //   }
+    // };
 
-    login();
+    // login();
   };
 
   return (
@@ -65,7 +69,7 @@ const Login: React.FC<RouteComponentProps> = () => {
         <div className="login_innerContainer">
           <div className="login_inner">
             <div className="login_header">
-              <h2>Sign In</h2>
+              <h2>Management Sign In</h2>
               <Divider
                 style={{
                   margin: '0  0 0.5rem 0 ',
@@ -88,11 +92,17 @@ const Login: React.FC<RouteComponentProps> = () => {
                   }
                   onChange={(e) => handleOnSelectChange(e)}
                 >
-                  {country.map((item) => (
-                    <Option key={item.code} value={item.dial_code}>
-                      {item.name}
-                    </Option>
-                  ))}
+                  {country.map(
+                    (item: {
+                      code: string | number | undefined;
+                      dial_code: React.ReactText;
+                      name: React.ReactNode;
+                    }) => (
+                      <Option key={item.code} value={item.dial_code}>
+                        {item.name}
+                      </Option>
+                    ),
+                  )}
                 </Select>
               </div>
               <div className="login_phoneNo">
@@ -106,10 +116,20 @@ const Login: React.FC<RouteComponentProps> = () => {
                   style={{ width: '100%' }}
                 />
               </div>
+              <div className="login_phoneNo">
+                <Input
+                  placeholder="Password"
+                  name="password"
+                  size="large"
+                  type="password"
+                  onChange={handlePasswordChange}
+                  style={{ width: '100%' }}
+                />
+              </div>
               <div className="login_btn">
                 <Button type="primary" htmlType="submit" size="large">
                   {' '}
-                  Login
+                  Signin
                 </Button>
               </div>
               <div
@@ -121,8 +141,8 @@ const Login: React.FC<RouteComponentProps> = () => {
               >
                 <div style={{ marginTop: 10 }}>
                   <p>
-                    Management stuffs?!.{' '}
-                    <Link to="/management-signin"> Sign In Here</Link>
+                    Are you seller or buyer?!.{' '}
+                    <Link to="/login"> Sign In Here</Link>
                   </p>
                 </div>
                 <div>
@@ -139,4 +159,4 @@ const Login: React.FC<RouteComponentProps> = () => {
   );
 };
 
-export default Login;
+export default ManagementSignin;
