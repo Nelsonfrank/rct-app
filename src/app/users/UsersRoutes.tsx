@@ -23,6 +23,7 @@ const Users: React.FC<RouteComponentProps> = () => {
           </Router>
         ) : (
           <Router primary={false}>
+            <Buyers path="buyers/*" />
             <Login path="/login" />
             <SignUp path="/signup" />
             <VerifyPhone

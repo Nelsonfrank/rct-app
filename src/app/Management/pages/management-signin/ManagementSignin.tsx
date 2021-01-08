@@ -141,7 +141,7 @@ const ManagementSignin: React.FC<ManagementSignInProps> = () => {
                 <div style={{ marginTop: 10 }}>
                   <p>
                     Are you seller or buyer?!.{' '}
-                    <Link to="/login"> Sign In Here</Link>
+                    <Link to="/app/login"> Sign In Here</Link>
                   </p>
                 </div>
                 <div>

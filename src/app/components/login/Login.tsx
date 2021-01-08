@@ -50,9 +50,9 @@ const Login: React.FC<RouteComponentProps> = () => {
     const login = async () => {
       const result = await UserLogin(data).then((response) => response);
       if (result.status === 200) {
-        navigate('/verify-phone', { state: { data: data } });
+        navigate('/app/verify-phone', { state: { data: data } });
       } else if (result.status === 201) {
-        navigate('/signup', { state: { data: data } });
+        navigate('/app/signup', { state: { data: data } });
       }
     };
 
@@ -122,7 +122,7 @@ const Login: React.FC<RouteComponentProps> = () => {
                 <div style={{ marginTop: 10 }}>
                   <p>
                     Management stuffs?!.{' '}
-                    <Link to="/management-signin"> Sign In Here</Link>
+                    <Link to="/management/signin"> Sign In Here</Link>
                   </p>
                 </div>
                 <div>
