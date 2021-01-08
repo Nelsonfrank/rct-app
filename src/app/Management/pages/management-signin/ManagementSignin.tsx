@@ -42,9 +42,9 @@ const ManagementSignin: React.FC<RouteComponentProps> = () => {
   };
 
   React.useEffect(() => {
-    register('dial_code'); // custom register Antd input
-    register('phone_number'); // custom register Antd input
-    register('password'); // custom register Antd input
+    register('dial_code');
+    register('phone_number');
+    register('password');
     handlePickCountryDial(country, countrySelected);
   }, [register, countrySelected]);
 

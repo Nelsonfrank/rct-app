@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 axios.defaults.baseURL = 'http://142.93.210.105:1122';
 
@@ -131,6 +131,20 @@ export const GetUserInformation = (token: any) => {
         Authorization: `Bearer ${token}`,
       },
     })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const ManagementLogin = (payload: AxiosRequestConfig | undefined) => {
+  return axios
+    .post(`/api/v1/user/signin-password`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const GenerateTokenByPassword = (payload: any) => {
+  return axios
+    .post(`/api/v1/session/generatetoken-by-password`, payload)
     .then((response) => response)
     .catch((error) => error);
 };
