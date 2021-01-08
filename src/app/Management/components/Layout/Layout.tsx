@@ -3,8 +3,8 @@ import { Layout } from 'antd';
 import Navigation from './components/header';
 import Sider from './components/sider';
 import './LayoutWrapper.less';
-
-export interface Props {
+import { RouteComponentProps } from '@reach/router';
+export interface Props extends RouteComponentProps {
   children?: ReactNode;
 }
 

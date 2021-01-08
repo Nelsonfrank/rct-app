@@ -23,11 +23,10 @@ import { AuthConsumer } from '../../auth/AuthContext';
 const ManagementRoutes: React.FC<RouteComponentProps> = () => {
   return (
     <AuthConsumer>
-      {({ authenticated, handleAuthentication }) =>
+      {({ authenticated, handleAuthDashboard }) =>
         authenticated ? (
-          <Layout>
-            <Router>
-              <Redirect from="signin" to="dashboard" />
+          <Router>
+            <Layout path="/">
               <Dashboard path="dashboard" />
               <UsersRoutes path="users/*" />
               <Platform path="platforms/*" />
@@ -36,12 +35,11 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
               <TenderGiven path="tender-given/*" />
               <Variety path="variety/*" />
               <Logs path="logs" />
-            </Router>
-          </Layout>
+            </Layout>
+          </Router>
         ) : (
           <Router>
-            <Redirect from="/" to="signin" />
-            <ManagementSignin path="signin" handleAuth={handleAuthentication} />
+            <ManagementSignin path="signin" handleAuth={handleAuthDashboard} />
           </Router>
         )
       }

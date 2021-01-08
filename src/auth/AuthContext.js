@@ -4,6 +4,7 @@ const authContext = createContext({
   authenticated: false,
   userId: '',
   handleAuthentication: () => {},
+  handleAuthDashboard: () => {},
   logout: () => {},
 });
 

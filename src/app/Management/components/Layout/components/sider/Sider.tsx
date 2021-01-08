@@ -67,7 +67,7 @@ const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
         mode="inline"
       >
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="dashboard">Dashboard</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
           <Link to="variety"> Varieties</Link>

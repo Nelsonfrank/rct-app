@@ -5,7 +5,11 @@ import { Input, Button, Divider, Select } from 'antd';
 import { RouteComponentProps, Link } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { country } from '../../../components/country-dial';
-import { ManagementLogin } from '../../../../API';
+import {
+  ManagementLogin,
+  GenerateTokenByPassword,
+  GetUserInformation,
+} from '../../../../API';
 const { Option } = Select;
 
 //Styles
@@ -19,11 +23,16 @@ type FormValues = {
   phone_number: string;
   password: string;
 };
-const ManagementSignin: React.FC<ManagementSignInProps> = () => {
+const ManagementSignin: React.FC<ManagementSignInProps> = (
+  props: ManagementSignInProps,
+) => {
+  const { handleAuth } = props;
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState();
 
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: { dial_code: '+255', phone_number: '', password: '' },
+  });
 
   const handleChange = (e: any) => {
     setValue('phone_number', e.target.value);
@@ -56,6 +65,35 @@ const ManagementSignin: React.FC<ManagementSignInProps> = () => {
 
     const ManagementSignin = async () => {
       const result = await ManagementLogin(data).then((response) => response);
+      if (result.status === 200) {
+        const generateTokenByPwd = async () => {
+          const value = await GenerateTokenByPassword(data).then(
+            (response) => response,
+          );
+
+          if (value.status === 201) {
+            localStorage.setItem('accessToken', value.data.data.token);
+
+            const getUserInfo = async () => {
+              const result = await GetUserInformation(
+                value.data.data.token,
+              ).then((response) => response);
+              console.log(result);
+              if (result.status === 200) {
+                localStorage.setItem('UserRole', result.data.data.user.role);
+                handleAuth();
+              } else {
+                console.log(result);
+              }
+            };
+            getUserInfo();
+          } else {
+            console.log(value);
+          }
+        };
+
+        generateTokenByPwd();
+      }
       console.log(result);
     };
 
