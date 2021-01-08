@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AuthProvider } from './authContext';
+import { AuthProvider } from './AuthContext';
 
 class Auth extends Component {
   state = {

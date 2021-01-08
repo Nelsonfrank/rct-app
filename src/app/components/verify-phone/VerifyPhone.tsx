@@ -16,11 +16,12 @@ import {
   GetUserInformation,
 } from '../../../API';
 // Props Types
-// export interface VerifyPhoneProps extends RouteComponentProps {
-//   route: string;
-// }
+export interface VerifyPhoneProps extends RouteComponentProps {
+  route?: string;
+  handleAuth?: () => void;
+}
 
-const VerifyPhone: React.FC<RouteComponentProps> = (props: any) => {
+const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
   const [userNumber, setUserNumber] = React.useState({});
   const { register, handleSubmit, setValue } = useForm();
 

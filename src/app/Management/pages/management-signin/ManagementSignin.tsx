@@ -5,18 +5,21 @@ import { Input, Button, Divider, Select } from 'antd';
 import { RouteComponentProps, Link } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { country } from '../../../components/country-dial';
-// import { UserLogin } from '../../../../API';
+import { ManagementLogin } from '../../../../API';
 const { Option } = Select;
 
 //Styles
 // import './ManagementSignin.less';
 
-// export interface LoginProps {}
+export interface ManagementSignInProps extends RouteComponentProps {
+  handleAuth: () => void;
+}
 
 type FormValues = {
-  phoneNumber: string;
+  phone_number: string;
+  password: string;
 };
-const ManagementSignin: React.FC<RouteComponentProps> = () => {
+const ManagementSignin: React.FC<ManagementSignInProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState();
 
@@ -51,16 +54,12 @@ const ManagementSignin: React.FC<RouteComponentProps> = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
 
-    // const login = async () => {
-    //   const result = await UserLogin(data).then((response: any) => response);
-    //   if (result.status === 200) {
-    //     navigate('/verify-phone', { state: { data: data } });
-    //   } else if (result.status === 201) {
-    //     navigate('/signup', { state: { data: data } });
-    //   }
-    // };
+    const ManagementSignin = async () => {
+      const result = await ManagementLogin(data).then((response) => response);
+      console.log(result);
+    };
 
-    // login();
+    ManagementSignin();
   };
 
   return (

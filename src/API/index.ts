@@ -135,7 +135,7 @@ export const GetUserInformation = (token: any) => {
     .catch((error) => error);
 };
 
-export const ManagementLogin = (payload: AxiosRequestConfig | undefined) => {
+export const ManagementLogin = (payload: any) => {
   return axios
     .post(`/api/v1/user/signin-password`, payload)
     .then((response) => response)
