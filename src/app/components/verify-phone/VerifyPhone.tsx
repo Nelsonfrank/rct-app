@@ -36,7 +36,7 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
       const result = await CreateToken(userNumber).then((response) => response);
       console.log(result);
     };
-    // createToken();
+    createToken();
   }, [userNumber]);
 
   const handleChange = (e: any) => {

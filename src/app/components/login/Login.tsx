@@ -18,7 +18,7 @@ type FormValues = {
 };
 const Login: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
-  const [countryCode, setcountryCode] = useState();
+  const [countryCode, setcountryCode] = useState('+255');
 
   const { register, handleSubmit, setValue } = useForm();
 
@@ -31,7 +31,7 @@ const Login: React.FC<RouteComponentProps> = () => {
   };
   const handlePickCountryDial = (countryList: any, countryPickes: string) => {
     const value = countryList.filter(
-      (item: any) => item.code === countryPickes,
+      (item: any) => item.dial_code === countryPickes,
     );
     const item =
       Array.isArray(value) && value.length >= 1 ? value[0].dial_code : '';
@@ -121,7 +121,7 @@ const Login: React.FC<RouteComponentProps> = () => {
               >
                 <div style={{ marginTop: 10 }}>
                   <p>
-                    Management stuffs?!.{' '}
+                    Management staff?!.{' '}
                     <Link to="/management/signin"> Sign In Here</Link>
                   </p>
                 </div>

@@ -2,7 +2,8 @@ import { createContext } from 'react';
 
 const authContext = createContext({
   authenticated: false,
-  userId: '',
+  userRole: '',
+  userAccessToken: '',
   handleAuthentication: () => {},
   handleAuthDashboard: () => {},
   logout: () => {},
@@ -10,3 +11,4 @@ const authContext = createContext({
 
 export const AuthProvider = authContext.Provider;
 export const AuthConsumer = authContext.Consumer;
+export const Auth = authContext;

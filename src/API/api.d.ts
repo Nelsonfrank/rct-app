@@ -7,6 +7,7 @@ interface CreatePlatformTypes {
   platform_name: string;
   platform_country_dial_code: string;
   platform_region: string;
+  image_string: string;
 }
 
 interface userLoginProps {

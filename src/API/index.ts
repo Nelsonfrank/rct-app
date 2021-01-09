@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 axios.defaults.baseURL = 'http://142.93.210.105:1122';
 
@@ -54,9 +54,31 @@ export const PostTenderRequest = (payload: PostTenderRequestType) => {
     .catch((error) => error);
 };
 
-export const CreatePlatform = (payload: CreatePlatformTypes) => {
+export const CreatePlatform = (
+  payload: CreatePlatformTypes,
+  token: string | null,
+) => {
   return axios
-    .post(`/api/v1/platform`, payload)
+    .post(`/api/v1/platform`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const CreateLeader = (
+  payload: { dial_code: string; phone_number: string; name: string },
+  platformId: string | null,
+  token: string,
+) => {
+  return axios
+    .post(`/api/v1/leader/${platformId}`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((response) => response)
     .catch((error) => error);
 };
