@@ -1,38 +1,95 @@
 //dependencies
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Input, Divider, Radio, Button, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
 import { Select } from 'antd';
-import { country, region } from './country-dial';
+import { country } from './country-dial';
+import { useForm, SubmitHandler } from 'react-hook-form';
 const { Option } = Select;
-
+import { Auth } from '../../../../../../../../auth/AuthContext';
+import Notification from '../../../../../../../components/notification';
+// API
+import { AddSeller, GetAllPlatform } from '../../../../../../../../API';
 // styles
 import './AddSellersForm.less';
 
 const AddSellersForm: React.FC<RouteComponentProps> = () => {
-  const [countrySelected, setcountrySelected] = useState('');
-  const [countryCode, setcountryCode] = useState();
   const [isTbsCertified, setisTbsCertified] = useState(false);
   const [idFileList, setIdFileState] = useState<any>([]);
   const [TBSFileList, setTBSFileState] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
+  // const [allPlatform, setAllPlatform] = useState([]);
+
+  const { register, handleSubmit, setValue } = useForm();
+  const { userAccessToken, userInfo } = useContext(Auth);
+
   useEffect(() => {
-    handlePickCountryDial(country, countrySelected);
-  }, [countrySelected]);
+    const getAllPlatform = async () => {
+      const result = await GetAllPlatform().then((response) => response);
+      console.log(result);
+    };
+    getAllPlatform();
+  }, []);
 
-  const handlePickCountryDial = (countryList: any, countryPickes: string) => {
-    const value = countryList.filter(
-      (item: any) => item.code === countryPickes,
-    );
-    const item =
-      Array.isArray(value) && value.length >= 1 ? value[0].dial_code : '';
-    setcountryCode(item);
+  useEffect(() => {
+    register('firstname');
+    register('lastname');
+    register('platform');
+    register('phone_number');
+    register('experience');
+    register('category');
+    register('scale_status');
+    register('address');
+    register('website');
+    register('tbs_certificate_num');
+    register('id_type');
+  }, [register]);
+
+  const handleFirstNameChange = (e: any) => {
+    setValue('firstname', e.target.value);
   };
 
-  const handleOnSelectChange = (value: any) => {
-    setcountrySelected(value);
+  const handleLastNameChange = (e: any) => {
+    setValue('lastname', e.target.value);
+  };
+  const handlePlatformSelectChange = (event: any) => {
+    setValue('platform', event);
   };
 
+  const handlePhoneNumberChange = (e: { target: { value: any } }) => {
+    setValue('phone_number', e.target.value);
+  };
+
+  const handleExperinceSelectChange = (e: any) => {
+    setValue('experience', e);
+  };
+
+  const handleCategorySelectChange = (e: any) => {
+    setValue('category', e);
+  };
+
+  const handleScaleStatusChange = (e: any) => {
+    setValue('scale_status', e);
+  };
+
+  const handleAdressInput = (e: any) => {
+    setValue('address', e.target.value);
+  };
+
+  const handleSiteChange = (e: any) => {
+    setValue('website', e.target.value);
+  };
+
+  const handleTBSCertifNumChange = (e: any) => {
+    setValue('tbs_certificate_num', e.target.value);
+  };
+  const handleIdTypeChange = (value: any) => {
+    setValue('id_type', value);
+  };
+  const handleIdNumChange = (e: any) => {
+    setValue('id_num', e.target.value);
+  };
   const Idprops = {
     name: 'file',
     onRemove: (file: any) => {
@@ -61,19 +118,77 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     },
     TBSFileList,
   };
+  type FormValues = {
+    firstname: string;
+    lastname: string;
+    address: string;
+    website: string;
+    experience: string;
+    tbs_certificate_num: string;
+    id_type: string;
+    id_num: string;
+    phone_number: string;
+    password: string;
+  };
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const value = {
+      user: {
+        dial_code: '+255',
+        phone_number: data.phone_number,
+        name: `${data.firstname} ${data.lastname}`,
+      },
+      seller: {
+        first_time: data.firstname,
+        last_name: data.lastname,
+        application_type: '',
+        address: data.address,
+        website: data.website,
+        grade: '',
+        experience: data.experience,
+        tbs_certification_number: data.tbs_certificate_num,
+        certification_number: data.id_num,
+        variety_name: '',
+      },
+    };
+    setLoading(true);
+    const createSellerAccount = async () => {
+      const result = await AddSeller(value, userInfo.id, userAccessToken).then(
+        (response) => response,
+      );
+      setLoading(false);
+      if (result.status === 200) {
+        navigate(-1);
+        Notification(true, 'Seller Account Created Successfully');
+      } else {
+        Notification(false, 'Fail to create Seller Account');
+      }
+    };
+    createSellerAccount();
+  };
   return (
     <div style={{ minHeight: '90vh', marginTop: '2rem' }}>
       <div className="form-header">
         <h1>Add Sellers</h1>
       </div>
-      <div className="add-seller-form-container">
+      <form
+        className="add-seller-form-container"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Divider style={{ marginTop: 0 }} />
         <div className="add-sellers-name">
           <div className="add-sellers-name_item">
-            <Input placeholder="First Name" size="large" />
+            <Input
+              placeholder="First Name"
+              size="large"
+              onChange={handleFirstNameChange}
+            />
           </div>
           <div className="add-sellers-name_item">
-            <Input placeholder="Last Name" size="large" />
+            <Input
+              placeholder="Last Name"
+              size="large"
+              onChange={handleLastNameChange}
+            />
           </div>
         </div>
         <div className="add-seller-input">
@@ -84,11 +199,6 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             placeholder="Select Country"
             value="Tanzania"
             disabled
-            optionFilterProp="children"
-            filterOption={(input, option: any) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-            onChange={(e) => handleOnSelectChange(e)}
           >
             {country.map((item) => (
               <Option key={item.code} value={item.code}>
@@ -100,28 +210,10 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         <div className="add-sellers-name">
           <div className="add-sellers-name_item">
             <Select
-              size="large"
-              showSearch
-              style={{ width: '100%' }}
-              placeholder="Region"
-              optionFilterProp="children"
-              filterOption={(input, option: any) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-              onChange={(e) => handleOnSelectChange(e)}
-            >
-              {region.map((item) => (
-                <Option key={item.city} value={item.city}>
-                  {item.city}
-                </Option>
-              ))}
-            </Select>
-          </div>
-          <div className="add-sellers-name_item">
-            <Select
               style={{ width: '100%' }}
               size="large"
               placeholder="Platform"
+              onChange={handlePlatformSelectChange}
             >
               <Option value="kyela">Mbeya Association</Option>
               <Option value="shinganya">Shinyanga Association</Option>
@@ -132,9 +224,10 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         </div>
         <div className="add-seller-input">
           <Input
-            addonBefore={countryCode || '+255'}
+            addonBefore={'+255'}
             placeholder="PhoneNumber"
             size="large"
+            onChange={handlePhoneNumberChange}
           />
         </div>
         <div className="add-seller-input">
@@ -142,6 +235,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             style={{ width: '100%' }}
             size="large"
             placeholder="Experience"
+            onChange={handleExperinceSelectChange}
           >
             <Option value="0-5">0 - 5 years</Option>
             <Option value="6-10">6 - 10 years</Option>
@@ -154,6 +248,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             style={{ width: '100%' }}
             size="large"
             placeholder="Applicant Category"
+            onChange={handleCategorySelectChange}
           >
             <Option value="individual">Individual</Option>
             <Option value="association">Association</Option>
@@ -165,6 +260,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             style={{ width: '100%' }}
             size="large"
             placeholder="Scale Status"
+            onChange={handleScaleStatusChange}
           >
             <Option value="small">Small</Option>
             <Option value="medium">Medium</Option>
@@ -172,10 +268,18 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
           </Select>
         </div>
         <div className="add-seller-input">
-          <Input placeholder="P.O Box Address" size="large" />
+          <Input
+            placeholder="P.O Box Address"
+            size="large"
+            onChange={handleAdressInput}
+          />
         </div>
         <div className="add-seller-input">
-          <Input placeholder="Website" size="large" />
+          <Input
+            placeholder="Website"
+            size="large"
+            onChange={handleSiteChange}
+          />
         </div>
         <div className="add-seller-input">
           <p style={{ marginLeft: '0.5rem', marginBottom: '0rem' }}>
@@ -196,6 +300,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               placeholder="TBS Certification Number"
               size="large"
               disabled={!isTbsCertified}
+              onChange={handleTBSCertifNumChange}
             />
           </div>
           <div className="add-sellers-name_item">
@@ -215,6 +320,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             style={{ width: '100%' }}
             size="large"
             placeholder="Select Your Identification"
+            onChange={handleIdTypeChange}
           >
             <Option value="voter">Voter Id</Option>
             <Option value="nida">National Id</Option>
@@ -223,7 +329,11 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         </div>
         <div className="add-sellers-name">
           <div className="add-sellers-name_item">
-            <Input placeholder="Add Id Number" size="large" />
+            <Input
+              placeholder="Add Id Number"
+              size="large"
+              onChange={handleIdNumChange}
+            />
           </div>
           <div className="add-sellers-name_item">
             <Upload {...Idprops} style={{ width: '100%' }} accept="image/*">
@@ -234,11 +344,16 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
           </div>
         </div>
         <div className="add-seller-input">
-          <Button type="primary" size="large">
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            loading={loading}
+          >
             Submit
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

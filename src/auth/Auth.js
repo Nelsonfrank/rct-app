@@ -6,6 +6,7 @@ class Auth extends Component {
     authenticated: false,
     userRole: '',
     userAccessToken: '',
+    userInfo: {},
   };
 
   logout = () => {
@@ -30,8 +31,9 @@ class Auth extends Component {
       authenticated: true,
       userRole: localStorage.getItem('UserRole'),
       userAccessToken: localStorage.getItem('accessToken'),
+      userInfo: JSON.parse(localStorage.getItem('UserInfo')),
     });
-
+    console.log(this.state.userInfo);
     navigate('/management/dashboard');
   };
   render() {

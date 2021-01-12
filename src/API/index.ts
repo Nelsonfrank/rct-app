@@ -15,6 +15,23 @@ export const GetAllUsers = () => {
 };
 
 /**
+ * Create new seller
+ * @param token
+ * @function
+ * @name AddSeller
+ */
+export const AddSeller = (payload: any, adminId: any, token: any) => {
+  return axios
+    .post(`/api/v1/seller/${adminId}`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+/**
  * Get seller by id
  * @function
  * @name GetSellerById
@@ -54,6 +71,11 @@ export const PostTenderRequest = (payload: PostTenderRequestType) => {
     .catch((error) => error);
 };
 
+/**
+ * Create Platform
+ * @param payload
+ * @param token
+ */
 export const CreatePlatform = (
   payload: CreatePlatformTypes,
   token: string | null,
@@ -68,6 +90,12 @@ export const CreatePlatform = (
     .catch((error) => error);
 };
 
+export const GetAllPlatform = () => {
+  return axios
+    .get(`/api/v1/platform/offset/0`)
+    .then((response) => response)
+    .catch((error) => error);
+};
 export const CreateLeader = (
   payload: { dial_code: string; phone_number: string; name: string },
   platformId: string | null,

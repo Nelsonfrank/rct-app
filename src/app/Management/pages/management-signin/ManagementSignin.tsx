@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components
 import { Input, Button, Divider } from 'antd';
@@ -25,7 +25,7 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
   props: ManagementSignInProps,
 ) => {
   const { handleAuth } = props;
-
+  const [loading, setloading] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: { dial_code: '+255', phone_number: '', password: '' },
   });
@@ -48,6 +48,7 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
       ...data,
     };
     console.log(inputValue);
+    setloading(true);
     const ManagementSignin = async () => {
       const result = await ManagementLogin(inputValue).then(
         (response) => response,
@@ -68,10 +69,15 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
               console.log(result);
               if (result.status === 200) {
                 localStorage.setItem('UserRole', result.data.data.user.role);
+                localStorage.setItem(
+                  'UserInfo',
+                  JSON.stringify(result.data.data.user),
+                );
                 handleAuth();
               } else {
                 console.log(result);
               }
+              setloading(false);
             };
             getUserInfo();
           } else {
@@ -124,7 +130,12 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
                 />
               </div>
               <div className="login_btn">
-                <Button type="primary" htmlType="submit" size="large">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  loading={loading}
+                >
                   {' '}
                   Signin
                 </Button>

@@ -25,12 +25,12 @@ type FormValues = {
   surname: string;
 };
 const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
-  const { userAccessToken, userRole } = useContext(Auth);
+  const { userAccessToken, userInfo } = useContext(Auth);
   const [countrySelected, setcountrySelected] = React.useState('');
 
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
-    console.log(userRole);
+    console.log(userInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
