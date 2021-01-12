@@ -49,7 +49,7 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const info = { ...data, ...userNumber };
     const verifyToken = async () => {
-      const result = await VerifyToken(info).then((response) => {
+      await VerifyToken(info).then((response) => {
         console.log(response);
         if (response.status === 200) {
           const generateToken = async () => {

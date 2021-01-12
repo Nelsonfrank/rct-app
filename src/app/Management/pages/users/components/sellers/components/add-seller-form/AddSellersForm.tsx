@@ -227,6 +227,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             addonBefore={'+255'}
             placeholder="PhoneNumber"
             size="large"
+            // ref={register({ pattern: /^\d+$/, max: 9 })}
             onChange={handlePhoneNumberChange}
           />
         </div>
@@ -235,6 +236,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             style={{ width: '100%' }}
             size="large"
             placeholder="Experience"
+            // ref={register({ required: true })}
             onChange={handleExperinceSelectChange}
           >
             <Option value="0-5">0 - 5 years</Option>

@@ -1,6 +1,6 @@
 import React from 'react';
 //dependencies
-import { Router, RouteComponentProps, Redirect } from '@reach/router';
+import { Router, RouteComponentProps } from '@reach/router';
 
 //Components
 import Layout from './components/Layout';

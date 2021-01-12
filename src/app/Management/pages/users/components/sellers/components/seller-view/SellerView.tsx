@@ -1,6 +1,6 @@
 // dependencies
 import React from 'react';
-import { Divider, Tag, Card, Button } from 'antd';
+import { Divider, Tag, Button } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 import { DownloadOutlined } from '@ant-design/icons';
 // Components

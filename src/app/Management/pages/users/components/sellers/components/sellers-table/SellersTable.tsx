@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 
 //Components
 import { Table, Space, Tag, Tooltip, Divider } from 'antd';
@@ -10,6 +11,8 @@ import {
 } from '@ant-design/icons';
 import { navigate } from '@reach/router';
 
+// Api
+import { GetAllUsers } from '../../../../../../../../API';
 const { Column } = Table;
 
 // Props Types
@@ -51,7 +54,17 @@ const data = [
 
 const SellersTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [sellers, setSellers] = useState([]);
 
+  useEffect(() => {
+    const getSellers = async () => {
+      const result = await GetAllUsers().then((response) => response);
+      setSellers(result.data);
+    };
+    getSellers();
+
+    console.log(sellers);
+  }, []);
   const handleOnRowChange = (selectedRowKey: any) => {
     setSelectedRowKeys(selectedRowKey);
   };
