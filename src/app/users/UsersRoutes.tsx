@@ -18,7 +18,7 @@ const Users: React.FC<RouteComponentProps> = () => {
       {({ authenticated, handleAuthentication }) =>
         authenticated ? (
           <Router primary={false}>
-            <Buyers path="buyers/*" />
+            <Buyers path="buyers/*" default />
             <Sellers path="sellers/*" />
           </Router>
         ) : (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 //dependencies
 import React, { useEffect, useState, useContext } from 'react';
 import { Input, Divider, Radio, Button, Upload } from 'antd';
@@ -19,7 +20,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   const [idFileList, setIdFileState] = useState<any>([]);
   const [TBSFileList, setTBSFileState] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  // const [allPlatform, setAllPlatform] = useState([]);
+  const [allPlatform, setAllPlatform] = useState([]);
 
   const { register, handleSubmit, setValue } = useForm();
   const { userAccessToken, userInfo } = useContext(Auth);
@@ -27,6 +28,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   useEffect(() => {
     const getAllPlatform = async () => {
       const result = await GetAllPlatform().then((response) => response);
+      setAllPlatform(result.data.data.platform);
       console.log(result);
     };
     getAllPlatform();
@@ -215,10 +217,11 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               placeholder="Platform"
               onChange={handlePlatformSelectChange}
             >
-              <Option value="kyela">Mbeya Association</Option>
-              <Option value="shinganya">Shinyanga Association</Option>
-              <Option value="Magugu">Arusha Association</Option>
-              <Option value="Kilombero">Morogoro Association</Option>
+              {allPlatform.map((item: any) => (
+                <Option key={item.id} value={item.platform_name}>
+                  {item.platform_name}
+                </Option>
+              ))}
             </Select>
           </div>
         </div>

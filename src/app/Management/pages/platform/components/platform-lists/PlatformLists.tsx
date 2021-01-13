@@ -1,38 +1,18 @@
 /* eslint-disable react/display-name */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Components
 import { Table, Space, Divider, Tooltip, Button } from 'antd';
 import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { navigate, RouteComponentProps } from '@reach/router';
+import { GetAllPlatform } from '../../../../../../API';
 // Props Types
 // export interface PlatformListProps {}
 
-// placeholder data
-const dataSource = [
-  {
-    key: '1',
-    name: 'Kambarage Group',
-    country: 'Tanzania',
-    region: 'Mara',
-    leader: 'John Joshua',
-    contacts: '+255 689 302 932',
-    memberno: '120',
-  },
-  {
-    key: '2',
-    name: 'Mwanza Association',
-    country: 'Tanzania',
-    region: 'Mwanza',
-    leader: 'Alfred Jumanne',
-    contacts: '+255 682 098 123',
-    memberno: '300',
-  },
-];
-
 const PlatformList: React.FC<RouteComponentProps> = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selectedRowKeys: any) => {
@@ -47,14 +27,25 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
   const handleAddPlatform = () => {
     navigate('platforms/add-platform-form');
   };
+
+  useEffect(() => {
+    const getAllPlatform = async () => {
+      const result = await GetAllPlatform().then((response) => response);
+      setPlatforms(result.data.data.platform);
+      console.log(result);
+    };
+    getAllPlatform();
+  }, []);
+
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'platform_name',
+      key: 'platform_name',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.name.length - b.name.length,
+        compare: (a: any, b: any) =>
+          a.platform_name.length - b.platform_name.length,
       },
     },
     {
@@ -68,38 +59,41 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
     },
     {
       title: 'Region',
-      dataIndex: 'region',
-      key: 'region',
+      dataIndex: 'platform_region',
+      key: 'platform_region',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.region.length - b.region.length,
+        compare: (a: any, b: any) =>
+          a.platform_region.length - b.platform_region.length,
       },
     },
     {
       title: 'Contacts',
-      dataIndex: 'contacts',
-      key: 'contacts',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.contacts.length - b.contacts.length,
+        compare: (a: any, b: any) =>
+          a.phone_number.length - b.phone_number.length,
       },
     },
     {
       title: 'Platform Leader',
-      dataIndex: 'leader',
-      key: 'leader',
+      dataIndex: 'user_name',
+      key: 'user_name',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.leader.length - b.leader.length,
+        compare: (a: any, b: any) => a.user_name.length - b.user_name.length,
       },
     },
     {
       title: 'Number Of Member',
-      dataIndex: 'memberno',
-      key: 'memberno',
+      dataIndex: 'numberOfMembers',
+      key: 'numberOfMembers',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.memberno.length - b.memberno.length,
+        compare: (a: any, b: any) =>
+          a.numberOfMembers.length - b.numberOfMembers.length,
       },
     },
     {
@@ -146,7 +140,7 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
       <Divider />
       <Table
         rowSelection={rowSelection}
-        dataSource={dataSource}
+        dataSource={platforms}
         columns={columns}
       />
     </Card>

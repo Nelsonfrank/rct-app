@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 
 // pages
 import Dashboard from './pages/dashboard';
+import NotFound from './pages/dashboard';
 import UsersRoutes from './pages/users';
 import Platform from './pages/platform';
 import PriceRate from './pages/price-rate';
@@ -28,6 +29,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
           <Router>
             <Layout path="/">
               <Dashboard path="dashboard" />
+              <NotFound default />
               <UsersRoutes path="users/*" />
               <Platform path="platforms/*" />
               <PriceRate path="price-rate/*" />

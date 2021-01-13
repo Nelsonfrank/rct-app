@@ -1,13 +1,14 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 // dependence
 import { Input, Select, Button } from 'antd';
-import { RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, navigate } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreatePlatform, CreateLeader } from '../../../../../../API';
 import { Auth } from '../../../../../../auth/AuthContext';
 // components
 import BackButton from '../../../../components/back-button';
+import Notification from '../../../../../components/notification';
 import { image } from './image_base64';
 // Styles
 import './CreatePlatform.less';
@@ -26,7 +27,8 @@ type FormValues = {
 };
 const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
   const { userAccessToken, userInfo } = useContext(Auth);
-  const [countrySelected, setcountrySelected] = React.useState('');
+  const [countrySelected, setcountrySelected] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
@@ -75,24 +77,25 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
       phone_number: data.phone_number,
       name: `${data.first_name} ${data.surname}`,
     };
-
-    console.log(platformLeaderInfo);
+    setLoading(true);
     const AddPlatform = async () => {
       const result = await CreatePlatform(platformValue, userAccessToken).then(
         (response) => response,
       );
       if (result.status === 200) {
         const createLeader = async () => {
-          const value = await CreateLeader(
+          await CreateLeader(
             platformLeaderInfo,
             result.data.data,
             userAccessToken,
           ).then((response) => response);
-          console.log(value);
+          setLoading(false);
+          navigate(-1);
+          Notification(true, 'Platform Created Successfully');
         };
         createLeader();
       } else {
-        console.log(result);
+        Notification(false, 'Failed to Create Platform');
       }
       console.log(result);
     };
@@ -166,6 +169,8 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
               >
                 <Input
                   placeholder="Phone Number"
+                  addonBefore={'+255'}
+                  maxLength={9}
                   size="large"
                   onChange={handlePhoneNumberChange}
                   style={{ width: '100%' }}
@@ -181,7 +186,12 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
             marginTop: '2.5rem',
           }}
         >
-          <Button size="large" type="primary" htmlType="submit">
+          <Button
+            size="large"
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+          >
             Submit
           </Button>
         </div>
