@@ -5,7 +5,7 @@ import Header from '../../../components/header';
 import CardSection from '../../../components/section-card-list';
 import Card from '../../../../components/card';
 import { RouteComponentProps } from '@reach/router';
-
+import { Modal, Checkbox } from 'antd';
 // placeholder data
 import {
   ShopBySellersData,
@@ -17,6 +17,19 @@ import './Home.less';
 // export interface BuyerHomeProps {}
 
 const BuyerHome: React.FC<RouteComponentProps> = () => {
+  const options = [
+    { label: 'Grade 1', value: 'Apple' },
+    { label: 'Grade 2', value: 'Pear' },
+    { label: 'Grade 3', value: 'Orange' },
+  ];
+
+  function handleGradeChange(checkedValues: any) {
+    console.log('checked = ', checkedValues);
+  }
+
+  function handleVarietyChange(checkedValues: any) {
+    console.log('checked = ', checkedValues);
+  }
   return (
     <>
       <Header />
@@ -76,6 +89,34 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           listItems={ShopByPlatformsData}
         />
       </div>
+      <Modal
+        title="Shop By Seller"
+        centered
+        visible={false}
+        okText={'Next'}
+        onOk={() => {
+          console.log('ok');
+        }}
+      >
+        <h3>Choose grade</h3>
+        <div style={{ marginBottom: '1.25rem' }}>
+          <Checkbox.Group options={options} onChange={handleGradeChange} />
+        </div>
+
+        <h3>Choose Variety</h3>
+        <div>
+          <Checkbox.Group onChange={handleVarietyChange}>
+            <div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Checkbox value="kyela">kyela</Checkbox>
+                <Checkbox value="Shinyanga">Shinyanga</Checkbox>
+                <Checkbox value="Magugu">Magugu</Checkbox>
+                <Checkbox value="Mbeya">Mbeya</Checkbox>
+              </div>
+            </div>
+          </Checkbox.Group>
+        </div>
+      </Modal>
     </>
   );
 };

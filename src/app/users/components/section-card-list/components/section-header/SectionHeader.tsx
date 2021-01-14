@@ -16,6 +16,10 @@ const SectionHeader: React.FC<SectionHeaderProps> = (
   props: SectionHeaderProps,
 ) => {
   const { title, route = '#' } = props;
+
+  // const handleViewMoreChange = () => {
+  //   navigate(route);
+  // };
   return (
     <div
       style={{
@@ -32,7 +36,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = (
         <h2 className="section--header_title">{title}</h2>
       </div>
       <div className="actionBtn-section">
-        <Button type="ghost" className="view-all_button">
+        <Button
+          type="ghost"
+          className="view-all_button"
+          // onClick={handleViewMoreChange}
+        >
           <Link to={route}>{'View All >'}</Link>
         </Button>
       </div>

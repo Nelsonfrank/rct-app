@@ -22,7 +22,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   const [loading, setLoading] = useState(false);
   const [allPlatform, setAllPlatform] = useState([]);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, errors } = useForm({
+    mode: 'onBlur',
+  });
   const { userAccessToken, userInfo } = useContext(Auth);
 
   useEffect(() => {
@@ -35,17 +37,18 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   }, []);
 
   useEffect(() => {
-    register('firstname');
-    register('lastname');
-    register('platform');
-    register('phone_number');
-    register('experience');
-    register('category');
-    register('scale_status');
-    register('address');
+    register('firstname', { required: true });
+    register('lastname', { required: true });
+    register('platform', { required: true });
+    register('phone_number', { required: true });
+    register('experience', { required: true });
+    register('category', { required: true });
+    register('scale_status', { required: true });
+    register('address', { required: true });
     register('website');
     register('tbs_certificate_num');
-    register('id_type');
+    register('id_type', { required: true });
+    register('id_num', { required: true });
   }, [register]);
 
   const handleFirstNameChange = (e: any) => {
@@ -131,6 +134,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     id_num: string;
     phone_number: string;
     password: string;
+    scale_status: string;
   };
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const value = {
@@ -142,7 +146,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
       seller: {
         first_time: data.firstname,
         last_name: data.lastname,
-        application_type: '',
+        application_type: data.scale_status,
         address: data.address,
         website: data.website,
         grade: '',
@@ -184,6 +188,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               size="large"
               onChange={handleFirstNameChange}
             />
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.firstname && 'First name is required'}
+            </span>
           </div>
           <div className="add-sellers-name_item">
             <Input
@@ -191,6 +198,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               size="large"
               onChange={handleLastNameChange}
             />
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.lastname && 'Last name is required'}
+            </span>
           </div>
         </div>
         <div className="add-seller-input">
@@ -223,16 +233,23 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
                 </Option>
               ))}
             </Select>
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.platform && 'Platform is required'}
+            </span>
           </div>
         </div>
         <div className="add-seller-input">
           <Input
             addonBefore={'+255'}
             placeholder="PhoneNumber"
+            maxLength={9}
             size="large"
             // ref={register({ pattern: /^\d+$/, max: 9 })}
             onChange={handlePhoneNumberChange}
           />
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.phone_number && 'Phone Number is required'}
+          </span>
         </div>
         <div className="add-seller-input">
           <Select
@@ -247,6 +264,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             <Option value="11-20">11 - 20 years</Option>
             <Option value="21+">21 years - above</Option>
           </Select>
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.experience && 'Experience is required'}
+          </span>
         </div>
         <div className="add-seller-input">
           <Select
@@ -259,6 +279,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             <Option value="association">Association</Option>
             <Option value="company">Company</Option>
           </Select>
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.category && 'Applicant category is required'}
+          </span>
         </div>
         <div className="add-seller-input">
           <Select
@@ -271,6 +294,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             <Option value="medium">Medium</Option>
             <Option value="large">Large</Option>
           </Select>
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.scale_status && 'Scale Status is required'}
+          </span>
         </div>
         <div className="add-seller-input">
           <Input
@@ -278,6 +304,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             size="large"
             onChange={handleAdressInput}
           />
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.address && 'Address is required'}
+          </span>
         </div>
         <div className="add-seller-input">
           <Input
@@ -331,6 +360,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             <Option value="nida">National Id</Option>
             <Option value="driving-license">Driving License Id</Option>
           </Select>
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.id_type && 'Identification Category is required'}
+          </span>
         </div>
         <div className="add-sellers-name">
           <div className="add-sellers-name_item">
@@ -339,6 +371,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
               size="large"
               onChange={handleIdNumChange}
             />
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.id_num && 'Id Number is required'}
+            </span>
           </div>
           <div className="add-sellers-name_item">
             <Upload {...Idprops} style={{ width: '100%' }} accept="image/*">
