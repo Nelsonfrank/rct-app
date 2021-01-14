@@ -7,7 +7,7 @@
 - [ ] Add Feedback page && Reply mechanism
 - [ ] Make site responsive in all devices.
 - [ ] Add seller qoute page
-- [ ] Add Role-Based Controll Access (RBCA)
+- [x] Add Role-Based Controll Access (RBCA)
 - [ ] Add Server-Side Rendering
 - [ ] Add Filter and Sorter in user list
 - [ ] Add Filter and Sorter in dashboard table
@@ -17,4 +17,4 @@
 - [x] Add back button in every page
 - [ ] Make every component in dashboard responsive
 - [ ] Diagnosis redux and setup it well ()
-- [ ] Setup axios configuration to allign with state management
+- [ ] Setup axios configuration to align with state management

@@ -24,9 +24,9 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
   };
 
   const options = [
-    { label: 'Grade 1', value: 'Apple' },
-    { label: 'Grade 2', value: 'Pear' },
-    { label: 'Grade 3', value: 'Orange' },
+    { label: 'Grade 1', value: '1' },
+    { label: 'Grade 2', value: '2' },
+    { label: 'Grade 3', value: '3' },
   ];
 
   function handleGradeChange(checkedValues: any) {
@@ -103,6 +103,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         onOk={() => {
           console.log('ok');
         }}
+        onCancel={() => setIsModalOpen(!isModalOpen)}
       >
         <h3>Choose grade</h3>
         <div style={{ marginBottom: '1.25rem' }}>
@@ -114,7 +115,9 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
           <Checkbox.Group onChange={handleVarietyChange}>
             <div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <Checkbox value="kyela">kyela</Checkbox>
+                <Checkbox value="kyela" style={{ marginLeft: '8px' }}>
+                  kyela
+                </Checkbox>
                 <Checkbox value="Shinyanga">Shinyanga</Checkbox>
                 <Checkbox value="Magugu">Magugu</Checkbox>
                 <Checkbox value="Mbeya">Mbeya</Checkbox>
