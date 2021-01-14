@@ -16,7 +16,7 @@ import './AddVarietyForm.less';
 const AddVarietyForm: React.FC<RouteComponentProps> = () => {
   return (
     <>
-      <BackButton routes="/dashboard/variety" />
+      <BackButton />
       <div className="add-variety-container">
         <div>
           <h1 className="add-variety-form-header">Add Variety</h1>

@@ -25,7 +25,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      <BackButton routes="/dashboard/price-rate" />
+      <BackButton />
       <div className="price-rate-container">
         <div>
           <h1 className="price-rate-form-header">Add Price Rate</h1>

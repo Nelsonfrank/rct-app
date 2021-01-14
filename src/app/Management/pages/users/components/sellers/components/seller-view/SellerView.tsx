@@ -10,7 +10,7 @@ const SellerView: React.FC<RouteComponentProps> = () => {
   return (
     <CardContainer
       title="Seller Information"
-      backButtonRoute="/dashboard/users/sellers"
+      backButton
       styles={{ minHeight: '90vh' }}
     >
       <Divider />

@@ -28,7 +28,7 @@ const TenderRequestView: React.FC<RouteComponentProps> = () => {
     <>
       <CardContainer
         title="Tender Request View"
-        backButtonRoute="/dashboard/tender-request"
+        backButton
         styles={{ minHeight: '90vh' }}
       >
         <Divider />

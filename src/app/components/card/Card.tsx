@@ -14,7 +14,7 @@ export interface CardsProps {
   img?: string;
   imgTitle?: string;
   imgDescrip?: string;
-  backButtonRoute?: string;
+  backButton?: boolean;
   onClick?: () => void;
 }
 
@@ -30,7 +30,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     img,
     imgTitle,
     imgDescrip,
-    backButtonRoute,
+    backButton,
     onClick,
   } = CardsProps;
   return (
@@ -47,7 +47,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     >
       {title ? (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {backButtonRoute ? (
+          {backButton ? (
             <div>
               <div
                 style={{
@@ -58,7 +58,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
               >
                 <Button
                   type="text"
-                  onClick={() => navigate(backButtonRoute)}
+                  onClick={() => navigate(-1)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',

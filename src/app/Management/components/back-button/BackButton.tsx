@@ -6,16 +6,17 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 
 // Props Types
 export interface BackButtonProps {
-  routes: string;
+  routes?: string;
 }
 
 const BackButton: React.FC<BackButtonProps> = (props: BackButtonProps) => {
   const { routes } = props;
+  console.log(routes);
   return (
     <>
       <div>
         <div style={{ marginLeft: '1.5rem', marginTop: '1rem' }}>
-          <Button type="text" onClick={() => navigate(routes)}>
+          <Button type="text" onClick={() => navigate(-1)}>
             <ArrowLeftOutlined
               style={{ fontSize: '1.875rem', fontWeight: 600 }}
             />

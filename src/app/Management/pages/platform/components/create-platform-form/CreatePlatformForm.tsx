@@ -30,17 +30,19 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, errors } = useForm({
+    mode: 'onChange',
+  });
   useEffect(() => {
     console.log(userInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    register('platform_name');
-    register('platform_region');
-    register('first_name');
-    register('surname');
-    register('phone_number');
+    register('platform_name', { required: true });
+    register('platform_region', { required: true });
+    register('first_name', { required: true });
+    register('surname', { required: true });
+    register('phone_number', { required: true, pattern: /^\d+$/ });
   }, [register]);
 
   const handleOnSelectChange = (value: any) => {
@@ -103,7 +105,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
   };
   return (
     <>
-      <BackButton routes="dashboard/platforms" />
+      <BackButton />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="create-platform-container"
@@ -117,6 +119,9 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
             size="large"
             onChange={handlePlatformNameChange}
           />
+          <span style={{ fontSize: '1rem', color: 'red' }}>
+            {errors.platform_name && 'Platform Name is required'}
+          </span>
         </div>
         <div className="create-platform-location">
           <div className="platform-location-options">
@@ -140,6 +145,9 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
                 </Option>
               ))}
             </Select>
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.platform_region && 'Region is required'}
+            </span>
           </div>
         </div>
         <div>
@@ -153,6 +161,9 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
                   size="large"
                   onChange={handleFirstNameChange}
                 />
+                <span style={{ fontSize: '1rem', color: 'red' }}>
+                  {errors.first_name && 'First name is required'}
+                </span>
               </div>
               <div className="platform-location-options">
                 <Input
@@ -160,6 +171,9 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
                   size="large"
                   onChange={handleSurnameChange}
                 />
+                <span style={{ fontSize: '1rem', color: 'red' }}>
+                  {errors.surname && 'Surname is required'}
+                </span>
               </div>
             </div>
             <div className="create-platform-location">
@@ -175,6 +189,9 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
                   onChange={handlePhoneNumberChange}
                   style={{ width: '100%' }}
                 />
+                <span style={{ fontSize: '1rem', color: 'red' }}>
+                  {errors.phone_number && 'Phone number is required'}
+                </span>
               </div>
             </div>
           </div>
@@ -191,6 +208,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
             type="primary"
             htmlType="submit"
             loading={loading}
+            // disabled={!formState.isValid}
           >
             Submit
           </Button>
