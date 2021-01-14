@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Components
 import Header from '../../../components/header';
@@ -17,6 +17,12 @@ import './Home.less';
 // export interface BuyerHomeProps {}
 
 const BuyerHome: React.FC<RouteComponentProps> = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const options = [
     { label: 'Grade 1', value: 'Apple' },
     { label: 'Grade 2', value: 'Pear' },
@@ -80,7 +86,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         />
         <CardSection
           title="Shop by Seller"
-          route="shop-by-sellers"
+          viewAllAction={handleOpenModal}
           listItems={ShopBySellersData}
         />
         <CardSection
@@ -92,7 +98,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
       <Modal
         title="Shop By Seller"
         centered
-        visible={false}
+        visible={isModalOpen}
         okText={'Next'}
         onOk={() => {
           console.log('ok');

@@ -4,14 +4,14 @@ import React from 'react';
 import SectionHeader from './components/section-header';
 import Card from '../../../components/card';
 import { Button } from 'antd';
-import { Link, navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 // Styles
 import './SectionCardList.less';
 
 // Props Types
 export interface SectionCardListProps {
   title: string;
-  route: string;
+  route?: string;
   users?: boolean;
   tenderRequest?: boolean;
   listItems: {
@@ -22,15 +22,24 @@ export interface SectionCardListProps {
     routes: string;
   }[];
   cardStyles?: React.CSSProperties;
+  viewAllAction?: () => void;
 }
 
 const SectionCardList: React.FC<SectionCardListProps> = (
   props: SectionCardListProps,
 ) => {
-  const { title, route, listItems, cardStyles } = props;
+  const { title, route = '', listItems, cardStyles, viewAllAction } = props;
+
+  const handleViewAllClick = () => {
+    viewAllAction ? viewAllAction() : navigate(route);
+  };
   return (
     <>
-      <SectionHeader title={title} route={route} />
+      <SectionHeader
+        title={title}
+        route={route}
+        handleViewAllAction={viewAllAction}
+      />
       <div className="card--list_group">
         {listItems
           ? listItems.map((item) => (
@@ -47,8 +56,13 @@ const SectionCardList: React.FC<SectionCardListProps> = (
           : null}
       </div>
       <div className="SeeAll-Btn-sm">
-        <Button type="primary" shape="round" size="large">
-          <Link to={route}>See All</Link>
+        <Button
+          type="primary"
+          shape="round"
+          size="large"
+          onClick={handleViewAllClick}
+        >
+          See All
         </Button>
       </div>
     </>

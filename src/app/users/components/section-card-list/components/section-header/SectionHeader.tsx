@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Link, RouteComponentProps } from '@reach/router';
+import { RouteComponentProps, navigate } from '@reach/router';
 import { Button } from 'antd';
 
 //Styles
@@ -10,16 +10,17 @@ import './SectionHeader.less';
 export interface SectionHeaderProps extends RouteComponentProps {
   title: string;
   route?: string;
+  handleViewAllAction?: any;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = (
   props: SectionHeaderProps,
 ) => {
-  const { title, route = '#' } = props;
+  const { title, route = '', handleViewAllAction } = props;
 
-  // const handleViewMoreChange = () => {
-  //   navigate(route);
-  // };
+  const handleViewMoreChange = () => {
+    route.length <= 0 ? handleViewAllAction() : navigate(route);
+  };
   return (
     <div
       style={{
@@ -39,9 +40,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = (
         <Button
           type="ghost"
           className="view-all_button"
-          // onClick={handleViewMoreChange}
+          onClick={handleViewMoreChange}
         >
-          <Link to={route}>{'View All >'}</Link>
+          View All
         </Button>
       </div>
     </div>
