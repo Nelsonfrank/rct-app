@@ -78,6 +78,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
       dial_code: '+255',
       phone_number: data.phone_number,
       name: `${data.first_name} ${data.surname}`,
+      role: 'leader',
     };
     setLoading(true);
     const AddPlatform = async () => {

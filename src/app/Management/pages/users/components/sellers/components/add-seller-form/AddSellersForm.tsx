@@ -142,6 +142,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         dial_code: '+255',
         phone_number: data.phone_number,
         name: `${data.firstname} ${data.lastname}`,
+        role: 'seller',
       },
       seller: {
         first_time: data.firstname,
