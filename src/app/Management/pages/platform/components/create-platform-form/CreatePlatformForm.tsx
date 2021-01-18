@@ -98,6 +98,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
         };
         createLeader();
       } else {
+        setLoading(false);
         Notification(false, 'Failed to Create Platform');
       }
       console.log(result);

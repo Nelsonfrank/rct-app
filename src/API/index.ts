@@ -171,7 +171,7 @@ export const RefreshToken = (token: any) => {
   return axios
     .post(`/api/v1/session/refreshtoken`, token)
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const GetUserInformation = (token: any) => {

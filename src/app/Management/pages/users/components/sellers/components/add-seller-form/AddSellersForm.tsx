@@ -11,7 +11,11 @@ const { Option } = Select;
 import { Auth } from '../../../../../../../../auth/AuthContext';
 import Notification from '../../../../../../../components/notification';
 // API
-import { AddSeller, GetAllPlatform } from '../../../../../../../../API';
+import {
+  AddSeller,
+  GetAllPlatform,
+  RefreshToken,
+} from '../../../../../../../../API';
 // styles
 import './AddSellersForm.less';
 
@@ -150,28 +154,66 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         application_type: data.scale_status,
         address: data.address,
         website: data.website,
-        grade: '',
+        grade: '2',
         experience: data.experience,
         tbs_certification_number: data.tbs_certificate_num,
         certification_number: data.id_num,
-        variety_name: '',
+        card_type: data.id_type,
+        variety_name: 'kyela',
       },
     };
+
+    console.log(userInfo.id);
     setLoading(true);
     const createSellerAccount = async () => {
       const result = await AddSeller(value, userInfo.id, userAccessToken).then(
         (response) => response,
       );
       setLoading(false);
+      console.log(result);
       if (result.status === 200) {
         navigate(-1);
         Notification(true, 'Seller Account Created Successfully');
+      } else if (result.message === `Request failed with status code 401`) {
+        const token = localStorage.getItem('refreshToken');
+        const refreshToken = {
+          refresh_token: token,
+        };
+        const refreshTokenCall = async () => {
+          const response = await RefreshToken(refreshToken).then(
+            (response) => response,
+          );
+
+          if (response.status === 201) {
+            localStorage.setItem('accessToken', response.data.data.token);
+            localStorage.setItem(
+              'refreshToken',
+              response.data.data.refreshToken,
+            );
+            const createSellerAgain = async () => {
+              // const newToken = localStorage.getItem('accessToken');
+              const newUser = await AddSeller(
+                value,
+                userInfo.id,
+                response.data.data.token,
+              ).then((response) => response);
+              if (newUser.status === 200) {
+                navigate(-1);
+                Notification(true, 'Seller Account Created Successfully');
+              }
+            };
+            createSellerAgain();
+          }
+        };
+        refreshTokenCall();
       } else {
-        Notification(false, 'Fail to create Seller Account');
+        Notification(false, 'Fail to Create Seller Account');
+        setLoading(false);
       }
     };
     createSellerAccount();
   };
+
   return (
     <div style={{ minHeight: '90vh', marginTop: '2rem' }}>
       <div className="form-header">

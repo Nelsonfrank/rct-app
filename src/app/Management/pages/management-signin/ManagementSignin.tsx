@@ -61,6 +61,7 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
 
           if (value.status === 201) {
             localStorage.setItem('accessToken', value.data.data.token);
+            localStorage.setItem('refreshToken', value.data.data.refreshToken);
 
             const getUserInfo = async () => {
               const result = await GetUserInformation(
