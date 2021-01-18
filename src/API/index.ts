@@ -182,19 +182,19 @@ export const GetUserInformation = (token: any) => {
       },
     })
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const ManagementLogin = (payload: any) => {
   return axios
     .post(`/api/v1/user/signin-password`, payload)
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const GenerateTokenByPassword = (payload: any) => {
   return axios
     .post(`/api/v1/session/generatetoken-by-password`, payload)
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };

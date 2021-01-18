@@ -9,7 +9,7 @@ import {
   GenerateTokenByPassword,
   GetUserInformation,
 } from '../../../../API';
-
+import Notification from '../../../components/notification';
 //Styles
 // import './ManagementSignin.less';
 
@@ -50,9 +50,9 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
     console.log(inputValue);
     setloading(true);
     const ManagementSignin = async () => {
-      const result = await ManagementLogin(inputValue).then(
-        (response) => response,
-      );
+      const result = await ManagementLogin(inputValue)
+        .then((response) => response)
+        .catch((error) => error.response.message);
       if (result.status === 200) {
         const generateTokenByPwd = async () => {
           const value = await GenerateTokenByPassword(inputValue).then(
@@ -75,17 +75,20 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
                 );
                 handleAuth();
               } else {
-                console.log(result);
+                Notification(false, value);
               }
               setloading(false);
             };
             getUserInfo();
           } else {
-            console.log(value);
+            Notification(false, value);
           }
         };
 
         generateTokenByPwd();
+      } else {
+        setloading(false);
+        Notification(false, result);
       }
       console.log(result);
     };
