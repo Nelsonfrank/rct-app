@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Components
 import { Input } from 'antd';
-import { Divider } from 'antd';
-import {
-  // BellOutlined,
-  // QuestionCircleOutlined,
-  MenuOutlined,
-  CloseOutlined,
-} from '@ant-design/icons';
+import { Divider, Button, Popover } from 'antd';
+import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Link } from '@reach/router';
+
+//Auth
+import { Auth } from '../../../../../../auth/AuthContext';
 // Styles
 import './HeaderNavigation.less';
 
@@ -26,6 +24,7 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
   //State
   const [isOpen, setisOpen] = useState(false);
 
+  const { authenticated, logout } = useContext(Auth);
   const { hideOptions } = props;
   const toggleNavigationOption = () => {
     setisOpen(!isOpen);
@@ -71,14 +70,41 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
                 style={{ fontSize: 20, margin: '0 0.25rem' }}
               />
             </div> */}
-              <div className="registry-container">
-                <span className="register--welcome">Welcome!</span>
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Link to="/app/login">Sign In</Link>{' '}
-                  <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
-                  <Link to="/app/signup">Register</Link>
+              {!authenticated ? (
+                <div className="registry-container">
+                  <span className="register--welcome">Welcome!</span>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Link to="/app/login">Sign In</Link>{' '}
+                    <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
+                    {/* <Link to="/app/signup">Register</Link> */}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <Popover
+                    placement="bottom"
+                    content={
+                      <>
+                        <div
+                          style={{ display: 'flex', flexDirection: 'column' }}
+                        >
+                          <Button type="link">Profile</Button>
+                          <Button type="link" onClick={logout}>
+                            Logout
+                          </Button>
+                        </div>
+                      </>
+                    }
+                    trigger="click"
+                  >
+                    <div className="profile">
+                      <div className="profile--shape">
+                        <p className="user--name">N</p>
+                      </div>
+                    </div>
+                  </Popover>
+                </div>
+              )}
             </div>
           </div>
         </div>
