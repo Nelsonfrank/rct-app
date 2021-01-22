@@ -74,19 +74,21 @@ const SellersTable: React.FC = () => {
 
       // console.log(result);
       const res = result.data.data.sellerInformations;
-      const name = res.full_name.split(' ');
-      const response = {
-        firstName: name[0],
-        lastName: name[1],
-        phone: res.phone_number,
-        platform: res.platform_name,
-        leader: res.platform_leader,
-        locations: res.location,
-        tags: [res.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
-      };
-      const sellerValues = [response];
-      // setSellers(sellerValues);
-      console.log(sellerValues);
+      if (res.length !== 0) {
+        const name = res.full_name.split(' ');
+        const response = {
+          firstName: name[0],
+          lastName: name[1],
+          phone: res.phone_number,
+          platform: res.platform_name,
+          leader: res.platform_leader,
+          locations: res.location,
+          tags: [res.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
+        };
+        const sellerValues = [response];
+        // setSellers(sellerValues);
+        console.log(sellerValues);
+      }
     };
     getSellers();
 

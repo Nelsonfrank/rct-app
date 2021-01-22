@@ -7,6 +7,7 @@ import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { navigate, RouteComponentProps } from '@reach/router';
 import { GetAllPlatform } from '../../../../../../API';
+import Notification from '../../../../../components/notification';
 // Props Types
 // export interface PlatformListProps {}
 
@@ -31,7 +32,11 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
   useEffect(() => {
     const getAllPlatform = async () => {
       const result = await GetAllPlatform().then((response) => response);
-      setPlatforms(result.data.data.platform);
+      if (result.status === 200) {
+        setPlatforms(result.data.data.platform);
+      } else {
+        Notification(false, 'Failed to fetch Platform');
+      }
       console.log(result);
     };
     getAllPlatform();
