@@ -18,12 +18,17 @@ const Users: React.FC<RouteComponentProps> = () => {
       {({ authenticated, handleAuthentication }) =>
         authenticated ? (
           <Router primary={false}>
-            <Buyers path="buyers/*" default />
-            <Sellers path="sellers/*" />
+            <Buyers path="buyers/*" />
+            {/* <Sellers path="sellers/*" /> */}
+            <VerifyPhone
+              path="/verify-phone"
+              handleAuth={handleAuthentication}
+            />
           </Router>
         ) : (
           <Router primary={false}>
             <Buyers path="buyers/*" />
+            <Sellers path="sellers/*" />
             <Login path="/login" />
             <SignUp path="/signup" />
             <VerifyPhone

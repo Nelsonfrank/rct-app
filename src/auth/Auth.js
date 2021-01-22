@@ -16,11 +16,13 @@ class Auth extends Component {
       userRole: '',
       userAccessToken: '',
     });
+    navigate('/management/signin');
   };
 
   handleAuthentication = () => {
+    const isAuth = localStorage.getItem('authenticated');
     this.setState({
-      authenticated: true,
+      authenticated: !!isAuth,
       userRole: localStorage.getItem('UserRole'),
       userAccessToken: localStorage.getItem('accessToken'),
     });
@@ -33,7 +35,7 @@ class Auth extends Component {
       userAccessToken: localStorage.getItem('accessToken'),
       userInfo: JSON.parse(localStorage.getItem('UserInfo')),
     });
-    console.log(this.state.userInfo);
+    // console.log(this.state.userInfo);
     navigate('/management/dashboard');
   };
   render() {

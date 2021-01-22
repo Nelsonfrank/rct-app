@@ -14,12 +14,14 @@ const dataSource = [
   {
     key: '1',
     name: 'Super Kyela',
-    region: 'Mbeya',
+    platform: 'Mbeya',
+    added_by: 'Juma Salehe',
   },
   {
     key: '2',
     name: 'Super Kilombero',
-    region: 'Morogoro',
+    platform: 'Morogoro',
+    added_by: 'Alfred John',
   },
 ];
 
@@ -43,12 +45,21 @@ const VarietyList: React.FC<RouteComponentProps> = () => {
       key: 'name',
     },
     {
-      title: 'Region',
-      dataIndex: 'region',
-      key: 'region',
+      title: 'Platform',
+      dataIndex: 'platform',
+      key: 'platform',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.region.length - b.region.length,
+        compare: (a: any, b: any) => a.platform.length - b.platform.length,
+      },
+    },
+    {
+      title: 'Added By',
+      dataIndex: 'added_by',
+      key: 'added_by',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.added_by.length - b.added_by.length,
       },
     },
     {

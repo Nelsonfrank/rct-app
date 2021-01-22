@@ -5,13 +5,8 @@ import { navigate } from '@reach/router';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
 // Props Types
-export interface BackButtonProps {
-  routes?: string;
-}
 
-const BackButton: React.FC<BackButtonProps> = (props: BackButtonProps) => {
-  const { routes } = props;
-  console.log(routes);
+const BackButton: React.FC = () => {
   return (
     <>
       <div>

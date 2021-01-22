@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // dependencies
 import { Input, Button } from 'antd';
 import { RouteComponentProps } from '@reach/router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 // Components
 import BackButton from '../../../../components/back-button';
@@ -14,6 +15,25 @@ import './AddVarietyForm.less';
 // export interface PriceRateFormProps {}
 
 const AddVarietyForm: React.FC<RouteComponentProps> = () => {
+  const { register, handleSubmit, setValue, errors } = useForm({
+    mode: 'onBlur',
+  });
+
+  useEffect(() => {
+    register('variety_name', { required: true });
+  }, [register]);
+
+  const handleVarietyChange = (e: any) => {
+    setValue('variety_name', e.target.value);
+  };
+
+  type FormValues = {
+    variety_name: string;
+  };
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
   return (
     <>
       <BackButton />
@@ -22,12 +42,16 @@ const AddVarietyForm: React.FC<RouteComponentProps> = () => {
           <h1 className="add-variety-form-header">Add Variety</h1>
         </div>
         <hr />
-        <div className="add-variety-inner">
+        <form className="add-variety-inner" onSubmit={handleSubmit(onSubmit)}>
           <div className="add-variety-input">
-            <Input size="large" placeholder="Name" />
-          </div>
-          <div className="add-variety-input">
-            <Input size="large" placeholder="Origin Region" />
+            <Input
+              size="large"
+              placeholder="Name"
+              onChange={handleVarietyChange}
+            />
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.variety_name && 'Variety name is required'}
+            </span>
           </div>
           <div
             style={{
@@ -45,11 +69,12 @@ const AddVarietyForm: React.FC<RouteComponentProps> = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}
+              htmlType="submit"
             >
               Submit
             </Button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

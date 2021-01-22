@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 // dependencies
 import { Input, InputNumber, DatePicker, Button, Select } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 import { region, variety } from './country-dial';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 // components
 import BackButton from '../../../../components/back-button';
@@ -16,13 +17,42 @@ import './PriceRateForm.less';
 const PriceRateForm: React.FC<RouteComponentProps> = () => {
   const { Option } = Select;
 
-  const [countrySelected, setcountrySelected] = useState('');
+  const { register, handleSubmit, setValue, errors } = useForm({
+    mode: 'onBlur',
+  });
 
-  const handleOnSelectChange = (value: any) => {
-    setcountrySelected(value);
-    console.log(countrySelected);
+  useEffect(() => {
+    register('region', { required: true });
+    register('variety_name', { required: true });
+    register('price', { required: true });
+    register('date', { required: true });
+  }, [register]);
+
+  const handleRegionChange = (value: any) => {
+    setValue('region', value);
   };
 
+  const handleVarietyChange = (value: any) => {
+    setValue('variety_name', value);
+  };
+
+  const handlePriceChange = (value: any) => {
+    setValue('price', value);
+  };
+
+  const handleDateChange = (event: any) => {
+    setValue('date', new Date(event).toISOString());
+  };
+
+  type FormValues = {
+    region: string;
+    variety_name: string;
+    price: string;
+    date: string;
+  };
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
   return (
     <>
       <BackButton />
@@ -31,7 +61,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
           <h1 className="price-rate-form-header">Add Price Rate</h1>
         </div>
         <hr />
-        <div className="price-rate-inner">
+        <form className="price-rate-inner" onSubmit={handleSubmit(onSubmit)}>
           <div className="price-rate-input">
             <Select
               size="large"
@@ -42,7 +72,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
               filterOption={(input, option: any) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
-              onChange={(e) => handleOnSelectChange(e)}
+              onChange={handleRegionChange}
             >
               {region.map((item) => (
                 <Option key={item.city} value={item.city}>
@@ -50,6 +80,9 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
                 </Option>
               ))}
             </Select>
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.region && 'Region is required'}
+            </span>
           </div>
           <div className="price-rate-input">
             <Select
@@ -61,7 +94,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
               filterOption={(input, option: any) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
-              onChange={(e) => handleOnSelectChange(e)}
+              onChange={handleVarietyChange}
             >
               {variety.map((item) => (
                 <Option key={item.name} value={item.name}>
@@ -69,13 +102,20 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
                 </Option>
               ))}
             </Select>
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.variety_name && 'Variety is required'}
+            </span>
           </div>
           <div className="price-rate-input">
             <InputNumber
               size="large"
-              placeholder="Price"
+              placeholder="Price (TZS/Kg)"
               style={{ width: '100%' }}
+              onChange={handlePriceChange}
             />
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.price && 'Price is required'}
+            </span>
           </div>
 
           <div className="price-rate-input">
@@ -86,8 +126,15 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
                 defaultValue="Price Effect Date  (From)"
                 size="large"
               />
-              <DatePicker style={{ width: '70%' }} size="large" />
+              <DatePicker
+                style={{ width: '70%' }}
+                size="large"
+                onChange={handleDateChange}
+              />
             </Input.Group>
+            <span style={{ fontSize: '1rem', color: 'red' }}>
+              {errors.date && 'Date is required'}
+            </span>
           </div>
           <div
             style={{
@@ -105,11 +152,12 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}
+              htmlType="submit"
             >
               Submit
             </Button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

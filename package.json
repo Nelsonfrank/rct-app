@@ -36,7 +36,8 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
-    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "deploy-production": "crado build && scp -r ./build/* root@142.93.210.105:/var/www/example.com/html"
   },
   "husky": {
     "hooks": {

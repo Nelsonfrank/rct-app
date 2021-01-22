@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://142.93.210.105:1122';
  */
 export const GetAllUsers = () => {
   return axios
-    .get(`/api/v1/seller`)
+    .get(`/api/v1/seller/offset/0`)
     .then((response) => response)
     .catch((error) => error);
 };

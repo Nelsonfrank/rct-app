@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 //Components
-import { Table, Space, Tag, Tooltip, Divider } from 'antd';
+import { Table, Space, Tag, Tooltip, Divider, Popconfirm } from 'antd';
 import {
   StopOutlined,
   DeleteOutlined,
@@ -51,19 +51,46 @@ const data = [
     tags: ['Individual', 'TBS Certified'],
   },
 ];
-
+export interface sellerProps {
+  sellers:
+    | {
+        firstName: string;
+        lastName: string;
+        phone: string;
+        platform: string;
+        leader: string;
+        locations: string;
+        tags: string[];
+      }[]
+    | undefined;
+}
 const SellersTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [sellers, setSellers] = useState([]);
+  // const [sellers, setSellers] = useState();
 
   useEffect(() => {
     const getSellers = async () => {
       const result = await GetAllUsers().then((response) => response);
-      setSellers(result.data);
+
+      // console.log(result);
+      const res = result.data.data.sellerInformations;
+      const name = res.full_name.split(' ');
+      const response = {
+        firstName: name[0],
+        lastName: name[1],
+        phone: res.phone_number,
+        platform: res.platform_name,
+        leader: res.platform_leader,
+        locations: res.location,
+        tags: [res.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
+      };
+      const sellerValues = [response];
+      // setSellers(sellerValues);
+      console.log(sellerValues);
     };
     getSellers();
 
-    console.log(sellers);
+    // console.log(sellers);
   }, []);
   const handleOnRowChange = (selectedRowKey: any) => {
     setSelectedRowKeys(selectedRowKey);
@@ -133,11 +160,13 @@ const SellersTable: React.FC = () => {
                 </Tooltip>
               </div>
               <div>
-                <Tooltip title="Delete Buyer" color={'red'}>
-                  <DeleteOutlined
-                    style={{ fontSize: '1.25rem', color: '#ff0000' }}
-                  />
-                </Tooltip>
+                <Popconfirm title="Delete User？" okText="Yes" cancelText="No">
+                  <Tooltip title="Delete Buyer" color={'red'}>
+                    <DeleteOutlined
+                      style={{ fontSize: '1.25rem', color: '#ff0000' }}
+                    />
+                  </Tooltip>
+                </Popconfirm>
               </div>
             </Space>
           </>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
 import { Link } from '@reach/router';
 import './Header.less';
+import { Auth } from '../../../../../../auth/AuthContext';
+
 export interface HeaderType {
   handleShowNavBar: () => void;
   isNavBarOpened: boolean;
@@ -12,6 +14,8 @@ const Header: React.FC<HeaderType> = ({
   handleShowNavBar,
   isNavBarOpened,
 }: HeaderType) => {
+  const { logout } = useContext(Auth);
+
   return (
     <>
       <div
@@ -50,7 +54,9 @@ const Header: React.FC<HeaderType> = ({
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <Button type="link">Update Username</Button>
                       <Button type="link">Update Password</Button>
-                      <Button type="link">Logout</Button>
+                      <Button type="link" onClick={logout}>
+                        Logout
+                      </Button>
                     </div>
                   </>
                 }
