@@ -10,7 +10,7 @@ import {
   EyeOutlined,
 } from '@ant-design/icons';
 import { navigate } from '@reach/router';
-
+import Notification from '../../../../../../../components/notification';
 // Api
 import { GetAllUsers } from '../../../../../../../../API';
 const { Column } = Table;
@@ -18,76 +18,47 @@ const { Column } = Table;
 // Props Types
 // export interface SellersTableProps {}
 
-// placeholder data
-const data = [
-  {
-    key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
-    phone: '07812121212',
-    platform: 'mbeya',
-    leader: 'Mr.John Doe',
-    location: 'Mbeya',
-    tags: ['Individual', 'TBS Certified'],
-  },
-  {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    phone: '07812121212',
-    platform: 'mbeya',
-    leader: 'Mr.John Doe',
-    location: 'Mbeya',
-    tags: ['Individual', 'TBS Certified'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    phone: '07812121212',
-    platform: 'mbeya',
-    leader: 'Mr.John Doe',
-    location: 'Mbeya',
-    tags: ['Individual', 'TBS Certified'],
-  },
-];
-export interface sellerProps {
-  sellers:
-    | {
-        firstName: string;
-        lastName: string;
-        phone: string;
-        platform: string;
-        leader: string;
-        locations: string;
-        tags: string[];
-      }[]
-    | undefined;
-}
+type sellerProps = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  platform: string;
+  leader: string;
+  location: string;
+  tags: string[];
+}[];
 const SellersTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  // const [sellers, setSellers] = useState();
+  const [sellers, setSellers] = useState<sellerProps>([]);
 
   useEffect(() => {
     const getSellers = async () => {
       const result = await GetAllUsers().then((response) => response);
 
-      // console.log(result);
-      const res = result.data.data.sellerInformations;
-      if (res.length !== 0) {
-        const name = res.full_name.split(' ');
-        const response = {
-          firstName: name[0],
-          lastName: name[1],
-          phone: res.phone_number,
-          platform: res.platform_name,
-          leader: res.platform_leader,
-          locations: res.location,
-          tags: [res.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
-        };
-        const sellerValues = [response];
-        // setSellers(sellerValues);
-        console.log(sellerValues);
+      console.log(result);
+      if (result.status === 200) {
+        const res = result.data.data.sellerInformations;
+        console.log(res);
+        if (res.length !== 0) {
+          const name = res[0].full_name.split(' ');
+          const response = {
+            firstName: name[0],
+            lastName: name[1],
+            phone: res[0].phone_number,
+            platform: res[0].platform_name,
+            leader: res[0].platform_leader,
+            location: res[0].location,
+            tags: [
+              res[0].is_tbs_certified.length !== 0 ? 'TBS Certificed' : '',
+            ],
+          };
+          const sellerValues = [response];
+          setSellers(sellerValues);
+          // setSellers(sellerValues);
+          // console.log(sellerValues);
+        }
+      } else {
+        Notification(false, 'Failed to fetch sellers');
       }
     };
     getSellers();
@@ -107,7 +78,7 @@ const SellersTable: React.FC = () => {
     onChange: handleOnRowChange,
   };
   return (
-    <Table dataSource={data} rowSelection={rowSelection}>
+    <Table dataSource={sellers} rowSelection={rowSelection}>
       <Column title="First Name" dataIndex="firstName" key="firstName" />
       <Column title="Last Name" dataIndex="lastName" key="lastName" />
       <Column title="Phone Number" dataIndex="phone" key="phone" />
