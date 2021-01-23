@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 // dependencies
 import { Input, Button } from 'antd';
-import { RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 // Components
 import BackButton from '../../../../components/back-button';
-
+import Notification from '../../../../../components/notification';
+// Auth
+import { Auth } from '../../../../../../auth/AuthContext';
 // Styles
 import './AddVarietyForm.less';
 
+// API
+import { AddVariety } from '../../../../../../API';
 // Props Types
 // export interface PriceRateFormProps {}
 
@@ -19,6 +23,7 @@ const AddVarietyForm: React.FC<RouteComponentProps> = () => {
     mode: 'onBlur',
   });
 
+  const { userAccessToken } = useContext(Auth);
   useEffect(() => {
     register('variety_name', { required: true });
   }, [register]);
@@ -32,7 +37,27 @@ const AddVarietyForm: React.FC<RouteComponentProps> = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    const payload = {
+      variety_name: data.variety_name,
+    };
+
+    const addVariety = async () => {
+      const varietyResponse = await AddVariety(payload, userAccessToken).then(
+        (response) => response,
+      );
+      if (varietyResponse.status === 200) {
+        Notification(
+          true,
+          'Variety Created Successfully',
+          `Succeed with status ${varietyResponse.status}`,
+        );
+        navigate(-1);
+      } else {
+        Notification(false, 'Failed to Create Variety', varietyResponse);
+      }
+      console.log(varietyResponse);
+    };
+    addVariety();
   };
   return (
     <>

@@ -1,11 +1,14 @@
 /* eslint-disable react/display-name */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //Components
 import { Table, Space, Divider, Tooltip, Button } from 'antd';
 import { StopOutlined, DeleteOutlined } from '@ant-design/icons';
 import { RouteComponentProps, navigate } from '@reach/router';
 import Card from '../../../../../components/card';
+import Notification from '../../../../../components/notification';
+//API
+import { GetAllVariety } from '../../.././../../../API';
 // Props Types
 // export interface VarietyListProps {}
 
@@ -25,9 +28,40 @@ const dataSource = [
   },
 ];
 
+type varietyProps = {
+  key: string;
+  name: string;
+  platform: string;
+  region: string;
+  added_by: string;
+}[];
 const VarietyList: React.FC<RouteComponentProps> = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [variety, setVariety] = useState<varietyProps>([]);
+  useEffect(() => {
+    const getAllVariety = async () => {
+      const varietyResponse = await GetAllVariety().then(
+        (response) => response,
+      );
 
+      if (varietyResponse.status === 200) {
+        const data = varietyResponse.data.data.map((item: any) => {
+          return {
+            key: item.id,
+            name: item.variety_name,
+            platform: item.platform_name,
+            region: item.platform_region,
+            added_by: item.user_name,
+          };
+        });
+        setVariety(data);
+        // console.log(data);
+      } else {
+        Notification(false, 'Fail to Fetch Variety');
+      }
+    };
+    getAllVariety();
+  }, []);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSelectChange = (selectedRowKeys: any) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
@@ -51,6 +85,15 @@ const VarietyList: React.FC<RouteComponentProps> = () => {
       sorter: {
         // eslint-disable-next-line
         compare: (a: any, b: any) => a.platform.length - b.platform.length,
+      },
+    },
+    {
+      title: 'Region',
+      dataIndex: 'region',
+      key: 'region',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) => a.region.length - b.region.length,
       },
     },
     {
@@ -107,7 +150,7 @@ const VarietyList: React.FC<RouteComponentProps> = () => {
       <Divider />
       <Table
         rowSelection={rowSelection}
-        dataSource={dataSource}
+        dataSource={variety}
         columns={columns}
       />
     </Card>

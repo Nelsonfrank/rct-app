@@ -227,3 +227,21 @@ export const GenerateTokenByPassword = (payload: any) => {
     .then((response) => response)
     .catch((error) => error.message);
 };
+
+export const AddVariety = (payload: any, token: string) => {
+  return axios
+    .post(`/api/v1/variety`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error.message);
+};
+
+export const GetAllVariety = () => {
+  return axios
+    .get(`/api/v1/variety`)
+    .then((response) => response)
+    .catch((error) => error.message);
+};
