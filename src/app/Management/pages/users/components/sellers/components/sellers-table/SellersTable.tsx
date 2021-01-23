@@ -37,26 +37,27 @@ const SellersTable: React.FC = () => {
 
       console.log(result);
       if (result.status === 200) {
-        const res = result.data.data.sellerInformations;
-        console.log(res);
-        if (res.length !== 0) {
-          const name = res[0].full_name.split(' ');
-          const response = {
-            firstName: name[0],
-            lastName: name[1],
-            phone: res[0].phone_number,
-            platform: res[0].platform_name,
-            leader: res[0].platform_leader,
-            location: res[0].location,
-            tags: [
-              res[0].is_tbs_certified.length !== 0 ? 'TBS Certificed' : '',
-            ],
+        const res = result.data.data.sellerInformations.map((item: any) => {
+          return {
+            firstName: item.full_name.split(' ')[0],
+            lastName: item.full_name.split(' ')[1],
+            phone: item.phone_number,
+            platform: item.platform_name,
+            leader: item.platform_leader,
+            location: item.location,
+            tags: [item.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
           };
-          const sellerValues = [response];
-          setSellers(sellerValues);
-          // setSellers(sellerValues);
-          // console.log(sellerValues);
-        }
+        });
+        console.log(res);
+        setSellers(res);
+        // if (res.length !== 0) {
+        //   const name = res[0];
+        //   const response = ;
+        //   const sellerValues = [response];
+        //   setSellers(sellerValues);
+        //   // setSellers(sellerValues);
+        //   // console.log(sellerValues);
+        // }
       } else {
         Notification(false, 'Failed to fetch sellers');
       }
