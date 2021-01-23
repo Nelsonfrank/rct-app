@@ -50,16 +50,8 @@ const SellersTable: React.FC = () => {
         });
         console.log(res);
         setSellers(res);
-        // if (res.length !== 0) {
-        //   const name = res[0];
-        //   const response = ;
-        //   const sellerValues = [response];
-        //   setSellers(sellerValues);
-        //   // setSellers(sellerValues);
-        //   // console.log(sellerValues);
-        // }
       } else {
-        Notification(false, 'Failed to fetch sellers');
+        Notification(false, 'Failed to fetch sellers', result.messages);
       }
     };
     getSellers();

@@ -79,16 +79,22 @@ const LeadersTable: React.FC = () => {
                   });
                 setLeader(leaderData);
                 console.log(leaderData);
+              } else {
+                Notification(
+                  false,
+                  'Fail to fetch Leader',
+                  leaderResponse.message,
+                );
               }
             };
             fetchAllLeader();
           } else {
-            Notification(false, 'Fail to fetch Leader');
+            Notification(false, 'Fail to fetch Leader', response);
           }
         };
         refreshTokenCall();
       } else {
-        Notification(false, 'Fail to fetch Leader');
+        Notification(false, 'Fail to fetch Leader', leaderResponse.message);
       }
     };
     fetchAllLeader();
