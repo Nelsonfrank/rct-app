@@ -12,22 +12,6 @@ import { GetAllVariety } from '../../.././../../../API';
 // Props Types
 // export interface VarietyListProps {}
 
-// placeholder data
-const dataSource = [
-  {
-    key: '1',
-    name: 'Super Kyela',
-    platform: 'Mbeya',
-    added_by: 'Juma Salehe',
-  },
-  {
-    key: '2',
-    name: 'Super Kilombero',
-    platform: 'Morogoro',
-    added_by: 'Alfred John',
-  },
-];
-
 type varietyProps = {
   key: string;
   name: string;
