@@ -129,6 +129,17 @@ export const CreateLeader = (
     .catch((error) => error);
 };
 
+export const GetAllLeader = (token: string) => {
+  return axios
+    .get(`/api/v1/leader`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
 export const FetchAllPlatform = () => {
   return axios
     .get(`/api/v1/platform`)

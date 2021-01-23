@@ -1,35 +1,113 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 
 //Components
 import { Table, Space, Divider, Tooltip } from 'antd';
 import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import Notification from '../../../../../../../components/notification';
 
+// API
+import { GetAllLeader, RefreshToken } from '../../../../../../../../API';
+
+// Auth
+import { Auth } from '../../../../../../../../auth/AuthContext';
 // Props Types
 // export interface LeadersTableProps {}
 
-// placeholder data
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike Johnson',
-    platform: 'Morogoro',
-    country: 'Tanzania',
-  },
-  {
-    key: '2',
-    name: 'John Doe',
-    platform: 'Kyela',
-    country: 'Tanzania',
-  },
-];
-
 const LeadersTable: React.FC = () => {
+  const [leader, setLeader] = useState([]);
+  const { userAccessToken } = useContext(Auth);
+
+  useEffect(() => {
+    const fetchAllLeader = async () => {
+      const leaderResponse = await GetAllLeader(userAccessToken).then(
+        (response) => response,
+      );
+      if (leaderResponse.status === 200) {
+        const leaderData = leaderResponse.data.data
+          .map((item: any) => {
+            return {
+              key: item.user_id,
+              name: item.name,
+              platform: item.platform_name,
+              region: item.platform_region,
+              phone_number: item.phone_number,
+            };
+          })
+          .filter((item: any) => {
+            return item.name !== null;
+          });
+        setLeader(leaderData);
+
+        console.log(leaderData);
+      } else if (
+        leaderResponse.message === 'Request failed with status code 401'
+      ) {
+        const token = localStorage.getItem('refreshToken');
+        const refreshToken = {
+          refresh_token: token,
+        };
+        const refreshTokenCall = async () => {
+          const response = await RefreshToken(refreshToken).then(
+            (response) => response,
+          );
+          if (response.status === 201) {
+            localStorage.setItem('accessToken', response.data.data.token);
+            localStorage.setItem(
+              'refreshToken',
+              response.data.data.refreshToken,
+            );
+
+            const fetchAllLeader = async () => {
+              const leaderResponse = await GetAllLeader(
+                response.data.data.token,
+              ).then((response) => response);
+              if (leaderResponse.status === 200) {
+                const leaderData = leaderResponse.data.data
+                  .map((item: any) => {
+                    return {
+                      key: item.user_id,
+                      name: item.name,
+                      platform: item.platform_name,
+                      region: item.platform_region,
+                      phone_number: item.phone_number,
+                    };
+                  })
+                  .filter((item: any) => {
+                    return item.name !== null;
+                  });
+                setLeader(leaderData);
+                console.log(leaderData);
+              }
+            };
+            fetchAllLeader();
+          } else {
+            Notification(false, 'Fail to fetch Leader');
+          }
+        };
+        refreshTokenCall();
+      } else {
+        Notification(false, 'Fail to fetch Leader');
+      }
+    };
+    fetchAllLeader();
+  }, []);
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+    },
+    {
+      title: 'Phone Number',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
+      sorter: {
+        // eslint-disable-next-line
+        compare: (a: any, b: any) =>
+          a.phone_number.length - b.phone_number.length,
+      },
     },
     {
       title: 'Platform',
@@ -41,12 +119,12 @@ const LeadersTable: React.FC = () => {
       },
     },
     {
-      title: 'Country',
-      dataIndex: 'country',
-      key: 'country',
+      title: 'Region',
+      dataIndex: 'region',
+      key: 'region',
       sorter: {
         // eslint-disable-next-line
-        compare: (a: any, b: any) => a.country.length - b.country.length,
+        compare: (a: any, b: any) => a.region.length - b.region.length,
       },
     },
     {
@@ -78,7 +156,7 @@ const LeadersTable: React.FC = () => {
       ),
     },
   ];
-  return <Table dataSource={dataSource} columns={columns} />;
+  return <Table dataSource={leader} columns={columns} />;
 };
 
 export default LeadersTable;
