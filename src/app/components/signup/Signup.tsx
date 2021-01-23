@@ -1,16 +1,63 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 // Components
-import { Input, InputNumber, Button, Divider } from 'antd';
-import { navigate, RouteComponentProps, Link } from '@reach/router';
+import { Input, Button, Divider } from 'antd';
+import { RouteComponentProps, Link } from '@reach/router';
 
+// Api
+import { CompleteRegistration } from '../../../API';
 //Styles
 import './Signup.less';
 
 // Props type
 // export interface SignupProps {}
 
-const Signup: React.FC<RouteComponentProps> = () => {
+const Signup: React.FC<RouteComponentProps> = (props: any) => {
+  const { register, handleSubmit, setValue, getValues } = useForm();
+
+  useEffect(() => {
+    const phoneDetail = props.location.state.data;
+    setValue('dial_code', phoneDetail.dial_code);
+    setValue('phone_number', phoneDetail.phone_number);
+  }, [props.location.state.data, setValue]);
+
+  useEffect(() => {
+    register('first_name', { required: true });
+    register('last_name', { required: true });
+    register('dial_code', { required: true });
+    register('phone_number', { required: true });
+  }, [register]);
+
+  const handleFirstNameChange = (event: any) => {
+    setValue('first_name', event.target.value);
+  };
+
+  const handleLastNameChange = (event: any) => {
+    setValue('last_name', event.target.value);
+  };
+
+  const handlePhoneChange = (event: any) => {
+    setValue('phone_number', event.target.value);
+  };
+  const onSubmit = (data: any) => {
+    const payload = {
+      dial_code: data.dial_code,
+      phone_number: data.phone_number,
+      name: `${data.first_name} ${data.last_name}`,
+    };
+    // console.log(payload);
+
+    const completeUserRegistration = async () => {
+      const updateResponse = await CompleteRegistration(payload)
+        .then((response) => response)
+        .catch((error) => error);
+
+      console.log(updateResponse.message);
+    };
+
+    completeUserRegistration();
+  };
+
   return (
     <div>
       <div className="signup_container">
@@ -25,28 +72,36 @@ const Signup: React.FC<RouteComponentProps> = () => {
                 }}
               />
             </div>
-            <div style={{ width: '100%' }}>
+            <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
               <div className="signup_username">
                 <div className="signup_names">
-                  <Input placeholder="First Name" size="large" />
+                  <Input
+                    placeholder="First Name"
+                    size="large"
+                    onChange={handleFirstNameChange}
+                  />
                 </div>
                 <div className="signup_names">
-                  <Input placeholder="Last Name" size="large" />
+                  <Input
+                    placeholder="Last Name"
+                    size="large"
+                    onChange={handleLastNameChange}
+                  />
                 </div>
               </div>
               <div className="signup_phoneNo">
-                <InputNumber
+                <Input
                   placeholder="Phone Number"
                   size="large"
                   style={{ width: '100%' }}
+                  value={getValues('phone_number')}
+                  maxLength={9}
+                  addonBefore={getValues('dial_code') || '+255'}
+                  onChange={handlePhoneChange}
                 />
               </div>
               <div className="signup_btn">
-                <Button
-                  type="primary"
-                  size="large"
-                  onClick={() => navigate('/verify-phone')}
-                >
+                <Button type="primary" size="large" htmlType="submit">
                   {' '}
                   SignUp
                 </Button>
@@ -60,17 +115,16 @@ const Signup: React.FC<RouteComponentProps> = () => {
               >
                 <div style={{ marginTop: 10 }}>
                   <p>
-                    Already have an account?!.{' '}
-                    <Link to="/login"> Login Here</Link>
+                    Update Phone Number?!. <Link to="/login"> Click Here</Link>
                   </p>
                 </div>
                 <div>
                   <Link to="/">
-                    <p>Go Back</p>
+                    <p>Go Home</p>
                   </Link>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

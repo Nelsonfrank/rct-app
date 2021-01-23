@@ -32,6 +32,24 @@ export const AddSeller = (payload: any, adminId: any, token: any) => {
 };
 
 /**
+ * Complete User Registration
+ * @param payload
+ * @function
+ * @name CompleteRegistration
+ */
+export const CompleteRegistration = (payload: any) => {
+  return axios
+    .post(`/api/v1/user/complete`, payload, {
+      headers: {
+        'Access-Control-Allow-Origin': 'http://127.0.0.1:3000',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+/**
  * Get seller by id
  * @function
  * @name GetSellerById

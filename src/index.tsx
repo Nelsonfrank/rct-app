@@ -2,20 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import reportWebVitals from './reportWebVitals';
-// import App from './app';
-import Chats from './app/users/components/chat';
-// import { Provider } from 'react-redux';
-// import store from './redux/configureStore';
-// import AuthProvider from './auth/Auth';
+import App from './app';
+// import Chats from './app/users/components/chat';
+import { Provider } from 'react-redux';
+import store from './redux/configureStore';
+import AuthProvider from './auth/Auth';
 
 ReactDOM.render(
-  // <React.StrictMode>
-  // <AuthProvider>
-  //   <Provider store={store}>
-  <Chats />,
-  //   </Provider>
-  // </AuthProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </AuthProvider>
+  </React.StrictMode>,
   document.getElementById('root'),
 );
 

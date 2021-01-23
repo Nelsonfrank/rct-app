@@ -20,10 +20,10 @@ const Users: React.FC<RouteComponentProps> = () => {
           <Router primary={false}>
             <Buyers path="buyers/*" />
             {/* <Sellers path="sellers/*" /> */}
-            <VerifyPhone
+            {/* <VerifyPhone
               path="/verify-phone"
               handleAuth={handleAuthentication}
-            />
+            /> */}
           </Router>
         ) : (
           <Router primary={false}>

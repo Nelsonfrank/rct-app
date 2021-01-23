@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components
 import { Input, Button, Divider, Select } from 'antd';
@@ -19,7 +19,6 @@ type FormValues = {
 const Login: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState('+255');
-
   const { register, handleSubmit, setValue } = useForm();
 
   const handleChange = (e: any) => {
@@ -29,6 +28,7 @@ const Login: React.FC<RouteComponentProps> = () => {
     setValue('dial_code', value);
     setcountrySelected(value);
   };
+
   const handlePickCountryDial = (countryList: any, countryPickes: string) => {
     const value = countryList.filter(
       (item: any) => item.dial_code === countryPickes,
@@ -38,7 +38,7 @@ const Login: React.FC<RouteComponentProps> = () => {
     setcountryCode(item);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     register('dial_code'); // custom register Antd input
     register('phone_number'); // custom register Antd input
     handlePickCountryDial(country, countrySelected);

@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 //Components
 import { Input, Button } from 'antd';
 import { RouteComponentProps, navigate } from '@reach/router';
+import Notification from '../notification';
 // Styles
 import './VerifyPhone.less';
 
@@ -23,8 +24,10 @@ export interface VerifyPhoneProps extends RouteComponentProps {
 
 const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
   const [userNumber, setUserNumber] = React.useState({});
+  const [loading, setLoading] = React.useState({});
   const { register, handleSubmit, setValue } = useForm();
 
+  const { handleAuth } = props;
   type FormValues = {
     otpcode: string;
   };
@@ -47,34 +50,57 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    setLoading(true);
     const info = { ...data, ...userNumber };
     const verifyToken = async () => {
       await VerifyToken(info).then((response) => {
         console.log(response);
         if (response.status === 200) {
           const generateToken = async () => {
-            const result = await GenerateToken(data.otpcode).then(
-              (response) => {
-                console.log(response);
-                if (response.status === 201) {
-                  const getUserInformation = async () => {
-                    const information = await GetUserInformation(
-                      response.data.data.token,
-                    ).then((response) => response);
+            await GenerateToken(data.otpcode).then((response) => {
+              console.log(response);
+              if (response.status === 201) {
+                setLoading(false);
+                localStorage.setItem('accessToken', response.data.data.token);
+                localStorage.setItem(
+                  'refreshToken',
+                  response.data.data.refreshToken,
+                );
+                localStorage.setItem('authenticated', response.data.data.token);
+                const getUserInformation = async () => {
+                  const information = await GetUserInformation(
+                    response.data.data.token,
+                  ).then((response) => response);
+                  console.log(information);
+                  if (information.status === 200) {
+                    setLoading(false);
+                    localStorage.setItem(
+                      'UserRole',
+                      JSON.stringify(information.data.data.user.role),
+                    );
+                    localStorage.setItem(
+                      'UserInfo',
+                      JSON.stringify(information.data.data.user),
+                    );
+                    handleAuth();
                     console.log(information);
-                  };
-                  getUserInformation();
-                } else {
-                  console.log(response);
-                }
-              },
-            );
+                  } else {
+                    setLoading(false);
+                    Notification(false, information.message);
+                  }
+                };
+                getUserInformation();
+              } else {
+                setLoading(false);
+                console.log(response);
+              }
+            });
             // console.log(result);
-            localStorage.setItem('user_token', JSON.stringify(result));
+            // localStorage.setItem('user_token', JSON.stringify(result));
           };
           generateToken();
         } else {
-          console.log(response);
+          Notification(false, 'Fail to verify token');
         }
       });
     };
@@ -109,7 +135,12 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
                 </span>
               </div>
               <div className="verifyPhone_btn">
-                <Button type="primary" htmlType="submit" size="large">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  loading={loading}
+                >
                   {' '}
                   Send Code
                 </Button>
