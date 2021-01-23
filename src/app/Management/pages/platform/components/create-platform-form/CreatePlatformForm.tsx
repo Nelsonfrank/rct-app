@@ -70,24 +70,24 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
     setValue('phone_number', e.target.value);
   };
 
-  const createLeader = async (
-    payload: { dial_code: string; phone_number: string; name: string },
-    platformId: string,
-    accessToken: string,
-  ) => {
-    return await CreateLeader(payload, platformId, accessToken).then(
-      (response) => response,
-    );
-  };
+  // const createLeader = async (
+  //   payload: { dial_code: string; phone_number: string; name: string },
+  //   platformId: string,
+  //   accessToken: string,
+  // ) => {
+  //   return await CreateLeader(payload, platformId, accessToken).then(
+  //     (response) => response,
+  //   );
+  // };
 
-  const createPlatform = async (
-    payload: CreatePlatformTypes,
-    accessToken: string | null,
-  ) => {
-    return await CreatePlatform(payload, accessToken).then(
-      (response) => response,
-    );
-  };
+  // const createPlatform = async (
+  //   payload: CreatePlatformTypes,
+  //   accessToken: string | null,
+  // ) => {
+  //   return await CreatePlatform(payload, accessToken).then(
+  //     (response) => response,
+  //   );
+  // };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
@@ -106,52 +106,70 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
     };
     setLoading(true);
 
-    const platformResponse = createPlatform(platformValue, userAccessToken);
-
-    if (platformResponse.status === 200) {
-      createLeader(
-        platformLeaderInfo,
-        platformResponse.data.data,
-        userAccessToken,
+    const AddPlatform = async () => {
+      const result = await CreatePlatform(platformValue, userAccessToken).then(
+        (response) => response,
       );
-      setLoading(false);
-      navigate(-1);
-      Notification(true, 'Platform Created Successfully');
-    } else if (
-      platformResponse.message === `Request failed with status code 401`
-    ) {
-      const token = localStorage.getItem('refreshToken');
-      const refreshToken = {
-        refresh_token: token,
-      };
-      const refreshTokenCall = async () => {
-        const response = await RefreshToken(refreshToken).then(
-          (response) => response,
-        );
-
-        if (response.status === 201) {
-          localStorage.setItem('accessToken', response.data.data.token);
-          localStorage.setItem('refreshToken', response.data.data.refreshToken);
-
-          const platformResponse = createPlatform(
-            platformValue,
-            response.data.data.token,
-          );
-          createLeader(
+      if (result.status === 200) {
+        const createLeader = async () => {
+          const createLeaderResponse = await CreateLeader(
             platformLeaderInfo,
-            platformResponse.data.data,
-            response.data.data.token,
-          );
+            result.data.data,
+            userAccessToken,
+          ).then((response) => response);
+          console.log(createLeaderResponse);
           setLoading(false);
           navigate(-1);
           Notification(true, 'Platform Created Successfully');
-        }
-      };
-      refreshTokenCall();
-    } else {
-      setLoading(false);
-      Notification(false, 'Failed to Create Platform');
-    }
+        };
+        createLeader();
+      } else if (result.message === `Request failed with status code 401`) {
+        const token = localStorage.getItem('refreshToken');
+        const refreshToken = {
+          refresh_token: token,
+        };
+        const refreshTokenCall = async () => {
+          const response = await RefreshToken(refreshToken).then(
+            (response) => response,
+          );
+
+          if (response.status === 201) {
+            localStorage.setItem('accessToken', response.data.data.token);
+            localStorage.setItem(
+              'refreshToken',
+              response.data.data.refreshToken,
+            );
+
+            const AddPlatform = async () => {
+              const result = await CreatePlatform(
+                platformValue,
+                response.data.data.token,
+              ).then((response) => response);
+              if (result.status === 200) {
+                const createLeader = async () => {
+                  const createLeaderResponse = await CreateLeader(
+                    platformLeaderInfo,
+                    result.data.data,
+                    response.data.data.token,
+                  ).then((response) => response);
+                  console.log(createLeaderResponse);
+                  setLoading(false);
+                  navigate(-1);
+                  Notification(true, 'Platform Created Successfully');
+                };
+                createLeader();
+              }
+            };
+            AddPlatform();
+          }
+        };
+        refreshTokenCall();
+      } else {
+        setLoading(false);
+        Notification(false, 'Failed to Create Platform');
+      }
+    };
+    AddPlatform();
   };
   return (
     <>
