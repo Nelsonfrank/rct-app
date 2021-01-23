@@ -101,7 +101,7 @@ const Login: React.FC<RouteComponentProps> = () => {
                   addonBefore={countryCode || '+255'}
                   name="phone_number"
                   size="large"
-                  // ref={register}
+                  maxLength={9}
                   onChange={handleChange}
                   style={{ width: '100%' }}
                 />

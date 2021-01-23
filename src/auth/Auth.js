@@ -23,7 +23,7 @@ class Auth extends Component {
     const isAuth = localStorage.getItem('authenticated');
     this.setState({
       authenticated: !!isAuth,
-      userRole: localStorage.getItem('UserRole'),
+      userRole: JSON.parse(localStorage.getItem('UserRole')),
       userAccessToken: localStorage.getItem('accessToken'),
     });
   };
@@ -31,7 +31,7 @@ class Auth extends Component {
   handleAuthDashboard = () => {
     this.setState({
       authenticated: true,
-      userRole: localStorage.getItem('UserRole'),
+      userRole: JSON.parse(localStorage.getItem('UserRole')),
       userAccessToken: localStorage.getItem('accessToken'),
       userInfo: JSON.parse(localStorage.getItem('UserInfo')),
     });

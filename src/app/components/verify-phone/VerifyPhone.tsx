@@ -24,7 +24,7 @@ export interface VerifyPhoneProps extends RouteComponentProps {
 
 const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
   const [userNumber, setUserNumber] = React.useState({});
-  const [loading, setLoading] = React.useState({});
+  const [loading, setLoading] = React.useState(false);
   const { register, handleSubmit, setValue } = useForm();
 
   const { handleAuth } = props;
@@ -76,12 +76,25 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
                     setLoading(false);
                     localStorage.setItem(
                       'UserRole',
-                      JSON.stringify(information.data.data.user.role),
+                      JSON.stringify(information.data.data.roles),
                     );
                     localStorage.setItem(
                       'UserInfo',
                       JSON.stringify(information.data.data.user),
                     );
+                    const roleList = information.data.data.roles.map(
+                      (item: any) => {
+                        return item.role;
+                      },
+                    );
+                    if (roleList.includes('regular')) {
+                      navigate('/');
+                    } else if (roleList.includes('seller')) {
+                      navigate('/app/sellers');
+                    } else {
+                      navigate('/');
+                    }
+                    console.log(roleList);
                     handleAuth();
                     console.log(information);
                   } else {
@@ -95,8 +108,8 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
                 console.log(response);
               }
             });
-            // console.log(result);
-            // localStorage.setItem('user_token', JSON.stringify(result));
+
+            navigate('/');
           };
           generateToken();
         } else {

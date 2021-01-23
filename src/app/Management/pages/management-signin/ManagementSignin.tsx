@@ -72,7 +72,7 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
               if (result.status === 200) {
                 localStorage.setItem(
                   'UserRole',
-                  JSON.stringify(result.data.data.user.role),
+                  JSON.stringify(result.data.data.roles),
                 );
                 localStorage.setItem(
                   'UserInfo',
