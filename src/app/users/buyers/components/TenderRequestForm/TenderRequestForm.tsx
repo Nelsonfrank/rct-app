@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Component
-import { Input, Select, Button, InputNumber, Divider } from 'antd';
+import { Input, Select, Button, InputNumber } from 'antd';
 import { RouteComponentProps } from '@reach/router';
 //Styles
 import './TenderRequestForm.less';

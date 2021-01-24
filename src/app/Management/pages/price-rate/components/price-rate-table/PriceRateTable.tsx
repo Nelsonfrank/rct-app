@@ -17,31 +17,6 @@ import './PriceRateTable.less';
 // API
 import { GetPriceRate } from '../../../../../../API';
 //Props Type
-// export interface PriceRateTableProps {}
-
-const dataSource = [
-  {
-    key: '1',
-    variety: 'Super Kyela',
-    price: '2000/=',
-    region: 'Mbeya',
-    effectiveDate: 'Jan 26, 2020',
-  },
-  {
-    key: '2',
-    variety: 'Super Shinyanga',
-    price: '2200/=',
-    region: 'Shinyanga',
-    effectiveDate: 'Feb 25 2021',
-  },
-  {
-    key: '3',
-    variety: 'Super Singida',
-    price: '1800/=',
-    region: 'Singida',
-    effectiveDate: 'jan 26 2020',
-  },
-];
 
 const columns = [
   {

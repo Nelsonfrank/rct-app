@@ -52,7 +52,7 @@ const Signup: React.FC<RouteComponentProps> = (props: any) => {
         .then((response) => response)
         .catch((error) => error);
 
-      console.log(updateResponse.message);
+      console.log(updateResponse);
     };
 
     completeUserRegistration();

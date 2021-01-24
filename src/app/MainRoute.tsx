@@ -17,7 +17,7 @@ const MainRoute: React.FC = () => {
         <ScrollToTop path="/">
           <Redirect from="/" to="/app/buyers" />
           <UsersRoutes path="app/*" />
-          {/* <ManagementRoutes path="management/*" /> */}
+          <ManagementRoutes path="management/*" />
         </ScrollToTop>
       </Router>
     </>
