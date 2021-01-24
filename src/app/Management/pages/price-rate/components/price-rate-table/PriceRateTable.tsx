@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // dependencies
 import { Table, Button, Tooltip, Divider, Space } from 'antd';
@@ -10,10 +10,12 @@ import {
 } from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { RouteComponentProps, navigate } from '@reach/router';
-
+import Notification from '../../../../../components/notification';
 //Styles
 import './PriceRateTable.less';
 
+// API
+import { GetPriceRate } from '../../../../../../API';
 //Props Type
 // export interface PriceRateTableProps {}
 
@@ -108,8 +110,44 @@ const columns = [
     ),
   },
 ];
-
+type priceRateProps = {
+  key: string;
+  variety: string;
+  price: string;
+  region: string;
+  effectiveDate: string;
+}[];
 const PriceRateTable: React.FC<RouteComponentProps> = () => {
+  const [priceRate, setPriceRate] = useState<priceRateProps>([]);
+
+  useEffect(() => {
+    const getPriceRate = async () => {
+      const priceRateResponse = await GetPriceRate().then(
+        (response) => response,
+      );
+
+      if (priceRateResponse.status === 200) {
+        const data = priceRateResponse.data.data.map((item: any) => {
+          return {
+            key: item.id,
+            variety: item.variety,
+            price: item.price_rate,
+            region: item.region,
+            effectiveDate: item.date,
+          };
+        });
+        setPriceRate(data);
+        // console.log(data);
+      } else {
+        Notification(
+          false,
+          'Fail to fetch Price Rate',
+          priceRateResponse.message,
+        );
+      }
+    };
+    getPriceRate();
+  }, []);
   const handleAddPriceRate = () => {
     navigate('price-rate/price-rate-form');
   };
@@ -133,7 +171,7 @@ const PriceRateTable: React.FC<RouteComponentProps> = () => {
           </Button>
         </div>
         <Divider />
-        <Table dataSource={dataSource} columns={columns} />
+        <Table dataSource={priceRate} columns={columns} />
       </Card>
     </>
   );

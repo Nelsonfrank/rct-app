@@ -1,25 +1,59 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // dependencies
 import { Input, InputNumber, DatePicker, Button, Select } from 'antd';
-import { RouteComponentProps } from '@reach/router';
-import { region, variety } from './country-dial';
+import { navigate, RouteComponentProps } from '@reach/router';
+import { region } from './country-dial';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 // components
 import BackButton from '../../../../components/back-button';
+import Notification from '../../../../../components/notification';
 // Styles
 import './PriceRateForm.less';
 
+//API
+import { GetAllVariety, AddPriceRate } from '../../../../../../API';
 // Props Types
 // export interface PriceRateFormProps {}
-
+type varietyProps = {
+  key: string;
+  name: string;
+  platform: string;
+  region: string;
+  added_by: string;
+}[];
 const PriceRateForm: React.FC<RouteComponentProps> = () => {
   const { Option } = Select;
+
+  // state
+  const [variety, setVariety] = useState<varietyProps>([]);
 
   const { register, handleSubmit, setValue, errors } = useForm({
     mode: 'onBlur',
   });
+
+  useEffect(() => {
+    const getAllVariety = async () => {
+      const varietyResponse = await GetAllVariety().then(
+        (response) => response,
+      );
+
+      if (varietyResponse.status === 200) {
+        const data = varietyResponse.data.data.map((item: any) => {
+          return {
+            key: item.id,
+            name: item.variety_name,
+          };
+        });
+        setVariety(data);
+        // console.log(data);
+      } else {
+        Notification(false, 'Fail to Fetch Variety');
+      }
+    };
+    getAllVariety();
+  }, []);
 
   useEffect(() => {
     register('region', { required: true });
@@ -52,6 +86,31 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
   };
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+
+    const payload = {
+      price_rate: data.price,
+      region: data.region,
+      variety: data.variety_name,
+      date: data.date,
+    };
+
+    const addPriceRate = async () => {
+      const priceRateResponce = await AddPriceRate(payload).then(
+        (response) => response,
+      );
+
+      if (priceRateResponce.status === 200) {
+        Notification(true, 'Price Rate Added Successfully');
+        navigate(-1);
+      } else {
+        Notification(
+          false,
+          'Failed to Add Price Rate',
+          priceRateResponce.message,
+        );
+      }
+    };
+    addPriceRate();
   };
   return (
     <>
@@ -97,7 +156,7 @@ const PriceRateForm: React.FC<RouteComponentProps> = () => {
               onChange={handleVarietyChange}
             >
               {variety.map((item) => (
-                <Option key={item.name} value={item.name}>
+                <Option key={item.key} value={item.name}>
                   {item.name}
                 </Option>
               ))}

@@ -245,3 +245,17 @@ export const GetAllVariety = () => {
     .then((response) => response)
     .catch((error) => error.message);
 };
+
+export const AddPriceRate = (payload: any) => {
+  return axios
+    .post(`/api/v1/price-rate`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+export const GetPriceRate = () => {
+  return axios
+    .get(`/api/v1/price-rate`)
+    .then((response) => response)
+    .catch((error) => error);
+};
