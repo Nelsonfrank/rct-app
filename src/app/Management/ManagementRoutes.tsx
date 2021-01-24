@@ -24,8 +24,8 @@ import { AuthConsumer } from '../../auth/AuthContext';
 const ManagementRoutes: React.FC<RouteComponentProps> = () => {
   return (
     <AuthConsumer>
-      {({ authenticated, handleAuthDashboard }) =>
-        authenticated ? (
+      {({ userAccessToken, handleAuthDashboard }) =>
+        userAccessToken ? (
           <Router>
             <Layout path="/">
               <Dashboard path="dashboard" />

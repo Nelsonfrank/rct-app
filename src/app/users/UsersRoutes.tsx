@@ -15,8 +15,8 @@ import { AuthConsumer } from '../../auth/AuthContext';
 const Users: React.FC<RouteComponentProps> = () => {
   return (
     <AuthConsumer>
-      {({ authenticated, handleAuthentication }) =>
-        authenticated ? (
+      {({ userAccessToken, handleAuthentication }) =>
+        userAccessToken ? (
           <Router primary={false}>
             <Buyers path="buyers/*" />
             {/* <Sellers path="sellers/*" /> */}

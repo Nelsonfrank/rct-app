@@ -5,7 +5,7 @@ class Auth extends Component {
   state = {
     authenticated: false,
     userRole: '',
-    userAccessToken: '',
+    userAccessToken: localStorage.getItem('accessToken'),
     userInfo: {},
   };
 
