@@ -1,10 +1,11 @@
 .tenderrequest_container {
   width: 95%;
   margin: 0 auto;
-  height: 45vh;
+  height: calc(120vh - 390px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 1.875rem;
 }
 
 .link-direction {
@@ -36,6 +37,7 @@
 @media screen and (min-width: 768px) {
   .tenderrequest_container {
     width: 70%;
+    height: calc(100vh - 390px);
   }
   .link-direction {
     font-size: 16px;
@@ -45,5 +47,6 @@
 @media screen and (min-width: 1224px) {
   .tenderrequest_container {
     width: 50%;
+    height: calc(100vh - 390px);
   }
 }

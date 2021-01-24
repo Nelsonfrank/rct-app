@@ -12,19 +12,6 @@ const TenderRequest: React.FC<RouteComponentProps> = () => {
 
   return (
     <div>
-      <div>
-        <div>
-          <h3 className="link-direction">
-            Home <span>{'>'}</span> Shop By Seller {'>'} Give Tender
-          </h3>
-        </div>
-        <Divider
-          style={{
-            margin: '0  0 0.5rem 0 ',
-            borderTop: '2px solid rgba(0, 0, 0, 0.06)',
-          }}
-        />
-      </div>
       <div className="tenderrequest_container">
         <div className="request-quantity_input">
           <h3>Give Tender</h3>
