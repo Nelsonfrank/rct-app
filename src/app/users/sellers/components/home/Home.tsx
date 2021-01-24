@@ -22,6 +22,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           subtitle="1. Give Tender"
           className="seller--card"
           styles={{ margin: '0.5rem 0' }}
+          isHoverable
         >
           <div>
             <p>
@@ -36,6 +37,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           subtitle="2. Request Tender "
           className="seller--card"
           styles={{ margin: '0.5rem 0' }}
+          isHoverable
         >
           <div>
             <p>
@@ -50,6 +52,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           subtitle="3. Price Rate"
           className="seller--card"
           styles={{ margin: '0.5rem 0' }}
+          isHoverable
         >
           <div>
             <p>
@@ -61,13 +64,13 @@ const Home: React.FC<RouteComponentProps> = () => {
           </div>
         </Card>
         <CardSection
-          title="Recent Tender Bids"
+          title="Recent Tender Given"
           route="sellers/tender-bids"
           listItems={TenderBidsData}
           users
         />
         <CardSection
-          title="Shop by Buyers"
+          title="Rice Buyers"
           route="sellers/buyers-list"
           listItems={ShopByBuyerData}
           users

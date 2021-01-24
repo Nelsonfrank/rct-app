@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 // Components
 import { Input } from 'antd';
 import { Divider, Button, Popover } from 'antd';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { Link } from '@reach/router';
+import { useLocation } from '@reach/router';
 
 //Auth
 import { Auth } from '../../../../../../auth/AuthContext';
@@ -24,12 +25,16 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
   //State
   const [isOpen, setisOpen] = useState(false);
 
+  const location = useLocation();
   const { authenticated, logout } = useContext(Auth);
   const { hideOptions } = props;
   const toggleNavigationOption = () => {
     setisOpen(!isOpen);
   };
 
+  useEffect(() => {
+    console.log(location.pathname);
+  }, [location]);
   const onSearch = (value: string) => console.log(value);
 
   // const DividerComponent = ()=>
@@ -62,21 +67,11 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
               />
             </div>
             <div className="navigation--user_action">
-              {/* <div>
-              <BellOutlined style={{ fontSize: 20, margin: '0 0.25rem' }} />
-            </div>
-            <div>
-              <QuestionCircleOutlined
-                style={{ fontSize: 20, margin: '0 0.25rem' }}
-              />
-            </div> */}
               {!authenticated ? (
                 <div className="registry-container">
                   <span className="register--welcome">Welcome!</span>
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Link to="/app/login">Sign In</Link>{' '}
-                    <span style={{ padding: '0 0.25rem' }}>{` | `}</span>
-                    {/* <Link to="/app/signup">Register</Link> */}
                   </div>
                 </div>
               ) : (
@@ -116,33 +111,58 @@ const HeaderNavigation: React.FC<HeaderNavigationProps> = (
         />
       </div>
       <div className={`${hideOptions ? 'option-list_hide' : 'option--group'} `}>
-        <div className="options-lgscreen">
-          <div className="option--item__lgscreen ">
-            <p style={{ marginBottom: 0 }}>
-              <Link to="/">Home</Link>
-            </p>
+        {location.pathname.includes('/app/sellers') ? (
+          <div className="options-lgscreen">
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="/">Home</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="tender-requests">Tender Given</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="shop-by-sellers">Buyers</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="market-info">Market Today</Link>
+              </p>
+            </div>
           </div>
-          <div className="option--item__lgscreen ">
-            <p style={{ marginBottom: 0 }}>
-              <Link to="tender-requests">Tender Request</Link>
-            </p>
+        ) : (
+          <div className="options-lgscreen">
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="/">Home</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="tender-requests">Tender Request</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="shop-by-sellers">Sellers</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="shop-by-platforms">Platforms</Link>
+              </p>
+            </div>
+            <div className="option--item__lgscreen ">
+              <p style={{ marginBottom: 0 }}>
+                <Link to="market-info">Market Today</Link>
+              </p>
+            </div>
           </div>
-          <div className="option--item__lgscreen ">
-            <p style={{ marginBottom: 0 }}>
-              <Link to="shop-by-sellers">Sellers</Link>
-            </p>
-          </div>
-          <div className="option--item__lgscreen ">
-            <p style={{ marginBottom: 0 }}>
-              <Link to="shop-by-platforms">Platforms</Link>
-            </p>
-          </div>
-          <div className="option--item__lgscreen ">
-            <p style={{ marginBottom: 0 }}>
-              <Link to="market-info">Market Today</Link>
-            </p>
-          </div>
-        </div>
+        )}
         <Divider
           style={{
             margin: '0.5rem 0 ',

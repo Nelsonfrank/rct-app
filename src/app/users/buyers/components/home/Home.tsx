@@ -81,7 +81,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         </Card>
         <CardSection
           title="Recent Tender Request"
-          route="tender-requests"
+          route="buyers/tender-requests"
           listItems={TenderRequestsData}
         />
         <CardSection
@@ -91,7 +91,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         />
         <CardSection
           title="Shop By Platform"
-          route="shop-by-platforms"
+          route="buyers/shop-by-platforms"
           listItems={ShopByPlatformsData}
         />
       </div>
@@ -101,7 +101,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         visible={isModalOpen}
         okText={'Next'}
         onOk={() => {
-          navigate('shop-by-sellers');
+          navigate('buyers/shop-by-sellers');
         }}
         onCancel={() => setIsModalOpen(!isModalOpen)}
       >
