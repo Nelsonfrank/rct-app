@@ -62,13 +62,13 @@ const Home: React.FC<RouteComponentProps> = () => {
         </Card>
         <CardSection
           title="Recent Tender Bids"
-          route="tender-bids"
+          route="sellers/tender-bids"
           listItems={TenderBidsData}
           users
         />
         <CardSection
           title="Shop by Buyers"
-          route="buyers-list"
+          route="sellers/buyers-list"
           listItems={ShopByBuyerData}
           users
         />

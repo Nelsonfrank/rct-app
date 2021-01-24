@@ -50,6 +50,7 @@ const SectionCardList: React.FC<SectionCardListProps> = (
                 img={item.img}
                 imgTitle={item.title}
                 imgDescrip={item.cardDescrip}
+                isHoverable
                 onClick={() => navigate(item.routes)}
               ></Card>
             ))

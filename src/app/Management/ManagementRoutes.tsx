@@ -1,6 +1,6 @@
 import React from 'react';
 //dependencies
-import { Router, RouteComponentProps } from '@reach/router';
+import { Router, RouteComponentProps, Redirect } from '@reach/router';
 
 //Components
 import Layout from './components/Layout';
@@ -28,6 +28,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
         userAccessToken ? (
           <Router>
             <Layout path="/">
+              {/* <Redirect from="signin" to="dashboard" noThrow /> */}
               <Dashboard path="dashboard" />
               <NotFound default />
               <UsersRoutes path="users/*" />
@@ -41,6 +42,7 @@ const ManagementRoutes: React.FC<RouteComponentProps> = () => {
           </Router>
         ) : (
           <Router>
+            {/* <Redirect from="*" to="signin" noThrow />{' '} */}
             <ManagementSignin path="signin" handleAuth={handleAuthDashboard} />
           </Router>
         )

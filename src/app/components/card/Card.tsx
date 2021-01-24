@@ -15,6 +15,7 @@ export interface CardsProps {
   imgTitle?: string;
   imgDescrip?: string;
   backButton?: boolean;
+  isHoverable?: boolean;
   onClick?: () => void;
 }
 
@@ -32,6 +33,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
     imgDescrip,
     backButton,
     onClick,
+    isHoverable,
   } = CardsProps;
   return (
     <Card
@@ -44,6 +46,7 @@ const Cards: React.FC<CardsProps> = (CardsProps) => {
       cover={img && <img src={img} alt="slider-1" style={{ width: '100%' }} />}
       className={className}
       onClick={onClick}
+      hoverable={isHoverable}
     >
       {title ? (
         <div style={{ display: 'flex', alignItems: 'center' }}>

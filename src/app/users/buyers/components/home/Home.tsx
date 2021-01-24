@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Header from '../../../components/header';
 import CardSection from '../../../components/section-card-list';
 import Card from '../../../../components/card';
-import { RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
 import { Modal, Checkbox } from 'antd';
 // placeholder data
 import {
@@ -101,7 +101,7 @@ const BuyerHome: React.FC<RouteComponentProps> = () => {
         visible={isModalOpen}
         okText={'Next'}
         onOk={() => {
-          console.log('ok');
+          navigate('shop-by-sellers');
         }}
         onCancel={() => setIsModalOpen(!isModalOpen)}
       >
