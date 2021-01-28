@@ -29,7 +29,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
   const { register, handleSubmit, setValue, errors } = useForm({
     mode: 'onBlur',
   });
-  const { userAccessToken, userInfo } = useContext(Auth);
+  const { adminAccessToken, userInfo } = useContext(Auth);
 
   useEffect(() => {
     const getAllPlatform = async () => {
@@ -140,6 +140,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     password: string;
     scale_status: string;
   };
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const value = {
       user: {
@@ -163,10 +164,9 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
       },
     };
 
-    console.log(userInfo.id);
     setLoading(true);
     const createSellerAccount = async () => {
-      const result = await AddSeller(value, userInfo.id, userAccessToken).then(
+      const result = await AddSeller(value, userInfo.id, adminAccessToken).then(
         (response) => response,
       );
       setLoading(false);
@@ -175,7 +175,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         navigate(-1);
         Notification(true, 'Seller Account Created Successfully');
       } else if (result.message === `Request failed with status code 401`) {
-        const token = localStorage.getItem('refreshToken');
+        const token = sessionStorage.getItem('refreshToken');
         const refreshToken = {
           refresh_token: token,
         };
@@ -185,13 +185,12 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
           );
 
           if (response.status === 201) {
-            localStorage.setItem('accessToken', response.data.data.token);
-            localStorage.setItem(
+            sessionStorage.setItem('accessToken', response.data.data.token);
+            sessionStorage.setItem(
               'refreshToken',
               response.data.data.refreshToken,
             );
             const createSellerAgain = async () => {
-              // const newToken = localStorage.getItem('accessToken');
               const newUser = await AddSeller(
                 value,
                 userInfo.id,

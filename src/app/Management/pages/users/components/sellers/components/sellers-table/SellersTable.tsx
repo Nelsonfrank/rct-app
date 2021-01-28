@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 //Components
 import { Table, Space, Tag, Tooltip, Divider, Popconfirm } from 'antd';
@@ -11,8 +11,14 @@ import {
 } from '@ant-design/icons';
 import { navigate } from '@reach/router';
 import Notification from '../../../../../../../components/notification';
+
+import { Auth } from '../../../../../../../../auth/AuthContext';
 // Api
-import { GetAllUsers } from '../../../../../../../../API';
+import {
+  GetAllUsers,
+  DeleteSeller,
+  DisableSeller,
+} from '../../../../../../../../API';
 const { Column } = Table;
 
 // Props Types
@@ -30,30 +36,69 @@ type sellerProps = {
 const SellersTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [sellers, setSellers] = useState<sellerProps>([]);
+  const [hidePopup] = useState(false);
 
-  useEffect(() => {
-    const getSellers = async () => {
-      const result = await GetAllUsers().then((response) => response);
-
-      console.log(result);
-      if (result.status === 200) {
-        const res = result.data.data.sellerInformations.map((item: any) => {
-          return {
-            firstName: item.full_name.split(' ')[0],
-            lastName: item.full_name.split(' ')[1],
-            phone: item.phone_number,
-            platform: item.platform_name,
-            leader: item.platform_leader,
-            location: item.location,
-            tags: [item.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
-          };
-        });
-        console.log(res);
-        setSellers(res);
-      } else {
-        Notification(false, 'Failed to fetch sellers', result.messages);
-      }
+  const { adminAccessToken } = useContext(Auth);
+  const handleDeleteSeller = async (sellerId: string) => {
+    const response = await DeleteSeller(sellerId, adminAccessToken).then(
+      (response) => response,
+    );
+    if (response.status === 200) {
+      getSellers();
+      Notification(true, 'Seller Deleted Successfully');
+    } else {
+      Notification(false, 'Fail To Delete Seller', response.message);
+    }
+    console.log(sellerId);
+  };
+  const handleDisableSeller = async (sellerId: any) => {
+    const payload = {
+      toggle: 'false',
     };
+    const response = await DisableSeller(
+      sellerId,
+      payload,
+      adminAccessToken,
+    ).then((response) => response);
+    if (response.status === 200) {
+      Notification(true, 'Seller Disabled Successfully');
+    } else {
+      Notification(false, 'Fail To Delete Seller', response.message);
+    }
+  };
+
+  const handleUpdateSeller = (sellerId: any) => {
+    const data = {
+      event: 'update seller',
+      sellerId: sellerId,
+    };
+
+    navigate('add-sellers-form', { state: { data: data } });
+  };
+
+  const getSellers = async () => {
+    const result = await GetAllUsers().then((response) => response);
+    console.log(result);
+    console.log(result);
+    if (result.status === 200) {
+      const res = result.data.data.sellerInformations.map((item: any) => {
+        return {
+          keys: item.id,
+          firstName: item.full_name && item.full_name.split(' ')[0],
+          lastName: item.full_name && item.full_name.split(' ')[1],
+          phone: item.phone_number,
+          platform: item.platform_name,
+          leader: item.platform_leader,
+          location: item.location,
+          tags: [item.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
+        };
+      });
+      setSellers(res);
+    } else {
+      Notification(false, 'Failed to fetch sellers', result.messages);
+    }
+  };
+  useEffect(() => {
     getSellers();
 
     // console.log(sellers);
@@ -61,10 +106,8 @@ const SellersTable: React.FC = () => {
   const handleOnRowChange = (selectedRowKey: any) => {
     setSelectedRowKeys(selectedRowKey);
   };
-  const randomColorGenenrator = () => {
-    const color = ['#2db7f5', '#f50', '#2db7f5', '#9B59B6'];
-    const random = Math.floor(Math.random() * color.length);
-    return color[random];
+  const randomColorGenenrator = (tags: string) => {
+    return tags === 'TBS Certificed' ? '#f50' : '#2db7f5';
   };
   const rowSelection = {
     selectedRowKeys,
@@ -97,7 +140,7 @@ const SellersTable: React.FC = () => {
         render={(tags) => (
           <>
             {tags.map((tag: any) => (
-              <Tag color={randomColorGenenrator()} key={tag}>
+              <Tag color={randomColorGenenrator(tag)} key={tag}>
                 {tag}
               </Tag>
             ))}
@@ -106,11 +149,12 @@ const SellersTable: React.FC = () => {
       />
       <Column
         title="Action"
-        key="action"
-        render={() => (
+        dataIndex="keys"
+        key="keys"
+        render={(keys) => (
           <>
             <Space split={<Divider type="vertical" />}>
-              <div>
+              <div onClick={() => handleUpdateSeller(keys)}>
                 <Tooltip title="Edit">
                   <EditOutlined style={{ fontSize: '1.25rem' }} />
                 </Tooltip>
@@ -121,13 +165,34 @@ const SellersTable: React.FC = () => {
                 </Tooltip>
               </div>
               <div>
-                <Tooltip title="Disable Buyer">
-                  <StopOutlined style={{ fontSize: '1.25rem' }} />
-                </Tooltip>
+                <Popconfirm
+                  title="Disable Seller？"
+                  okText="Yes"
+                  cancelText="No"
+                  onConfirm={() => handleDisableSeller(keys)}
+                >
+                  <Tooltip
+                    title="Disable Buyer"
+                    visible={hidePopup}
+                    trigger="hover"
+                  >
+                    <StopOutlined style={{ fontSize: '1.25rem' }} />
+                  </Tooltip>
+                </Popconfirm>
               </div>
               <div>
-                <Popconfirm title="Delete User？" okText="Yes" cancelText="No">
-                  <Tooltip title="Delete Buyer" color={'red'}>
+                <Popconfirm
+                  title="Delete Seller?"
+                  okText="Yes"
+                  cancelText="No"
+                  onConfirm={() => handleDeleteSeller(keys)}
+                >
+                  <Tooltip
+                    title="Delete Buyer"
+                    color={'red'}
+                    visible={hidePopup}
+                    trigger="hover"
+                  >
                     <DeleteOutlined
                       style={{ fontSize: '1.25rem', color: '#ff0000' }}
                     />

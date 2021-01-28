@@ -32,6 +32,64 @@ export const AddSeller = (payload: any, adminId: any, token: any) => {
 };
 
 /**
+ * Delete seller
+ * @param sellerId
+ * @function
+ * @name DeleteSeller
+ */
+export const DeleteSeller = (sellerId: any, adminAccessToken: any) => {
+  return axios
+    .delete(`/api/v1/seller/${sellerId}`, {
+      headers: {
+        Authorization: `Bearer ${adminAccessToken}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+/**
+ * Disable seller
+ * @param sellerId
+ * @function
+ * @name DisableSeller
+ */
+export const DisableSeller = (
+  sellerId: any,
+  payload: { toggle: string },
+  adminAccessToken: string,
+) => {
+  return axios
+    .put(`/api/v1/seller/toggle/${sellerId}`, payload, {
+      headers: {
+        Authorization: `Bearer ${adminAccessToken}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+/**
+ * Update seller
+ * @param sellerId
+ * @function
+ * @name UpdateSeller
+ */
+export const UpdateSellerById = (
+  sellerId: any,
+  payload: any,
+  adminAccessToken: string,
+) => {
+  return axios
+    .put(`/api/v1/seller/toggle/${sellerId}`, payload, {
+      headers: {
+        Authorization: `Bearer ${adminAccessToken}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+/**
  * Complete User Registration
  * @param payload
  * @function
@@ -230,7 +288,7 @@ export const AddVariety = (payload: any, token: string) => {
       },
     })
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const GetAllVariety = () => {

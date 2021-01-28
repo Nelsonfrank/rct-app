@@ -166,7 +166,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
         refreshTokenCall();
       } else {
         setLoading(false);
-        Notification(false, 'Failed to Create Platform');
+        Notification(false, 'Failed to Create Platform', result.message);
       }
     };
     AddPlatform();

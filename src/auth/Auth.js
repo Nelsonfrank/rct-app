@@ -6,6 +6,7 @@ class Auth extends Component {
     authenticated: false,
     userRole: '',
     userAccessToken: localStorage.getItem('accessToken'),
+    adminAccessToken: sessionStorage.getItem('accessToken'),
     userInfo: {},
   };
 
