@@ -20,6 +20,7 @@ const Signup: React.FC<RouteComponentProps> = (props: any) => {
     const phoneDetail = props.location.state.data;
     setValue('dial_code', phoneDetail.dial_code);
     setValue('phone_number', phoneDetail.phone_number);
+    console.log(phoneDetail);
   }, []);
 
   useEffect(() => {
@@ -104,7 +105,7 @@ const Signup: React.FC<RouteComponentProps> = (props: any) => {
                   placeholder="Phone Number"
                   size="large"
                   style={{ width: '100%' }}
-                  value={getValues('phone_number')}
+                  value={props.location.state.data.phone_number}
                   maxLength={9}
                   addonBefore={getValues('dial_code') || '+255'}
                   onChange={handlePhoneChange}

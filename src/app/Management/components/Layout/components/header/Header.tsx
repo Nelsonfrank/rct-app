@@ -14,7 +14,7 @@ const Header: React.FC<HeaderType> = ({
   handleShowNavBar,
   isNavBarOpened,
 }: HeaderType) => {
-  const { logout } = useContext(Auth);
+  const { dashboardLogout } = useContext(Auth);
 
   return (
     <>
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderType> = ({
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <Button type="link">Update Username</Button>
                       <Button type="link">Update Password</Button>
-                      <Button type="link" onClick={logout}>
+                      <Button type="link" onClick={dashboardLogout}>
                         Logout
                       </Button>
                     </div>

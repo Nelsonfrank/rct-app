@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AuthProvider } from './AuthContext';
+import { navigate } from '@reach/router';
 class Auth extends Component {
   state = {
     authenticated: false,
