@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { Input, Button } from 'antd';
 import { RouteComponentProps, navigate } from '@reach/router';
 import Notification from '../notification';
+
 // Styles
 import './VerifyPhone.less';
 
@@ -37,7 +38,15 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
     setUserNumber(props.location.state.data);
     const createToken = async () => {
       const result = await CreateToken(userNumber).then((response) => response);
-      console.log(result);
+      if (result.status === 200) {
+        console.log(result);
+      } else {
+        Notification(
+          false,
+          'Failed to send verification token',
+          result.message,
+        );
+      }
     };
     createToken();
   }, [userNumber]);
@@ -113,7 +122,8 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
           };
           generateToken();
         } else {
-          Notification(false, 'Fail to verify token');
+          setLoading(false);
+          Notification(false, 'Fail to verify token', response.message);
         }
       });
     };
@@ -137,6 +147,7 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
                 placeholder="Enter Code"
                 size="large"
                 onChange={handleChange}
+                maxLength={6}
                 style={{ width: '100%' }}
               />
               <div className="verifyPhone_resendCode">
@@ -155,7 +166,7 @@ const VerifyPhone: React.FC<VerifyPhoneProps> = (props: any) => {
                   loading={loading}
                 >
                   {' '}
-                  Send Code
+                  Confirm Code
                 </Button>
               </div>
             </form>

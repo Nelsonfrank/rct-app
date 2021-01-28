@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Button, Divider, Select } from 'antd';
 import { RouteComponentProps, Link, navigate } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Notification from '../notification';
 import { country } from '../country-dial';
 import { UserLogin } from '../../../API';
 const { Option } = Select;
@@ -19,6 +20,7 @@ type FormValues = {
 const Login: React.FC<RouteComponentProps> = () => {
   const [countrySelected, setcountrySelected] = useState('');
   const [countryCode, setcountryCode] = useState('+255');
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, setValue } = useForm();
 
   const handleChange = (e: any) => {
@@ -45,14 +47,17 @@ const Login: React.FC<RouteComponentProps> = () => {
   }, [register, countrySelected]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-
+    setLoading(true);
     const login = async () => {
       const result = await UserLogin(data).then((response) => response);
       if (result.status === 200) {
+        setLoading(false);
         navigate('/app/verify-phone', { state: { data: data } });
       } else if (result.status === 201) {
+        setLoading(false);
         navigate('/app/signup', { state: { data: data } });
+      } else {
+        Notification(false, 'Failed To Login', result.message);
       }
     };
 
@@ -107,7 +112,12 @@ const Login: React.FC<RouteComponentProps> = () => {
                 />
               </div>
               <div className="login_btn">
-                <Button type="primary" htmlType="submit" size="large">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  size="large"
+                  loading={loading}
+                >
                   {' '}
                   Login
                 </Button>

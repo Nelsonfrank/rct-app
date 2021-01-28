@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 // Components
 import { Input, Button, Divider } from 'antd';
-import { RouteComponentProps, Link } from '@reach/router';
-
+import { RouteComponentProps, Link, navigate } from '@reach/router';
+import Notification from '../notification';
 // Api
 import { CompleteRegistration } from '../../../API';
 //Styles
@@ -19,7 +20,7 @@ const Signup: React.FC<RouteComponentProps> = (props: any) => {
     const phoneDetail = props.location.state.data;
     setValue('dial_code', phoneDetail.dial_code);
     setValue('phone_number', phoneDetail.phone_number);
-  }, [props.location.state.data, setValue]);
+  }, []);
 
   useEffect(() => {
     register('first_name', { required: true });
@@ -52,7 +53,16 @@ const Signup: React.FC<RouteComponentProps> = (props: any) => {
         .then((response) => response)
         .catch((error) => error);
 
-      console.log(updateResponse);
+      if (updateResponse.status === 200) {
+        Notification(true, 'Account Update Successfully');
+        const phoneInfo = {
+          dial_code: data.dial_code,
+          phone_number: data.phone_number,
+        };
+        navigate('/app/verify-phone', { state: { data: phoneInfo } });
+      } else {
+        Notification(false, 'Account Update Failed');
+      }
     };
 
     completeUserRegistration();
