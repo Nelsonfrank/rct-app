@@ -166,6 +166,45 @@ export const GetAllPlatform = () => {
     .then((response) => response)
     .catch((error) => error);
 };
+
+/**
+ * Delete Platform
+ * @param sellerId
+ * @function
+ * @name DeleteSeller
+ */
+export const DeletePlatform = (adminId: any, adminAccessToken: any) => {
+  return axios
+    .delete(`/api/v1/platform/${adminId}`, {
+      headers: {
+        Authorization: `Bearer ${adminAccessToken}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+/**
+ * Disable Platfrom
+ * @param platformId
+ * @function
+ * @name DisablePlatfrom
+ */
+export const DisablePlatfrom = (
+  platformId: any,
+  payload: { toggle: string },
+  adminAccessToken: string,
+) => {
+  return axios
+    .put(`/api/v1/seller/toggle/${platformId}`, payload, {
+      headers: {
+        Authorization: `Bearer ${adminAccessToken}`,
+      },
+    })
+    .then((response) => response)
+    .catch((error) => error);
+};
+
 export const CreateLeader = (
   payload: { dial_code: string; phone_number: string; name: string },
   platformId: string | null,

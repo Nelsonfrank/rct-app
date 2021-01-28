@@ -39,6 +39,7 @@ const SellersTable: React.FC = () => {
   const [hidePopup] = useState(false);
 
   const { adminAccessToken } = useContext(Auth);
+
   const handleDeleteSeller = async (sellerId: string) => {
     const response = await DeleteSeller(sellerId, adminAccessToken).then(
       (response) => response,
@@ -72,7 +73,6 @@ const SellersTable: React.FC = () => {
       event: 'update seller',
       sellerId: sellerId,
     };
-
     navigate('add-sellers-form', { state: { data: data } });
   };
 

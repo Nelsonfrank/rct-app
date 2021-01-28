@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 // dependence
-import { Input, Select, Button } from 'antd';
+import { Input, Select, Button, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons'; // Icont
 import { RouteComponentProps, navigate } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import {
@@ -29,16 +30,16 @@ type FormValues = {
   first_name: string;
   surname: string;
 };
-const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
-  const { userAccessToken } = useContext(Auth);
+const CreatePlatformForm: React.FC<RouteComponentProps> = (props: any) => {
+  const { adminAccessToken } = useContext(Auth);
   const [countrySelected, setcountrySelected] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, setValue, errors, formState } = useForm({
+  const { register, handleSubmit, setValue, errors } = useForm({
     mode: 'onChange',
   });
   useEffect(() => {
-    console.log(formState);
+    console.log(props);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
@@ -70,25 +71,6 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
     setValue('phone_number', e.target.value);
   };
 
-  // const createLeader = async (
-  //   payload: { dial_code: string; phone_number: string; name: string },
-  //   platformId: string,
-  //   accessToken: string,
-  // ) => {
-  //   return await CreateLeader(payload, platformId, accessToken).then(
-  //     (response) => response,
-  //   );
-  // };
-
-  // const createPlatform = async (
-  //   payload: CreatePlatformTypes,
-  //   accessToken: string | null,
-  // ) => {
-  //   return await CreatePlatform(payload, accessToken).then(
-  //     (response) => response,
-  //   );
-  // };
-
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
     const platformValue = {
@@ -107,7 +89,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
     setLoading(true);
 
     const AddPlatform = async () => {
-      const result = await CreatePlatform(platformValue, userAccessToken).then(
+      const result = await CreatePlatform(platformValue, adminAccessToken).then(
         (response) => response,
       );
       if (result.status === 200) {
@@ -115,7 +97,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
           const createLeaderResponse = await CreateLeader(
             platformLeaderInfo,
             result.data.data,
-            userAccessToken,
+            adminAccessToken,
           ).then((response) => response);
           console.log(createLeaderResponse);
           setLoading(false);
@@ -124,7 +106,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
         };
         createLeader();
       } else if (result.message === `Request failed with status code 401`) {
-        const token = localStorage.getItem('refreshToken');
+        const token = sessionStorage.getItem('refreshToken');
         const refreshToken = {
           refresh_token: token,
         };
@@ -134,8 +116,8 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
           );
 
           if (response.status === 201) {
-            localStorage.setItem('accessToken', response.data.data.token);
-            localStorage.setItem(
+            sessionStorage.setItem('accessToken', response.data.data.token);
+            sessionStorage.setItem(
               'refreshToken',
               response.data.data.refreshToken,
             );
@@ -147,12 +129,11 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
               ).then((response) => response);
               if (result.status === 200) {
                 const createLeader = async () => {
-                  const createLeaderResponse = await CreateLeader(
+                  await CreateLeader(
                     platformLeaderInfo,
                     result.data.data,
                     response.data.data.token,
                   ).then((response) => response);
-                  console.log(createLeaderResponse);
                   setLoading(false);
                   navigate(-1);
                   Notification(true, 'Platform Created Successfully');
@@ -217,6 +198,11 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = () => {
               {errors.platform_region && 'Region is required'}
             </span>
           </div>
+        </div>
+        <div className="create-platform-location">
+          <Upload>
+            <Button icon={<UploadOutlined />}>Add Platform Image</Button>
+          </Upload>
         </div>
         <div>
           <h3 className="platform-info">Add Platform Leader</h3>
