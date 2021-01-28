@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { AuthProvider } from './AuthContext';
-import { navigate } from '@reach/router';
 class Auth extends Component {
   state = {
     authenticated: false,
@@ -16,13 +15,21 @@ class Auth extends Component {
       userRole: '',
       userAccessToken: '',
     });
-    navigate('/management/signin');
+    navigate('/');
   };
 
-  handleAuthentication = () => {
-    const isAuth = localStorage.getItem('authenticated');
+  dashboardLogout = () => {
+    sessionStorage.clear();
     this.setState({
-      authenticated: !!isAuth,
+      authenticated: false,
+      adminRole: '',
+      adminAccessToken: '',
+    });
+    navigate('/management/signin');
+  };
+  handleAuthentication = () => {
+    this.setState({
+      authenticated: true,
       userRole: JSON.parse(localStorage.getItem('UserRole')),
       userAccessToken: localStorage.getItem('accessToken'),
     });
@@ -31,12 +38,10 @@ class Auth extends Component {
   handleAuthDashboard = () => {
     this.setState({
       authenticated: true,
-      userRole: JSON.parse(localStorage.getItem('UserRole')),
-      userAccessToken: localStorage.getItem('accessToken'),
-      userInfo: JSON.parse(localStorage.getItem('UserInfo')),
+      adminRole: JSON.parse(sessionStorage.getItem('adminRole')),
+      adminAccessToken: sessionStorage.getItem('accessToken'),
+      userInfo: JSON.parse(sessionStorage.getItem('UserInfo')),
     });
-    // console.log(this.state.userInfo);
-    navigate('/management/dashboard');
   };
   render() {
     const authProviderValue = {
@@ -44,6 +49,7 @@ class Auth extends Component {
       handleAuthentication: this.handleAuthentication,
       handleAuthDashboard: this.handleAuthDashboard,
       logout: this.logout,
+      dashboardLogout: this.dashboardLogout,
     };
     return (
       <AuthProvider value={authProviderValue}>

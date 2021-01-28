@@ -44,7 +44,7 @@ const LeadersTable: React.FC = () => {
       } else if (
         leaderResponse.message === 'Request failed with status code 401'
       ) {
-        const token = localStorage.getItem('refreshToken');
+        const token = sessionStorage.getItem('refreshToken');
         const refreshToken = {
           refresh_token: token,
         };
@@ -53,8 +53,8 @@ const LeadersTable: React.FC = () => {
             (response) => response,
           );
           if (response.status === 201) {
-            localStorage.setItem('accessToken', response.data.data.token);
-            localStorage.setItem(
+            sessionStorage.setItem('accessToken', response.data.data.token);
+            sessionStorage.setItem(
               'refreshToken',
               response.data.data.refreshToken,
             );

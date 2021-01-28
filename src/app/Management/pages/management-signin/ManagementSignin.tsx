@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Input, Button, Divider } from 'antd';
 import { RouteComponentProps, Link } from '@reach/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { navigate } from '@reach/router';
 import {
   ManagementLogin,
   GenerateTokenByPassword,
@@ -60,42 +61,43 @@ const ManagementSignin: React.FC<ManagementSignInProps> = (
           );
 
           if (value.status === 201) {
-            localStorage.setItem('accessToken', value.data.data.token);
-            localStorage.setItem('refreshToken', value.data.data.refreshToken);
-            localStorage.setItem('authenticated', value.data.data.token);
-
+            sessionStorage.setItem('accessToken', value.data.data.token);
+            sessionStorage.setItem(
+              'refreshToken',
+              value.data.data.refreshToken,
+            );
             const getUserInfo = async () => {
               const result = await GetUserInformation(
                 value.data.data.token,
               ).then((response) => response);
               console.log(result);
               if (result.status === 200) {
-                localStorage.setItem(
-                  'UserRole',
+                sessionStorage.setItem(
+                  'adminRole',
                   JSON.stringify(result.data.data.roles),
                 );
-                localStorage.setItem(
+                sessionStorage.setItem(
                   'UserInfo',
                   JSON.stringify(result.data.data.user),
                 );
                 handleAuth();
+                navigate('/management/dashboard');
               } else {
-                Notification(false, value);
+                Notification(false, 'Failed to Login in', result.message);
               }
               setloading(false);
             };
             getUserInfo();
           } else {
-            Notification(false, value);
+            Notification(false, 'Failed to Login in', value.message);
           }
         };
 
         generateTokenByPwd();
       } else {
         setloading(false);
-        Notification(false, result);
+        Notification(false, 'Failed to Login in', result.message);
       }
-      console.log(result);
     };
 
     ManagementSignin();

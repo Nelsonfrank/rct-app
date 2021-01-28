@@ -4,6 +4,8 @@ const authContext = createContext({
   authenticated: false,
   userRole: '',
   userAccessToken: '',
+  adminRole: '',
+  adminAccessToken: '',
   userInfo: {
     active: 1,
     dial_code: '',
@@ -17,6 +19,7 @@ const authContext = createContext({
   handleAuthentication: () => {},
   handleAuthDashboard: () => {},
   logout: () => {},
+  dashboardLogout: () => {},
 });
 
 export const AuthProvider = authContext.Provider;
