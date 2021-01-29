@@ -39,7 +39,7 @@ const CreatePlatformForm: React.FC<RouteComponentProps> = (props: any) => {
     mode: 'onChange',
   });
   useEffect(() => {
-    console.log(props);
+    console.log(props.location.state);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {

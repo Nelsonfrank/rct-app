@@ -10,6 +10,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 const { Option } = Select;
 import { Auth } from '../../../../../../../../auth/AuthContext';
 import Notification from '../../../../../../../components/notification';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+
 // API
 import {
   AddSeller,
@@ -51,8 +53,10 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     register('address', { required: true });
     register('website');
     register('tbs_certificate_num');
+    register('tbs_certificate_img');
     register('id_type', { required: true });
     register('id_num', { required: true });
+    register('idImage', { required: true });
   }, [register]);
 
   const handleFirstNameChange = (e: any) => {
@@ -113,6 +117,7 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     },
     idFileList,
   };
+
   const TBSprops = {
     name: 'file',
     onRemove: (file: any) => {
@@ -127,6 +132,30 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     },
     TBSFileList,
   };
+
+  const handleIDImageChange = (event: any) => {
+    console.log(event);
+    const file = event.file;
+    const reader = new FileReader();
+    (reader.onload = (e: any) => {
+      setValue('idImage', e.target.result);
+    }),
+      reader.readAsDataURL(file);
+  };
+
+  const openCoverFile = () => {
+    document.querySelectorAll('input')[0].click();
+  };
+
+  const handleTSBImageChange = (event: any) => {
+    const file = event.file;
+    const reader = new FileReader();
+    (reader.onload = (e: any) => {
+      setValue('tbs_certificate_img', e.target.result);
+    }),
+      reader.readAsDataURL(file);
+  };
+
   type FormValues = {
     firstname: string;
     lastname: string;
@@ -139,9 +168,12 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
     phone_number: string;
     password: string;
     scale_status: string;
+    id_image: any;
+    tbs_certificate_img: any;
   };
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
     const value = {
       user: {
         dial_code: '+255',
@@ -162,9 +194,12 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
         card_type: data.id_type,
         variety_name: 'kyela',
       },
+      certificate: data.tbs_certificate_img,
+      card: data.id_image,
     };
 
     setLoading(true);
+    console.log(userInfo);
     const createSellerAccount = async () => {
       const result = await AddSeller(value, userInfo.id, adminAccessToken).then(
         (response) => response,
@@ -380,11 +415,17 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             />
           </div>
           <div className="add-sellers-name_item">
-            <Upload {...TBSprops} style={{ width: '100%' }} accept="image/*">
+            <Upload
+              {...TBSprops}
+              style={{ width: '100%' }}
+              accept="image/*"
+              onChange={(e) => handleTSBImageChange(e)}
+            >
               <Button
                 icon={<UploadOutlined />}
                 size="large"
                 disabled={!isTbsCertified}
+                onChange={openCoverFile}
               >
                 Attach TBS Certificate Image
               </Button>
@@ -418,8 +459,17 @@ const AddSellersForm: React.FC<RouteComponentProps> = () => {
             </span>
           </div>
           <div className="add-sellers-name_item">
-            <Upload {...Idprops} style={{ width: '100%' }} accept="image/*">
-              <Button icon={<UploadOutlined />} size="large">
+            <Upload
+              {...Idprops}
+              style={{ width: '100%' }}
+              accept="image/*"
+              onChange={(e) => handleIDImageChange(e)}
+            >
+              <Button
+                icon={<UploadOutlined />}
+                size="large"
+                onClick={openCoverFile}
+              >
                 Attach Identification Image
               </Button>
             </Upload>

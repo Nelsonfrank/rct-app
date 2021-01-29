@@ -7,7 +7,7 @@ class Auth extends Component {
     userRole: '',
     userAccessToken: localStorage.getItem('accessToken'),
     adminAccessToken: sessionStorage.getItem('accessToken'),
-    userInfo: {},
+    userInfo: JSON.parse(sessionStorage.getItem('UserInfo')) || {},
   };
 
   logout = () => {

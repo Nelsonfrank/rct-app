@@ -3,13 +3,13 @@ import React, { useState, useEffect, useContext } from 'react';
 
 //Components
 import { Table, Space, Divider, Tooltip, Button, Popconfirm } from 'antd';
-import { StopOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Card from '../../../../../components/card';
 import { navigate, RouteComponentProps } from '@reach/router';
 import {
   GetAllPlatform,
   DeletePlatform,
-  DisablePlatfrom,
+  // DisablePlatfrom,
 } from '../../../../../../API';
 import Notification from '../../../../../components/notification';
 import { Auth } from '../../../../../../auth/AuthContext';
@@ -50,29 +50,13 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
     }
   };
 
-  const handleDisablePlatform = async (platfromId: any) => {
-    const payload = {
-      toggle: 'false',
-    };
-    const response = await DisablePlatfrom(
-      platfromId,
-      payload,
-      adminAccessToken,
-    ).then((response) => response);
-    if (response.status === 200) {
-      Notification(true, 'Platform Disabled Successfully');
-    } else {
-      Notification(false, 'Fail To Delete Platform', response.message);
-    }
-  };
-
   const handleUpdatePlatform = (platformId: any) => {
     const data = {
       event: 'update platform',
       sellerId: platformId,
     };
 
-    navigate('add-platform-form', { state: { data: data } });
+    navigate('platforms/add-platform-form', { state: { data: data } });
   };
 
   const getAllPlatform = async () => {
@@ -159,18 +143,6 @@ const PlatformList: React.FC<RouteComponentProps> = () => {
                 <EditOutlined style={{ fontSize: '1.25rem' }} />
               </Tooltip>
             </div>
-            {/* <div>
-              <Popconfirm
-                title="Disable Platfrom?"
-                okText="Yes"
-                cancelText="No"
-                onConfirm={() => handleDisablePlatform(platformId)}
-              >
-                <Tooltip title="Disable Request">
-                  <StopOutlined style={{ fontSize: '1.25rem' }} />
-                </Tooltip>
-              </Popconfirm>
-            </div> */}
             <div>
               <Popconfirm
                 title="Delete Platfrom?"

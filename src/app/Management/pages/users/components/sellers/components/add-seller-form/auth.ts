@@ -1,0 +1,4 @@
+export const leaderId = '7376685c-aeba-4880-b2a6-ad29c5cfa7c5';
+
+export const leaderToken =
+  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0ZmFhZDVkYi1lYzcwLTQ3M2ItYmMzNi02YWJmNjFlMWE1NTEiLCJhdWQiOlsidXNlciJdLCJpc3MiOiJtYXNvbi5tZXRhbXVnLm5ldCIsImV4cCI6MTYxNDQ3OTYyNSwiaWF0IjoxNjExODg3NjI1LCJqdGkiOiIwMjdmZDY2OS0wY2JhLTRkOGYtODcyZi00MTRhMDFlZmNlODEifQ.8-JpUCdpqftpqo3YrATh9ITqH-cA2XC3hfzcLUQvV58';

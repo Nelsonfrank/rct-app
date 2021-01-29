@@ -61,12 +61,6 @@ const UsersHeader: React.FC = () => {
               <img src={Slider4} alt="Slider4" className="carousel--image" />
             </picture>
           </div>
-          {/* <div>
-            <img src={Slider5} alt="Slider5" className="carousel--image" />
-          </div>
-          <div>
-            <img src={Slider6} alt="Slider6" className="carousel--image" />
-          </div> */}
         </Carousel>
       </div>
     </>

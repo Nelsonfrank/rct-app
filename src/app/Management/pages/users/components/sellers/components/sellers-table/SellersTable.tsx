@@ -90,7 +90,11 @@ const SellersTable: React.FC = () => {
           platform: item.platform_name,
           leader: item.platform_leader,
           location: item.location,
-          tags: [item.is_tbs_certified.length !== 0 ? 'TBS Certificed' : ''],
+          tags: [
+            item.is_tbs_certified && item.is_tbs_certified.length !== 0
+              ? 'TBS Certificed'
+              : '',
+          ],
         };
       });
       setSellers(res);
